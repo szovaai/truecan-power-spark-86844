@@ -26,7 +26,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import heroImage from "@/assets/hero-electrical-v2.jpg";
+import heroImage from "@/assets/hero-electrical-dark.jpg";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GuaranteeCard from "@/components/GuaranteeCard";
@@ -75,61 +75,85 @@ const Home = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-32">
+      <section className="relative min-h-screen flex items-center justify-start overflow-hidden pt-20 md:pt-32">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         />
-        <div className="absolute inset-0 hero-gradient-overlay circuit-texture" />
+        <div className="absolute inset-0 hero-dark-gradient circuit-texture" />
         
-        <div className="relative z-10 container mx-auto px-4 py-20 text-center text-foreground">
-          <h1 className="text-6xl md:text-8xl font-montserrat font-extrabold mb-6 leading-tight">
-            Power You Can Trust
-          </h1>
-          <p className="text-xl md:text-3xl mb-3 max-w-4xl mx-auto font-semibold">
-            Residential & Commercial Electricians
-          </p>
-          <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-muted-foreground">
-            Licensed • Insured • ESA-Certified • 24/7 Emergency
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button variant="hero" size="lg" asChild>
-              <Link to="/contact">Book Free Assessment</Link>
-            </Button>
-            <Button variant="ghost" size="lg" asChild>
-              <Link to="/contact">Request a Quote</Link>
-            </Button>
-          </div>
-
-          {/* Trust Strip */}
-          <div className="flex flex-wrap items-center justify-center gap-6 mt-12">
-            <div className="flex items-center gap-1">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="fill-primary text-primary" size={20} />
-              ))}
-              <span className="ml-2 font-semibold">4.9/5 from Calgary homeowners & businesses</span>
+        <div className="relative z-10 container mx-auto px-4 py-24 md:py-32">
+          <div className="max-w-[720px] text-center md:text-left fade-up-enter">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-montserrat font-extrabold mb-4 leading-[1.1] tracking-tight">
+              Power You Can Trust
+            </h1>
+            <p className="text-2xl md:text-3xl mb-2 font-semibold text-foreground">
+              Residential & Commercial, Alberta-Wide
+            </p>
+            <p className="text-lg md:text-xl mb-10 text-muted-foreground leading-relaxed">
+              Licensed, insured, ESA-certified electricians. Same-day service, 24/7 emergencies, satisfaction guaranteed.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+              <Button 
+                variant="hero" 
+                size="lg" 
+                asChild 
+                className="button-glow-hover font-semibold text-base"
+              >
+                <Link to="/contact">Book Free Power Assessment</Link>
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                asChild
+                className="border-2 border-primary/50 bg-white/10 text-white hover:bg-white hover:text-primary font-semibold text-base"
+              >
+                <Link to="/contact">24/7 Emergency Call</Link>
+              </Button>
             </div>
-          </div>
-          
-          <div className="flex flex-wrap items-center justify-center gap-8 mt-8">
-            {certifications.map((cert, index) => (
-              <div key={index} className="flex items-center gap-2 bg-surface/80 backdrop-blur-sm px-4 py-2 rounded-lg border border-border">
-                <CheckCircle2 className="text-success" size={20} />
-                <span className="font-semibold text-sm">{cert}</span>
-              </div>
-            ))}
-          </div>
 
-          {/* PowerShield Member Counter */}
-          <div className="mt-8 inline-flex items-center gap-3 bg-surface/90 backdrop-blur-sm px-6 py-3 rounded-full border border-primary/30 hover:border-primary/50 transition-smooth cursor-pointer group" onClick={() => window.location.href = '/powershield'}>
-            <Shield className="text-primary animate-pulse" size={24} />
-            <div>
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold text-primary">1,247</span>
-                <span className="text-sm text-muted-foreground">members protected</span>
+            {/* Trust Strip */}
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8 justify-center md:justify-start">
+              <div className="flex items-center gap-1">
+                <Star className="fill-primary text-primary w-4 h-4" />
+                <Star className="fill-primary text-primary w-4 h-4" />
+                <Star className="fill-primary text-primary w-4 h-4" />
+                <Star className="fill-primary text-primary w-4 h-4" />
+                <Star className="fill-primary text-primary w-4 h-4" />
+                <span className="ml-1 font-medium">4.9/5</span>
               </div>
-              <p className="text-xs text-muted-foreground group-hover:text-primary transition-smooth">Join PowerShield™ today →</p>
+              <span>•</span>
+              <span className="font-medium">ESA-Certified</span>
+              <span>•</span>
+              <span className="font-medium">Licensed & Insured</span>
+              <span>•</span>
+              <span className="font-medium">Alberta-Wide</span>
+            </div>
+            
+            <p className="text-xs text-muted-foreground mb-8 text-center md:text-left">
+              Friendly, clean, on-time—or we credit $50
+            </p>
+            
+            <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start">
+              {certifications.map((cert, index) => (
+                <div key={index} className="flex items-center gap-2 bg-surface/60 backdrop-blur-sm px-3 py-1.5 rounded-md border border-border/50 text-xs">
+                  <CheckCircle2 className="text-success" size={16} />
+                  <span className="font-medium">{cert}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* PowerShield Member Counter */}
+            <div className="mt-8 inline-flex items-center gap-3 bg-surface/90 backdrop-blur-sm px-6 py-3 rounded-full border border-primary/30 hover:border-primary/50 transition-smooth cursor-pointer group" onClick={() => window.location.href = '/powershield'}>
+              <Shield className="text-primary animate-pulse" size={24} />
+              <div>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl font-bold text-primary">1,247</span>
+                  <span className="text-sm text-muted-foreground">members protected</span>
+                </div>
+                <p className="text-xs text-muted-foreground group-hover:text-primary transition-smooth">Join PowerShield™ today →</p>
+              </div>
             </div>
           </div>
         </div>
