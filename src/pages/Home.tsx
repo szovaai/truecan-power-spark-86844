@@ -26,7 +26,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import heroImage from "@/assets/hero-electrical.jpg";
+import heroImage from "@/assets/hero-electrical-v2.jpg";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GuaranteeCard from "@/components/GuaranteeCard";
