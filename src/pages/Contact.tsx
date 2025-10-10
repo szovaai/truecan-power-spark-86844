@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
@@ -30,7 +31,8 @@ const Contact = () => {
     phone: "",
     serviceType: "",
     urgency: "",
-    message: ""
+    message: "",
+    interestedInPowerShield: false
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -61,7 +63,8 @@ const Contact = () => {
       phone: "",
       serviceType: "",
       urgency: "",
-      message: ""
+      message: "",
+      interestedInPowerShield: false
     });
   };
 
@@ -258,6 +261,24 @@ const Contact = () => {
                         placeholder="Describe what electrical work you need..."
                         rows={5}
                       />
+                    </div>
+
+                    <div className="flex items-start gap-3 p-4 bg-surface rounded-lg border border-border">
+                      <Checkbox
+                        id="powerShield"
+                        checked={formData.interestedInPowerShield}
+                        onCheckedChange={(checked) => handleChange("interestedInPowerShield", checked as boolean)}
+                      />
+                      <div className="space-y-1">
+                        <Label htmlFor="powerShield" className="cursor-pointer font-semibold">
+                          ☑️ I'm interested in learning more about PowerShield™ membership
+                        </Label>
+                        {formData.interestedInPowerShield && (
+                          <p className="text-sm text-muted-foreground">
+                            Great choice! We'll include PowerShield™ information in our response and show you how to save on electrical services year-round.
+                          </p>
+                        )}
+                      </div>
                     </div>
 
                     <Button type="submit" variant="hero" size="lg" className="w-full">

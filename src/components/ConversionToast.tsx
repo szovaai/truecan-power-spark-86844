@@ -4,8 +4,10 @@ import { toast } from "sonner";
 const messages = [
   { name: "Jason", location: "NE Calgary", action: "booked a safety check" },
   { name: "Sarah", location: "Airdrie", action: "requested a panel upgrade" },
+  { name: "Jessica", location: "Cochrane", action: "joined PowerShield™", isPowerShield: true },
   { name: "Mike", location: "Chestermere", action: "scheduled an EV charger install" },
   { name: "Jennifer", location: "Cochrane", action: "booked emergency service" },
+  { name: "Mark", location: "Calgary", action: "activated PowerShield™ membership", isPowerShield: true },
   { name: "David", location: "SW Calgary", action: "requested a quote" },
 ];
 

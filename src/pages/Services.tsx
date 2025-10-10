@@ -127,6 +127,39 @@ const Services = () => {
         </div>
       </section>
 
+      {/* PowerShield Banner */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <Card className="max-w-5xl mx-auto border-l-4 border-primary shadow-glow bg-gradient-to-br from-surface to-background">
+            <CardContent className="p-8 md:p-12">
+              <div className="grid md:grid-cols-4 gap-8 items-center">
+                <div className="flex justify-center">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-background to-surface flex items-center justify-center border-2 border-primary shadow-premium">
+                    <Shield className="text-primary w-10 h-10" strokeWidth={2.5} />
+                  </div>
+                </div>
+                <div className="md:col-span-3">
+                  <h2 className="text-3xl font-montserrat font-extrabold mb-3">
+                    Get Priority Access with PowerShield™
+                  </h2>
+                  <p className="text-lg text-muted-foreground mb-4">
+                    Join our membership program for faster service and exclusive benefits
+                  </p>
+                  <div className="flex flex-wrap gap-4 text-sm mb-4">
+                    <span>✓ Skip the queue with priority dispatch</span>
+                    <span>✓ Save on every service call</span>
+                    <span>✓ Alberta-wide emergency coverage</span>
+                  </div>
+                  <Button variant="ghost" size="lg" asChild>
+                    <Link to="/powershield">View Membership Plans</Link>
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-primary to-primary-hover text-primary-foreground">
         <div className="container mx-auto px-4 text-center">

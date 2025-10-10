@@ -24,6 +24,7 @@ const Header = () => {
     { to: "/commercial", label: "Commercial" },
     { to: "/about", label: "About" },
     { to: "/projects", label: "Projects" },
+    { to: "/powershield", label: "PowerShield™", isNew: true },
     { to: "/contact", label: "Contact" },
   ];
 
@@ -75,6 +76,11 @@ const Header = () => {
                   }`}
                 >
                   {link.label}
+                  {link.isNew && (
+                    <span className="absolute -top-2 -right-8 bg-primary text-primary-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                      NEW
+                    </span>
+                  )}
                   {location.pathname === link.to && (
                     <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
                   )}
@@ -108,13 +114,18 @@ const Header = () => {
                   key={link.to}
                   to={link.to}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`font-semibold py-2 transition-smooth ${
+                  className={`font-semibold py-2 transition-smooth relative inline-flex items-center gap-2 ${
                     location.pathname === link.to 
                       ? "text-primary" 
                       : "text-foreground"
                   }`}
                 >
                   {link.label}
+                  {link.isNew && (
+                    <span className="bg-primary text-primary-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                      NEW
+                    </span>
+                  )}
                 </Link>
               ))}
               <Button variant="hero" asChild className="w-full">
