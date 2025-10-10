@@ -25,9 +25,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <ConversionToast />
-      <ExitIntentPopup />
-      <LiveChat />
       <BrowserRouter>
+        <ExitIntentPopup />
+        <LiveChat />
         <EmergencyFAB />
         <Routes>
           <Route path="/" element={<Home />} />
