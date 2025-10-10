@@ -3,122 +3,145 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Shield, 
-  Clock, 
-  MapPin, 
   Zap, 
   Lightbulb, 
   Plug, 
   Car,
   Wrench,
-  Star
+  Star,
+  CheckCircle2,
+  Flame,
+  Home as HomeIcon
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import heroImage from "@/assets/hero-electrical.jpg";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GuaranteeCard from "@/components/GuaranteeCard";
 
 const Home = () => {
-  const whyChooseUs = [
-    {
-      icon: Shield,
-      title: "Licensed & Insured",
-      description: "Fully certified with ESA approval and comprehensive insurance coverage for your peace of mind."
-    },
-    {
-      icon: Clock,
-      title: "24/7 Emergency Service",
-      description: "Power issues don't wait. Neither do we. Available around the clock for urgent electrical needs."
-    },
-    {
-      icon: MapPin,
-      title: "Local Canadian Experts",
-      description: "Proudly Canadian, serving communities across the country with reliable electrical solutions."
-    }
+  const problemSolutions = [
+    { icon: Zap, problem: "Breaker Tripping?", solution: "Same-day panel diagnostics.", link: "/contact" },
+    { icon: Flame, problem: "Lights Flickering?", solution: "Lighting & wiring repairs.", link: "/residential" },
+    { icon: HomeIcon, problem: "New Build or Fit-Out?", solution: "Full commercial electrical.", link: "/commercial" }
   ];
 
   const services = [
-    { icon: Zap, label: "Panel Upgrades", description: "Modernize your electrical system" },
-    { icon: Lightbulb, label: "Lighting Solutions", description: "Beautiful, efficient lighting design" },
-    { icon: Plug, label: "Wiring & Outlets", description: "Safe, code-compliant installations" },
-    { icon: Car, label: "EV Chargers", description: "Home & commercial charging stations" },
-    { icon: Wrench, label: "Maintenance", description: "Preventative care & inspections" },
-    { icon: Shield, label: "Emergency Repairs", description: "Fast response when you need it" }
+    { icon: Zap, label: "Panel Upgrades", description: "Modernize your system" },
+    { icon: Car, label: "EV Chargers", description: "Home & commercial" },
+    { icon: Lightbulb, label: "Lighting Design", description: "Efficient solutions" },
+    { icon: Shield, label: "Generators", description: "Backup power systems" },
+    { icon: Plug, label: "Tenant Improvements", description: "Commercial fit-outs" },
+    { icon: Wrench, label: "Maintenance Contracts", description: "Preventative care" }
+  ];
+
+  const portfolioProjects = [
+    { image: "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=800&q=80", caption: "Warehouse LED retrofit cut power by 38%" },
+    { image: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&q=80", caption: "Panel upgrade completed in one day" },
+    { image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80", caption: "Commercial EV charging station install" }
   ];
 
   const testimonials = [
-    {
-      name: "Sarah Johnson",
-      location: "Toronto, ON",
-      rating: 5,
-      text: "TrueCan upgraded our entire panel in under a day. Professional, clean, and incredibly knowledgeable. Highly recommend!"
-    },
-    {
-      name: "Michael Chen",
-      location: "Vancouver, BC",
-      rating: 5,
-      text: "Fixed a major electrical short in under 2 hours and saved us over $1,200 in potential repairs. Outstanding service!"
-    },
-    {
-      name: "Jennifer Brown",
-      location: "Montreal, QC",
-      rating: 5,
-      text: "Installed our EV charger perfectly. The team was punctual, courteous, and the work is flawless. Will use again!"
-    }
+    { name: "Sarah Johnson", location: "Airdrie, AB", rating: 5, text: "TrueCan upgraded our entire panel in under a day. Professional, clean, and incredibly knowledgeable. Highly recommend!", initial: "S" },
+    { name: "Michael Chen", location: "Calgary, AB", rating: 5, text: "Fixed a major electrical short in under 2 hours and saved us over $1,200 in potential repairs. Outstanding service!", initial: "M" },
+    { name: "Jennifer Brown", location: "Cochrane, AB", rating: 5, text: "Installed our EV charger perfectly. The team was punctual, courteous, and the work is flawless. Will use again!", initial: "J" }
   ];
+
+  const faqs = [
+    { question: "Are you licensed and insured?", answer: "Yes, we are fully licensed with ESA certification and carry comprehensive liability insurance. All our work is guaranteed and code-compliant." },
+    { question: "What is your warranty on electrical work?", answer: "We provide a 2-year workmanship warranty on all installations and repairs. Materials are covered by manufacturer warranties." },
+    { question: "How do you price your services?", answer: "We offer transparent, up-front pricing with no hidden fees. You'll receive a detailed quote before any work begins." },
+    { question: "What's your emergency response time?", answer: "For emergencies, we aim to respond within 2 hours. We're available 24/7 for urgent electrical issues." },
+    { question: "What areas do you service?", answer: "We serve Calgary and surrounding areas including Airdrie, Chestermere, Cochrane, and Okotoks." },
+    { question: "Do you work on both residential and commercial properties?", answer: "Yes, we handle everything from home repairs to large commercial installations and maintenance contracts." }
+  ];
+
+  const certifications = ["ESA Certified", "Licensed & Insured", "COR Safety", "BBB A+"];
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-32">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         />
-        <div className="absolute inset-0 hero-gradient-overlay" />
+        <div className="absolute inset-0 hero-gradient-overlay circuit-texture" />
         
-        <div className="relative z-10 container mx-auto px-4 py-20 text-center text-white">
-          <h1 className="text-5xl md:text-7xl font-montserrat font-extrabold mb-6 leading-tight">
+        <div className="relative z-10 container mx-auto px-4 py-20 text-center text-foreground">
+          <h1 className="text-6xl md:text-8xl font-montserrat font-extrabold mb-6 leading-tight">
             Power You Can Trust
           </h1>
-          <p className="text-xl md:text-2xl mb-4 max-w-3xl mx-auto font-semibold">
-            Residential & Commercial Electrical Experts
+          <p className="text-xl md:text-3xl mb-3 max-w-4xl mx-auto font-semibold">
+            Residential & Commercial Electricians
           </p>
-          <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-white/90">
-            Certified, insured, and ready 24/7 to keep your home and business powered safely.
+          <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-muted-foreground">
+            Licensed • Insured • ESA-Certified • 24/7 Emergency
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Button variant="hero" size="lg" asChild>
-              <Link to="/contact">Book a Free Power Assessment</Link>
+              <Link to="/contact">Book Free Assessment</Link>
             </Button>
-            <Button variant="outline" size="lg" asChild className="bg-white/10 backdrop-blur-sm text-white border-white hover:bg-white hover:text-primary">
+            <Button variant="ghost" size="lg" asChild>
               <Link to="/contact">Request a Quote</Link>
             </Button>
+          </div>
+
+          {/* Trust Strip */}
+          <div className="flex flex-wrap items-center justify-center gap-6 mt-12">
+            <div className="flex items-center gap-1">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="fill-primary text-primary" size={20} />
+              ))}
+              <span className="ml-2 font-semibold">4.9/5 from Calgary homeowners & businesses</span>
+            </div>
+          </div>
+          
+          <div className="flex flex-wrap items-center justify-center gap-8 mt-8">
+            {certifications.map((cert, index) => (
+              <div key={index} className="flex items-center gap-2 bg-surface/80 backdrop-blur-sm px-4 py-2 rounded-lg border border-border">
+                <CheckCircle2 className="text-success" size={20} />
+                <span className="font-semibold text-sm">{cert}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-background">
+      {/* Problem → Solution Grid */}
+      <section className="py-20 bg-surface">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold text-center mb-12">
-            Why Choose TrueCan?
-          </h2>
-          
           <div className="grid md:grid-cols-3 gap-8">
-            {whyChooseUs.map((item, index) => (
-              <Card key={index} className="border-2 hover:border-primary transition-smooth shadow-elegant hover:shadow-glow">
+            {problemSolutions.map((item, index) => (
+              <Card key={index} className="border-2 border-border hover:border-primary/50 transition-smooth shadow-elegant hover:shadow-glow group">
                 <CardContent className="p-8 text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-smooth">
                     <item.icon size={32} />
                   </div>
-                  <h3 className="text-2xl font-montserrat font-bold mb-4">
-                    {item.title}
+                  <h3 className="text-2xl font-montserrat font-bold mb-3 text-primary">
+                    {item.problem}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {item.description}
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    {item.solution}
                   </p>
+                  <Link to={item.link} className="text-primary font-semibold hover:underline inline-flex items-center gap-2">
+                    Fix This →
+                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -126,12 +149,12 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Snapshot */}
-      <section className="py-20 bg-muted">
+      {/* Featured Services */}
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-4">
-              Our Services
+              Featured Services
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Comprehensive electrical solutions for every need
@@ -140,9 +163,9 @@ const Home = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <Card key={index} className="hover:shadow-glow transition-smooth cursor-pointer">
+              <Card key={index} className="hover:shadow-premium transition-smooth cursor-pointer border-2 border-border hover:border-primary/50 group">
                 <CardContent className="p-6 text-center">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-primary mb-4">
+                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-primary mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-smooth">
                     <service.icon size={28} />
                   </div>
                   <h3 className="font-bold text-lg mb-2">{service.label}</h3>
@@ -154,13 +177,53 @@ const Home = () => {
 
           <div className="text-center mt-10">
             <Button variant="hero" size="lg" asChild>
-              <Link to="/residential">Explore All Services</Link>
+              <Link to="/services">Explore All Services</Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Mini Portfolio Carousel */}
+      <section className="py-20 bg-surface">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-4">
+              Recent Projects
+            </h2>
+          </div>
+
+          <Carousel className="max-w-5xl mx-auto">
+            <CarouselContent>
+              {portfolioProjects.map((project, index) => (
+                <CarouselItem key={index}>
+                  <Card className="border-2 border-border overflow-hidden">
+                    <div className="relative h-96">
+                      <img 
+                        src={project.image} 
+                        alt={project.caption}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/95 to-transparent p-6">
+                        <p className="text-xl font-semibold">{project.caption}</p>
+                      </div>
+                    </div>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+
+          <div className="text-center mt-10">
+            <Button variant="ghost" size="lg" asChild>
+              <Link to="/projects">View All Projects</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof - Reviews */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold text-center mb-12">
@@ -191,15 +254,15 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 hero-gradient text-white">
+      <section className="py-20 bg-gradient-to-br from-primary to-primary-hover text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-6">
             Ready to Power Up Your Project?
           </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
             Get a free assessment from certified electrical experts. No obligations, just honest advice.
           </p>
-          <Button variant="secondary" size="lg" asChild className="shadow-glow">
+          <Button variant="secondary" size="lg" asChild className="shadow-premium bg-white text-primary hover:bg-white/90">
             <Link to="/contact">Book Your Free Assessment</Link>
           </Button>
         </div>
