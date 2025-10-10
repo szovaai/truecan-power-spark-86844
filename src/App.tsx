@@ -14,6 +14,8 @@ import PowerShield from "./pages/PowerShield";
 import NotFound from "./pages/NotFound";
 import EmergencyFAB from "./components/EmergencyFAB";
 import ConversionToast from "./components/ConversionToast";
+import ExitIntentPopup from "./components/ExitIntentPopup";
+import LiveChat from "./components/LiveChat";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <ConversionToast />
+      <ExitIntentPopup />
+      <LiveChat />
       <BrowserRouter>
         <EmergencyFAB />
         <Routes>

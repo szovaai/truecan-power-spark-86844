@@ -120,6 +120,18 @@ const Home = () => {
               </div>
             ))}
           </div>
+
+          {/* PowerShield Member Counter */}
+          <div className="mt-8 inline-flex items-center gap-3 bg-surface/90 backdrop-blur-sm px-6 py-3 rounded-full border border-primary/30 hover:border-primary/50 transition-smooth cursor-pointer group" onClick={() => window.location.href = '/powershield'}>
+            <Shield className="text-primary animate-pulse" size={24} />
+            <div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl font-bold text-primary">1,247</span>
+                <span className="text-sm text-muted-foreground">members protected</span>
+              </div>
+              <p className="text-xs text-muted-foreground group-hover:text-primary transition-smooth">Join PowerShield™ today →</p>
+            </div>
+          </div>
         </div>
       </section>
 

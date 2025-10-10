@@ -178,6 +178,17 @@ const Contact = () => {
                   <h2 className="text-3xl font-montserrat font-bold mb-6">
                     Request an Appointment
                   </h2>
+
+                  {/* Urgency Banner */}
+                  <div className="mb-6 p-4 bg-primary/10 border-l-4 border-primary rounded-lg flex items-center gap-3">
+                    <Clock className="text-primary flex-shrink-0" size={24} />
+                    <div>
+                      <p className="font-bold text-sm">
+                        Only <span className="text-primary">{8 - new Date().getDay()}</span> inspection slots left this week
+                      </p>
+                      <p className="text-xs text-muted-foreground">Book now to secure your spot</p>
+                    </div>
+                  </div>
                   
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
