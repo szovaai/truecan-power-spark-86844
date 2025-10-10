@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Phone } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Phone, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -93,9 +94,23 @@ const EmergencyFAB = () => {
               </SelectContent>
             </Select>
           </div>
+          
+          <div className="p-4 bg-surface rounded-lg border-2 border-primary/30">
+            <div className="flex items-start gap-3">
+              <Shield className="text-primary flex-shrink-0 mt-0.5" size={20} />
+              <div>
+                <p className="font-semibold text-sm mb-1">PowerShield™ members get priority dispatch</p>
+                <Link to="/powershield" className="text-sm text-primary hover:underline">
+                  Not a member? Join now →
+                </Link>
+              </div>
+            </div>
+          </div>
+
           <Button type="submit" className="w-full" size="lg">
             Submit Emergency Request
           </Button>
+          
           <div className="pt-4 border-t border-border">
             <p className="text-sm text-muted-foreground text-center mb-2">
               Or call us directly:
