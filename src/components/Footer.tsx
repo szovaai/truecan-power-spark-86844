@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
-import logoImage from "@/assets/truecan-logo.png";
-import newLogoImage from "@/assets/truecanlogo-Photoroom-2.png";
+import logoImage from "@/assets/truecanlogo-Photoroom-3.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -15,7 +14,7 @@ const Footer = () => {
             <img 
               src={logoImage} 
               alt="TrueCan Power Systems" 
-              className="h-12 w-auto mb-4 brightness-0 invert"
+              className="h-12 w-auto mb-4"
             />
             <p className="text-sm text-secondary-foreground/80 mb-4">
               Licensed, insured, and ready 24/7 to keep your home and business powered safely.
@@ -117,7 +116,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-secondary-foreground/60">
             <div className="flex flex-col md:flex-row items-center gap-3">
               <img 
-                src={newLogoImage} 
+                src={logoImage} 
                 alt="TrueCan Power Systems" 
                 className="h-8 w-auto"
               />
