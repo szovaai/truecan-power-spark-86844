@@ -23,8 +23,6 @@ const Header = () => {
     { to: "/residential", label: "Residential" },
     { to: "/commercial", label: "Commercial" },
     { to: "/about", label: "About" },
-    
-    { to: "/powershield", label: "PowerShield™", isNew: true },
     { to: "/contact", label: "Contact" },
   ];
 
@@ -74,13 +72,8 @@ const Header = () => {
                       ? "text-primary" 
                       : "text-gray-900"
                   }`}
-                >
+                 >
                   {link.label}
-                  {link.isNew && (
-                    <span className="absolute -top-2 -right-8 bg-primary text-primary-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-full">
-                      NEW
-                    </span>
-                  )}
                   {location.pathname === link.to && (
                     <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
                   )}
@@ -119,13 +112,8 @@ const Header = () => {
                       ? "text-primary" 
                       : "text-gray-900"
                   }`}
-                >
+                 >
                   {link.label}
-                  {link.isNew && (
-                    <span className="bg-primary text-primary-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-full">
-                      NEW
-                    </span>
-                  )}
                 </Link>
               ))}
               <Button variant="hero" asChild className="w-full">

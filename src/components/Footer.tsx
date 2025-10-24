@@ -80,11 +80,6 @@ const Footer = () => {
               <li>EV Charger Installation</li>
               <li>Lighting Design</li>
               <li>Smart Home Integration</li>
-              <li>
-                <Link to="/powershield" className="hover:text-primary transition-smooth">
-                  PowerShield™ Membership
-                </Link>
-              </li>
               <li>Emergency Repairs</li>
               <li>Maintenance Contracts</li>
             </ul>
