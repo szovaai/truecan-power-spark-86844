@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Phone, Menu, X } from "lucide-react";
-import logoImage from "@/assets/truecan-logo-new.png";
+import logoImage from "@/assets/truecan-logo-final.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
