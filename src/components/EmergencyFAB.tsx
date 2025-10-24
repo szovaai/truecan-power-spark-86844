@@ -41,7 +41,7 @@ const EmergencyFAB = () => {
       <SheetTrigger asChild>
         <Button
           size="icon"
-          className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-premium hover:shadow-glow z-50"
+          className="fixed bottom-6 left-6 md:bottom-8 md:left-8 h-16 w-16 rounded-full shadow-premium hover:shadow-glow z-50"
         >
           <Phone className="h-6 w-6" />
         </Button>
@@ -93,18 +93,6 @@ const EmergencyFAB = () => {
                 <SelectItem value="other">Other Emergency</SelectItem>
               </SelectContent>
             </Select>
-          </div>
-          
-          <div className="p-4 bg-surface rounded-lg border-2 border-primary/30">
-            <div className="flex items-start gap-3">
-              <Shield className="text-primary flex-shrink-0 mt-0.5" size={20} />
-              <div>
-                <p className="font-semibold text-sm mb-1">PowerShield™ members get priority dispatch</p>
-                <Link to="/powershield" className="text-sm text-primary hover:underline">
-                  Not a member? Join now →
-                </Link>
-              </div>
-            </div>
           </div>
 
           <Button type="submit" className="w-full" size="lg">

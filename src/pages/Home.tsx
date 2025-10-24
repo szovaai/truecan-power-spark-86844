@@ -130,15 +130,6 @@ const Home = () => {
                 </div>
               ))}
             </div>
-
-            {/* PowerShield Member CTA */}
-            <div className="mt-8 inline-flex items-center gap-3 bg-surface/90 backdrop-blur-sm px-6 py-3 rounded-full border border-primary/30 hover:border-primary/50 transition-smooth cursor-pointer group" onClick={() => window.location.href = '/powershield'}>
-              <Shield className="text-primary" size={24} />
-              <div>
-                <p className="text-sm font-medium group-hover:text-primary transition-smooth">Join PowerShield™ Membership →</p>
-                <p className="text-xs text-muted-foreground">Priority service for just $197/year</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -203,63 +194,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* PowerShield™ Promo Section */}
-      <section className="py-20 bg-surface">
-        <div className="container mx-auto px-4">
-          <Card className="max-w-5xl mx-auto border-2 border-primary shadow-glow bg-gradient-to-br from-surface to-background">
-            <CardContent className="p-8 md:p-12">
-              <div className="grid md:grid-cols-5 gap-8 items-center">
-                <div className="md:col-span-2 flex justify-center">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full" />
-                    <div className="relative flex flex-col items-center">
-                      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-background to-surface flex items-center justify-center border-4 border-primary shadow-premium mb-4">
-                        <Shield className="text-primary w-16 h-16" strokeWidth={2.5} />
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                          <div className="text-primary font-bold text-3xl">⚡</div>
-                        </div>
-                      </div>
-                      <p className="font-montserrat font-bold text-lg">PowerShield™</p>
-                      <p className="text-sm text-muted-foreground">Member</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="md:col-span-3 text-center md:text-left">
-                  <div className="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-4">
-                    NEW MEMBERSHIP PROGRAM
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-montserrat font-extrabold mb-3">
-                    Introducing PowerShield™ Membership
-                  </h2>
-                  <p className="text-xl text-muted-foreground mb-6">
-                    Priority service, peace of mind—$197/year
-                  </p>
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center gap-3 justify-center md:justify-start">
-                      <CheckCircle2 className="text-success flex-shrink-0" size={20} />
-                      <span className="font-medium">2 covered service calls per year</span>
-                    </div>
-                    <div className="flex items-center gap-3 justify-center md:justify-start">
-                      <CheckCircle2 className="text-success flex-shrink-0" size={20} />
-                      <span className="font-medium">24/7 priority emergency access</span>
-                    </div>
-                    <div className="flex items-center gap-3 justify-center md:justify-start">
-                      <CheckCircle2 className="text-success flex-shrink-0" size={20} />
-                      <span className="font-medium">10% off parts & additional labour</span>
-                    </div>
-                  </div>
-                  <Button variant="hero" size="lg" asChild className="w-full md:w-auto">
-                    <Link to="/powershield">Learn About PowerShield →</Link>
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Mini Portfolio Carousel */}
+      {/* Trust Section */}
       <section className="py-20 bg-surface">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -299,7 +234,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Trust Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
