@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
 import logoImage from "@/assets/truecan-logo.png";
+import newLogoImage from "@/assets/truecanlogo-Photoroom-2.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -114,7 +115,14 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-secondary-foreground/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-secondary-foreground/60">
-            <p>© {currentYear} TrueCan Power Systems Inc. All Rights Reserved.</p>
+            <div className="flex flex-col md:flex-row items-center gap-3">
+              <img 
+                src={newLogoImage} 
+                alt="TrueCan Power Systems" 
+                className="h-8 w-auto"
+              />
+              <p>© {currentYear} TrueCan Power Systems Inc. All Rights Reserved.</p>
+            </div>
             <div className="flex gap-6">
               <Link to="/privacy" className="hover:text-primary transition-smooth">
                 Privacy Policy
