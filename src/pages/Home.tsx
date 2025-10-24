@@ -26,7 +26,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import heroImage from "@/assets/hero-electrical-dark.jpg";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GuaranteeCard from "@/components/GuaranteeCard";
@@ -72,11 +72,9 @@ const Home = () => {
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-start overflow-hidden pt-20 md:pt-32">
-          <div 
-            className="absolute inset-0 bg-black bg-cover bg-center"
-            style={{ backgroundImage: `url(${heroImage})` }}
-          />
-        <div className="absolute inset-0 hero-dark-gradient circuit-texture" />
+        <div className="absolute inset-0 bg-black" />
+        <div className="absolute inset-0 circuit-texture opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/95 to-primary/10" />
         
         <div className="relative z-10 container mx-auto px-4 py-24 md:py-32">
           <div className="max-w-[720px] text-center md:text-left fade-up-enter">
