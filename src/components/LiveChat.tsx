@@ -56,7 +56,7 @@ const LiveChat = () => {
       const timer = setTimeout(() => {
         addBotMessage(
           "Hi! 👋 Need help with an electrical issue? I can help you:",
-          ['Get a quote', 'Book an assessment', 'PowerShield™ info', 'Talk to a technician']
+          ['Get a quote', 'Book an assessment', 'Talk to a technician']
         );
         setHasGreeted(true);
         localStorage.setItem('truecan_chat_greeted', 'true');
@@ -105,15 +105,6 @@ const LiveChat = () => {
         addBotMessage("Redirecting you to our booking page...");
         break;
 
-      case 'PowerShield™ info':
-        setTimeout(() => {
-          window.location.href = '/powershield';
-        }, 1000);
-        addBotMessage(
-          "PowerShield™ is our membership program:\n\n✓ 2 covered service calls per year\n✓ 24/7 priority emergency access\n✓ 10% off parts & labour\n\nOnly $197/year! Opening details page..."
-        );
-        break;
-
       case 'Talk to a technician':
         addBotMessage(
           "Our team is available Mon-Fri 7am-7pm, Sat 8am-4pm.\n\n📞 Call: (403) 555-0123\n\nOr leave your number and we'll call you back within 30 minutes:",
@@ -153,7 +144,7 @@ const LiveChat = () => {
         });
         addBotMessage(
           "Perfect! We'll send your quote to that email within 2 hours. Anything else I can help with?",
-          ['Book an assessment', 'PowerShield™ info', 'All set, thanks!']
+          ['Book an assessment', 'Talk to a technician', 'All set, thanks!']
         );
         setChatStep('initial');
         setLeadData({ name: '', contact: '', serviceType: '' });
@@ -186,7 +177,7 @@ const LiveChat = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-24 right-6 z-40 w-16 h-16 rounded-full bg-primary shadow-glow flex items-center justify-center hover:scale-110 transition-smooth group animate-[bounce_3s_ease-in-out_infinite]"
+          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 w-16 h-16 rounded-full bg-primary shadow-glow flex items-center justify-center hover:scale-110 transition-smooth group animate-[bounce_3s_ease-in-out_infinite]"
           aria-label="Open chat"
         >
           <MessageCircle className="text-primary-foreground w-7 h-7" />
@@ -199,10 +190,10 @@ const LiveChat = () => {
       {/* Chat Window */}
       {isOpen && (
         <div className={cn(
-          "fixed z-40 bg-surface border-2 border-border rounded-lg shadow-premium flex flex-col",
-          "bottom-4 right-4 md:bottom-6 md:right-6",
-          "w-full h-full md:w-[380px] md:h-[600px]",
-          "max-h-screen md:max-h-[600px]"
+          "fixed z-50 bg-surface border-2 border-border rounded-lg shadow-premium flex flex-col",
+          "bottom-2 right-2 md:bottom-6 md:right-6",
+          "w-[calc(100%-16px)] h-[calc(100%-80px)] md:w-[380px] md:h-[600px]",
+          "max-w-[480px] max-h-[calc(100vh-80px)] md:max-h-[600px]"
         )}>
           {/* Header */}
           <div className="bg-gradient-to-r from-primary to-primary-hover text-primary-foreground p-4 rounded-t-lg flex items-center justify-between">
