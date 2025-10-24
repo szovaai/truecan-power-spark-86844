@@ -65,6 +65,52 @@ const LiveChat = () => {
     }
   }, [isOpen, hasGreeted, messages.length]);
 
+  // Close chat when clicking outside
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      const chatWindow = document.querySelector('[data-chat-window]');
+      const chatBubble = document.querySelector('[data-chat-bubble]');
+      
+      if (
+        chatWindow &&
+        !chatWindow.contains(event.target as Node) &&
+        chatBubble &&
+        !chatBubble.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    // Small delay to prevent immediate closing when opening
+    const timer = setTimeout(() => {
+      document.addEventListener('mousedown', handleClickOutside);
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
+
+  // Close chat when pressing Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeKey);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [isOpen]);
+
   const addBotMessage = (text: string, quickReplies?: string[]) => {
     setIsTyping(true);
     setTimeout(() => {
@@ -176,6 +222,7 @@ const LiveChat = () => {
       {/* Chat Bubble */}
       {!isOpen && (
         <button
+          data-chat-bubble
           onClick={() => setIsOpen(true)}
           className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 w-16 h-16 rounded-full bg-primary shadow-glow flex items-center justify-center hover:scale-110 transition-smooth group animate-[bounce_3s_ease-in-out_infinite]"
           aria-label="Open chat"
@@ -189,12 +236,15 @@ const LiveChat = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className={cn(
-          "fixed z-50 bg-surface border-2 border-border rounded-lg shadow-premium flex flex-col",
-          "bottom-2 right-2 md:bottom-6 md:right-6",
-          "w-[calc(100%-16px)] h-[calc(100%-80px)] md:w-[380px] md:h-[600px]",
-          "max-w-[480px] max-h-[calc(100vh-80px)] md:max-h-[600px]"
-        )}>
+        <div 
+          data-chat-window
+          className={cn(
+            "fixed z-50 bg-surface border-2 border-border rounded-lg shadow-premium flex flex-col",
+            "bottom-2 right-2 md:bottom-6 md:right-6",
+            "w-[calc(100%-16px)] h-[calc(100%-80px)] md:w-[380px] md:h-[600px]",
+            "max-w-[480px] max-h-[calc(100vh-80px)] md:max-h-[600px]"
+          )}
+        >
           {/* Header */}
           <div className="bg-gradient-to-r from-primary to-primary-hover text-primary-foreground p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -208,10 +258,11 @@ const LiveChat = () => {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="hover:bg-white/20 rounded-full p-2 transition-smooth"
+              className="hover:bg-white/30 rounded-lg p-2 transition-smooth hover:scale-110 bg-white/10"
               aria-label="Close chat"
+              title="Close chat"
             >
-              <X className="w-5 h-5" />
+              <X className="w-6 h-6" strokeWidth={2.5} />
             </button>
           </div>
 
