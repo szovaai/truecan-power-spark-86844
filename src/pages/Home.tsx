@@ -72,10 +72,10 @@ const Home = () => {
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-start overflow-hidden pt-20 md:pt-32">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        />
+          <div 
+            className="absolute inset-0 bg-black bg-cover bg-center"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          />
         <div className="absolute inset-0 hero-dark-gradient circuit-texture" />
         
         <div className="relative z-10 container mx-auto px-4 py-24 md:py-32">

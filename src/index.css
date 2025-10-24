@@ -45,7 +45,7 @@ All colors MUST be HSL.
     /* Premium gradients and effects */
     --gradient-dark-hero: linear-gradient(135deg, #0B0B0D 0%, #14161A 40%, #1A1D22 100%);
     --gradient-hero-overlay: linear-gradient(135deg, rgba(11, 11, 13, 0.95) 0%, rgba(20, 22, 26, 0.95) 100%);
-    --gradient-dark-red-hero: linear-gradient(135deg, rgba(11, 11, 13, 0.98) 0%, rgba(200, 16, 46, 0.15) 100%);
+    --gradient-dark-red-hero: linear-gradient(135deg, rgba(11, 11, 13, 0.95) 0%, rgba(20, 22, 26, 0.92) 50%, rgba(200, 16, 46, 0.25) 100%);
     --shadow-premium: 0 20px 60px rgba(200, 16, 46, 0.15);
     --shadow-glow: 0 10px 40px rgba(200, 16, 46, 0.25);
     --shadow-elegant: 0 4px 20px rgba(0, 0, 0, 0.3);
