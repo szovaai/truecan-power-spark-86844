@@ -160,26 +160,7 @@ const PowerShield = () => {
     }
   ];
 
-  const testimonials = [
-    {
-      name: "Mark D.",
-      location: "Calgary",
-      rating: 5,
-      text: "Best $197 I've spent—saved me twice already!"
-    },
-    {
-      name: "Lisa P.",
-      location: "Airdrie",
-      rating: 5,
-      text: "Had a breaker issue at 11pm—got help within 30 minutes."
-    },
-    {
-      name: "Tom R.",
-      location: "Cochrane",
-      rating: 5,
-      text: "The PowerShield team is professional and fast. Worth every penny."
-    }
-  ];
+  // Testimonials removed - awaiting real customer reviews
 
   return (
     <div className="min-h-screen bg-background">
@@ -239,8 +220,8 @@ const PowerShield = () => {
               <span className="font-semibold">Licensed & Insured</span>
             </div>
             <div className="flex items-center gap-2">
-              <Star className="fill-primary text-primary" size={18} />
-              <span className="font-semibold">4.9★ Local Reviews</span>
+              <Shield className="text-primary" size={18} />
+              <span className="font-semibold">Professional Service</span>
             </div>
           </div>
         </div>
@@ -289,7 +270,7 @@ const PowerShield = () => {
                   <span className="text-2xl text-muted-foreground">/year</span>
                 </div>
                 <p className="text-muted-foreground">
-                  Two standard calls ($169 diagnostics each) = <span className="font-bold text-foreground">$338+ value</span>
+                  Significant savings compared to standard service call rates
                 </p>
               </div>
 
@@ -494,34 +475,46 @@ const PowerShield = () => {
         </div>
       </section>
 
-      {/* Member Testimonials */}
+      {/* Member Benefits Summary */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-4">
-              What Our Members Say
+              Why Join PowerShield™?
             </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Experience priority service and peace of mind
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="shadow-elegant">
-                <CardContent className="p-8">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="fill-primary text-primary" size={18} />
-                    ))}
-                  </div>
-                  <p className="text-foreground mb-6 italic leading-relaxed">
-                    "{testimonial.text}"
-                  </p>
-                  <div>
-                    <p className="font-bold">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.location}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            <Card className="shadow-elegant border-2 border-primary/20">
+              <CardContent className="p-8 text-center">
+                <CheckCircle2 className="text-primary w-12 h-12 mx-auto mb-4" />
+                <h3 className="font-bold text-xl mb-3">Priority Access</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Jump the queue with same/next-day priority scheduling for all your electrical needs
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="shadow-elegant border-2 border-primary/20">
+              <CardContent className="p-8 text-center">
+                <Shield className="text-primary w-12 h-12 mx-auto mb-4" />
+                <h3 className="font-bold text-xl mb-3">Peace of Mind</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Two covered service calls per year plus 24/7 emergency dispatch when you need it
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="shadow-elegant border-2 border-primary/20">
+              <CardContent className="p-8 text-center">
+                <Percent className="text-primary w-12 h-12 mx-auto mb-4" />
+                <h3 className="font-bold text-xl mb-3">Save Money</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  10% discount on all parts and additional labour beyond covered service calls
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -530,7 +523,7 @@ const PowerShield = () => {
       <section className="py-20 bg-gradient-to-br from-primary to-primary-hover text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-6">
-            Join 200+ Calgary Homeowners with PowerShield™
+            Join PowerShield™ Today
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
             Start protecting your home today—activation takes 2 minutes

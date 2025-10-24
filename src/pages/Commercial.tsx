@@ -25,7 +25,7 @@ const Commercial = () => {
     {
       icon: Lightbulb,
       title: "Lighting Retrofits",
-      description: "Upgrade to energy-efficient LED lighting and reduce operating costs by up to 70%."
+      description: "Upgrade to energy-efficient LED lighting and significantly reduce operating costs."
     },
     {
       icon: Wrench,
@@ -170,7 +170,7 @@ const Commercial = () => {
 
                 <div className="text-center">
                   <p className="text-lg font-semibold mb-4">
-                    Member of Electrical Contractors Association of Ontario
+                    Professional Electrical Contractors
                   </p>
                   <p className="text-muted-foreground">
                     Committed to the highest standards of electrical installation, service, and safety

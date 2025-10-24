@@ -53,11 +53,7 @@ const Home = () => {
     { image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80", caption: "Commercial EV charging station install" }
   ];
 
-  const testimonials = [
-    { name: "Sarah Johnson", location: "Airdrie, AB", rating: 5, text: "TrueCan upgraded our entire panel in under a day. Professional, clean, and incredibly knowledgeable. Highly recommend!", initial: "S" },
-    { name: "Michael Chen", location: "Calgary, AB", rating: 5, text: "Fixed a major electrical short in under 2 hours and saved us over $1,200 in potential repairs. Outstanding service!", initial: "M" },
-    { name: "Jennifer Brown", location: "Cochrane, AB", rating: 5, text: "Installed our EV charger perfectly. The team was punctual, courteous, and the work is flawless. Will use again!", initial: "J" }
-  ];
+  // Testimonials removed - awaiting real customer reviews
 
   const faqs = [
     { question: "Are you licensed and insured?", answer: "Yes, we are fully licensed with ESA certification and carry comprehensive liability insurance. All our work is guaranteed and code-compliant." },
@@ -68,7 +64,7 @@ const Home = () => {
     { question: "Do you work on both residential and commercial properties?", answer: "Yes, we handle everything from home repairs to large commercial installations and maintenance contracts." }
   ];
 
-  const certifications = ["ESA Certified", "Licensed & Insured", "COR Safety", "BBB A+"];
+  const certifications = ["ESA Certified", "Licensed & Insured"];
 
   return (
     <div className="min-h-screen bg-background">
@@ -91,7 +87,7 @@ const Home = () => {
               Residential & Commercial, Alberta-Wide
             </p>
             <p className="text-lg md:text-xl mb-10 text-muted-foreground leading-relaxed">
-              Licensed, insured, ESA-certified electricians. Same-day service, 24/7 emergencies, satisfaction guaranteed.
+              Licensed, insured, ESA-certified electricians. Same-day service available, 24/7 emergency response, satisfaction guaranteed.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
@@ -115,20 +111,11 @@ const Home = () => {
 
             {/* Trust Strip */}
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8 justify-center md:justify-start">
-              <div className="flex items-center gap-1">
-                <Star className="fill-primary text-primary w-4 h-4" />
-                <Star className="fill-primary text-primary w-4 h-4" />
-                <Star className="fill-primary text-primary w-4 h-4" />
-                <Star className="fill-primary text-primary w-4 h-4" />
-                <Star className="fill-primary text-primary w-4 h-4" />
-                <span className="ml-1 font-medium">4.9/5</span>
-              </div>
-              <span>•</span>
               <span className="font-medium">ESA-Certified</span>
               <span>•</span>
               <span className="font-medium">Licensed & Insured</span>
               <span>•</span>
-              <span className="font-medium">Alberta-Wide</span>
+              <span className="font-medium">Serving Calgary & Area</span>
             </div>
             
             <p className="text-xs text-muted-foreground mb-8 text-center md:text-left">
@@ -144,15 +131,12 @@ const Home = () => {
               ))}
             </div>
 
-            {/* PowerShield Member Counter */}
+            {/* PowerShield Member CTA */}
             <div className="mt-8 inline-flex items-center gap-3 bg-surface/90 backdrop-blur-sm px-6 py-3 rounded-full border border-primary/30 hover:border-primary/50 transition-smooth cursor-pointer group" onClick={() => window.location.href = '/powershield'}>
-              <Shield className="text-primary animate-pulse" size={24} />
+              <Shield className="text-primary" size={24} />
               <div>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-bold text-primary">1,247</span>
-                  <span className="text-sm text-muted-foreground">members protected</span>
-                </div>
-                <p className="text-xs text-muted-foreground group-hover:text-primary transition-smooth">Join PowerShield™ today →</p>
+                <p className="text-sm font-medium group-hover:text-primary transition-smooth">Join PowerShield™ Membership →</p>
+                <p className="text-xs text-muted-foreground">Priority service for just $197/year</p>
               </div>
             </div>
           </div>
@@ -315,32 +299,39 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Social Proof - Reviews */}
+      {/* Trust Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold text-center mb-12">
-            What Our Clients Say
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="shadow-elegant">
-                <CardContent className="p-8">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="fill-primary text-primary" size={20} />
-                    ))}
-                  </div>
-                  <p className="text-foreground mb-6 italic leading-relaxed">
-                    "{testimonial.text}"
-                  </p>
-                  <div>
-                    <p className="font-bold">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.location}</p>
-                  </div>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-8">
+              Trusted by Homeowners & Businesses
+            </h2>
+            <p className="text-xl text-muted-foreground mb-12">
+              Join our growing list of satisfied customers across Calgary and surrounding areas
+            </p>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="shadow-elegant">
+                <CardContent className="p-8 text-center">
+                  <Shield className="text-primary w-12 h-12 mx-auto mb-4" />
+                  <h3 className="font-bold text-lg mb-2">Licensed & Insured</h3>
+                  <p className="text-muted-foreground text-sm">Fully certified ESA electricians</p>
                 </CardContent>
               </Card>
-            ))}
+              <Card className="shadow-elegant">
+                <CardContent className="p-8 text-center">
+                  <CheckCircle2 className="text-primary w-12 h-12 mx-auto mb-4" />
+                  <h3 className="font-bold text-lg mb-2">Satisfaction Guaranteed</h3>
+                  <p className="text-muted-foreground text-sm">On-time or we credit $50</p>
+                </CardContent>
+              </Card>
+              <Card className="shadow-elegant">
+                <CardContent className="p-8 text-center">
+                  <Star className="text-primary w-12 h-12 mx-auto mb-4" />
+                  <h3 className="font-bold text-lg mb-2">Professional Service</h3>
+                  <p className="text-muted-foreground text-sm">Clean, respectful workmanship</p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>

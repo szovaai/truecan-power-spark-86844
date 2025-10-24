@@ -167,7 +167,7 @@ const About = () => {
                       Meet the Leadership Team
                     </h3>
                     <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-                      Our leadership brings over 25 years of combined electrical experience across residential, commercial, and industrial sectors.
+                      Our leadership brings extensive electrical experience across residential, commercial, and industrial sectors.
                     </p>
                     <p className="text-lg text-muted-foreground leading-relaxed">
                       From apprentice to master electrician, our team has worked on projects ranging from single-family homes to multi-million dollar commercial developments. This depth of experience ensures we bring best practices and innovative solutions to every job.

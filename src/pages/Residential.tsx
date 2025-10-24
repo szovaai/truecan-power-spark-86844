@@ -54,7 +54,7 @@ const Residential = () => {
     "Clean, respectful service",
     "Upfront pricing, no hidden fees",
     "Warranty on all installations",
-    "Same-day emergency service"
+    "Emergency service available"
   ];
 
   return (
@@ -135,7 +135,7 @@ const Residential = () => {
                     "We responded to an emergency call about flickering lights and burning smells. Our team identified a major electrical short in the main panel that could have caused a fire."
                   </p>
                   <p className="text-lg leading-relaxed font-semibold text-primary">
-                    Fixed the issue in under 2 hours and saved the homeowner over $1,200 in potential damage and repairs.
+                    Fixed the issue in under 2 hours and prevented significant damage to the home's electrical system.
                   </p>
                 </div>
 
