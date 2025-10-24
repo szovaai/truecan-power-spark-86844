@@ -23,7 +23,7 @@ const Header = () => {
     { to: "/residential", label: "Residential" },
     { to: "/commercial", label: "Commercial" },
     { to: "/about", label: "About" },
-    { to: "/projects", label: "Projects" },
+    
     { to: "/powershield", label: "PowerShield™", isNew: true },
     { to: "/contact", label: "Contact" },
   ];

@@ -8,7 +8,7 @@ import Services from "./pages/Services";
 import Residential from "./pages/Residential";
 import Commercial from "./pages/Commercial";
 import About from "./pages/About";
-import Projects from "./pages/Projects";
+
 import Contact from "./pages/Contact";
 import PowerShield from "./pages/PowerShield";
 import NotFound from "./pages/NotFound";
@@ -35,7 +35,7 @@ const App = () => (
           <Route path="/residential" element={<Residential />} />
           <Route path="/commercial" element={<Commercial />} />
           <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
+          
           <Route path="/powershield" element={<PowerShield />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
