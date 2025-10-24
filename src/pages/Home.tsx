@@ -19,13 +19,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -47,11 +40,6 @@ const Home = () => {
     { icon: Wrench, label: "Maintenance Contracts", description: "Preventative care" }
   ];
 
-  const portfolioProjects = [
-    { image: "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=800&q=80", caption: "Warehouse LED retrofit cut power by 38%" },
-    { image: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&q=80", caption: "Panel upgrade completed in one day" },
-    { image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80", caption: "Commercial EV charging station install" }
-  ];
 
   // Testimonials removed - awaiting real customer reviews
 
@@ -192,45 +180,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Trust Section */}
-      <section className="py-20 bg-surface">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-4">
-              Recent Projects
-            </h2>
-          </div>
-
-          <Carousel className="max-w-5xl mx-auto">
-            <CarouselContent>
-              {portfolioProjects.map((project, index) => (
-                <CarouselItem key={index}>
-                  <Card className="border-2 border-border overflow-hidden">
-                    <div className="relative h-96">
-                      <img 
-                        src={project.image} 
-                        alt={project.caption}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/95 to-transparent p-6">
-                        <p className="text-xl font-semibold">{project.caption}</p>
-                      </div>
-                    </div>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-
-          <div className="text-center mt-10">
-            <Button variant="ghost" size="lg" asChild>
-              <Link to="/projects">View All Projects</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
 
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
