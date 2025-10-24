@@ -31,16 +31,16 @@ const Header = () => {
   return (
     <>
       {/* Sticky CTA Bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-primary text-primary-foreground py-2 hidden md:block">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-[#E8E6E3] text-gray-900 py-2 hidden md:block border-b border-gray-200">
         <div className="container mx-auto px-4 flex items-center justify-center gap-4 text-sm font-medium">
           <Phone className="h-4 w-4" />
           <span>24/7 Electrical Help</span>
           <span>•</span>
-          <a href="tel:+1XXXXXXXXXX" className="font-bold hover:underline">
+          <a href="tel:+1XXXXXXXXXX" className="font-bold hover:text-primary transition-colors">
             (XXX) XXX-XXXX
           </a>
           <span>•</span>
-          <Link to="/contact" className="font-bold hover:underline">
+          <Link to="/contact" className="font-bold hover:text-primary transition-colors">
             Book Now
           </Link>
         </div>
@@ -49,8 +49,8 @@ const Header = () => {
       <header 
         className={`fixed left-0 right-0 z-40 transition-smooth ${
           isScrolled 
-            ? "bg-surface/95 backdrop-blur-md shadow-elegant border-b border-border" 
-            : "bg-surface/80 backdrop-blur-sm border-b border-border/50"
+            ? "bg-[#E8E6E3]/95 backdrop-blur-md shadow-md border-b border-gray-200" 
+            : "bg-[#E8E6E3]/80 backdrop-blur-sm border-b border-gray-200/50"
         } md:top-8`}
       >
         <div className="container mx-auto px-4">
@@ -72,7 +72,7 @@ const Header = () => {
                   className={`font-semibold transition-smooth hover:text-primary relative ${
                     location.pathname === link.to 
                       ? "text-primary" 
-                      : "text-foreground"
+                      : "text-gray-900"
                   }`}
                 >
                   {link.label}
@@ -96,7 +96,7 @@ const Header = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden text-foreground"
+              className="lg:hidden text-gray-900"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -107,7 +107,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-surface border-t border-border">
+          <div className="lg:hidden bg-[#E8E6E3] border-t border-gray-200">
             <nav className="container mx-auto px-4 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
@@ -117,7 +117,7 @@ const Header = () => {
                   className={`font-semibold py-2 transition-smooth relative inline-flex items-center gap-2 ${
                     location.pathname === link.to 
                       ? "text-primary" 
-                      : "text-foreground"
+                      : "text-gray-900"
                   }`}
                 >
                   {link.label}
@@ -137,7 +137,7 @@ const Header = () => {
       </header>
 
       {/* Mobile Conversion Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-primary text-primary-foreground py-3 lg:hidden shadow-premium">
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#E8E6E3] text-gray-900 py-3 lg:hidden shadow-lg border-t border-gray-200">
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Phone className="h-4 w-4" />
@@ -145,7 +145,7 @@ const Header = () => {
           </div>
           <a 
             href="tel:+1XXXXXXXXXX"
-            className="bg-white text-primary px-4 py-2 rounded-md font-bold text-sm hover:bg-white/90 transition-smooth"
+            className="bg-primary text-white px-4 py-2 rounded-md font-bold text-sm hover:bg-primary/90 transition-smooth"
           >
             (XXX) XXX-XXXX
           </a>
