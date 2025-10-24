@@ -65,7 +65,7 @@ const ExitIntentPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-[600px] border-2 border-primary/30">
+      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto border-2 border-primary/30">
         <button
           onClick={() => setIsOpen(false)}
           className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
@@ -75,12 +75,12 @@ const ExitIntentPopup = () => {
         </button>
 
         <DialogHeader>
-          <div className="flex justify-center mb-4">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center border-2 border-primary shadow-glow">
-              <Shield className="text-primary w-10 h-10" strokeWidth={2.5} />
+          <div className="flex justify-center mb-3">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center border-2 border-primary shadow-glow">
+              <Shield className="text-primary w-8 h-8 sm:w-10 sm:h-10" strokeWidth={2.5} />
             </div>
           </div>
-          <DialogTitle className="text-3xl font-montserrat font-extrabold text-center">
+          <DialogTitle className="text-2xl sm:text-3xl font-montserrat font-extrabold text-center">
             Wait! Before You Go...
           </DialogTitle>
           <DialogDescription className="text-center text-lg">
@@ -88,15 +88,15 @@ const ExitIntentPopup = () => {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4 pt-4">
-          <div className="p-4 bg-primary/10 border-l-4 border-primary rounded-lg">
+        <div className="space-y-3 pt-2">
+          <div className="p-3 bg-primary/10 border-l-4 border-primary rounded-lg">
             <p className="font-semibold mb-2">Valued at $99 — Yours Free!</p>
             <p className="text-sm text-muted-foreground">
               Identify hidden electrical hazards before they become expensive problems
             </p>
           </div>
 
-          <div className="bg-surface/50 rounded-lg p-4 border border-border">
+          <div className="bg-surface/50 rounded-lg p-3 border border-border">
             <p className="text-sm mb-2 font-semibold">What's Included:</p>
             <ul className="space-y-1 text-sm text-muted-foreground">
               <li>✓ ESA-Certified technician inspection</li>
@@ -111,7 +111,7 @@ const ExitIntentPopup = () => {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3">
             <div>
               <Label htmlFor="exit-name">Name *</Label>
               <Input
