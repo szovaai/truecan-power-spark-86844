@@ -3,6 +3,8 @@ import { Shield, X } from "lucide-react";
 import { useExitIntent } from "@/hooks/useExitIntent";
 import { useSessionStorage } from "@/hooks/useSessionStorage";
 import { useLocation } from "react-router-dom";
+import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Dialog,
   DialogContent,
@@ -15,10 +17,17 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 
+const exitIntentSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  phone: z.string().trim().max(20, "Phone must be less than 20 characters").optional(),
+});
+
 const ExitIntentPopup = () => {
   const location = useLocation();
   const [hasShown, setHasShown] = useSessionStorage('exitPopupShown', false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -39,28 +48,56 @@ const ExitIntentPopup = () => {
     delay: 3000,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.email) {
-      toast({
-        title: "Missing Information",
-        description: "Please provide your name and email.",
-        variant: "destructive",
-      });
+    // Validate form data
+    try {
+      exitIntentSchema.parse(formData);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      }
       return;
     }
 
-    // Here you would typically send to your backend/CRM
-    console.log('Exit intent lead captured:', formData);
-    
-    toast({
-      title: "Success!",
-      description: "We'll email you within 2 hours with your free inspection details.",
-    });
-    
-    setIsOpen(false);
-    setFormData({ name: '', email: '', phone: '' });
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || '',
+          isExitIntentLead: true,
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Success!",
+        description: "We'll email you within 2 hours with your free inspection details.",
+      });
+      
+      setIsOpen(false);
+      setFormData({ name: '', email: '', phone: '' });
+    } catch (error) {
+      console.error('Error submitting exit intent lead:', error);
+      toast({
+        title: "Error",
+        description: "Failed to submit your request. Please try again or call us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -146,8 +183,8 @@ const ExitIntentPopup = () => {
               />
             </div>
 
-            <Button type="submit" className="w-full" size="lg">
-              Claim My Free Inspection
+            <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Claim My Free Inspection"}
             </Button>
           </form>
 
