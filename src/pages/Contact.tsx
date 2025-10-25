@@ -114,10 +114,10 @@ const Contact = () => {
                     <div>
                       <h3 className="font-bold mb-1">Phone</h3>
                       <a 
-                        href="tel:+1234567890"
+                        href="tel:+12508830499"
                         className="text-muted-foreground hover:text-primary transition-smooth"
                       >
-                        (XXX) XXX-XXXX
+                        (250) 883-0499
                       </a>
                       <p className="text-sm text-muted-foreground mt-1">24/7 Emergency Line</p>
                     </div>

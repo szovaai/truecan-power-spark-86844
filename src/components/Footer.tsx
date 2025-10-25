@@ -94,11 +94,11 @@ const Footer = () => {
                 <span>Serving all of Canada</span>
               </div>
               <a 
-                href="tel:+1234567890" 
+                href="tel:+12508830499" 
                 className="flex items-center gap-2 text-secondary-foreground/80 hover:text-primary transition-smooth"
               >
                 <Phone size={18} />
-                <span>(XXX) XXX-XXXX</span>
+                <span>(250) 883-0499</span>
               </a>
               <a 
                 href="mailto:info@truecanpower.com" 
