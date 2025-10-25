@@ -20,8 +20,33 @@ import {
   Clock,
   Send
 } from "lucide-react";
+import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
+// Validation schema
+const contactSchema = z.object({
+  name: z.string()
+    .trim()
+    .min(1, { message: "Name is required" })
+    .max(100, { message: "Name must be less than 100 characters" }),
+  email: z.string()
+    .trim()
+    .email({ message: "Invalid email address" })
+    .max(255, { message: "Email must be less than 255 characters" }),
+  phone: z.string()
+    .trim()
+    .min(10, { message: "Phone number must be at least 10 digits" })
+    .max(20, { message: "Phone number must be less than 20 characters" }),
+  serviceType: z.string().optional(),
+  urgency: z.string().optional(),
+  message: z.string()
+    .trim()
+    .max(2000, { message: "Message must be less than 2000 characters" })
+    .optional(),
+  interestedInPowerShield: z.boolean().default(false),
+});
 
 const Contact = () => {
   const { toast } = useToast();
@@ -34,38 +59,60 @@ const Contact = () => {
     message: "",
     interestedInPowerShield: false
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Form validation
-    if (!formData.name || !formData.email || !formData.phone) {
-      toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields.",
-        variant: "destructive"
+    // Validate form data
+    try {
+      const validatedData = contactSchema.parse(formData);
+      setIsSubmitting(true);
+
+      // Send email via edge function
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: validatedData
       });
-      return;
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you within 24 hours. Check your email for confirmation.",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        serviceType: "",
+        urgency: "",
+        message: "",
+        interestedInPowerShield: false
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        // Show validation errors
+        const firstError = error.errors[0];
+        toast({
+          title: "Validation Error",
+          description: firstError.message,
+          variant: "destructive"
+        });
+      } else {
+        console.error("Error sending email:", error);
+        toast({
+          title: "Error",
+          description: "Failed to send message. Please try again or call us directly.",
+          variant: "destructive"
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
     }
-
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formData);
-    
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
-
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      serviceType: "",
-      urgency: "",
-      message: "",
-      interestedInPowerShield: false
-    });
   };
 
   const handleChange = (field: string, value: string | boolean) => {
@@ -292,9 +339,15 @@ const Contact = () => {
                       </div>
                     </div>
 
-                    <Button type="submit" variant="hero" size="lg" className="w-full">
+                    <Button 
+                      type="submit" 
+                      variant="hero" 
+                      size="lg" 
+                      className="w-full"
+                      disabled={isSubmitting}
+                    >
                       <Send className="mr-2" size={20} />
-                      Send Request
+                      {isSubmitting ? "Sending..." : "Send Request"}
                     </Button>
 
                     <p className="text-sm text-muted-foreground text-center">
