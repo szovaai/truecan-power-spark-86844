@@ -130,10 +130,10 @@ const Contact = () => {
                     <div>
                       <h3 className="font-bold mb-1">Email</h3>
                       <a 
-                        href="mailto:info@truecanpower.com"
+                        href="mailto:support@truecanpower.com"
                         className="text-muted-foreground hover:text-primary transition-smooth break-all"
                       >
-                        info@truecanpower.com
+                        support@truecanpower.com
                       </a>
                       <p className="text-sm text-muted-foreground mt-1">We respond within 24 hours</p>
                     </div>

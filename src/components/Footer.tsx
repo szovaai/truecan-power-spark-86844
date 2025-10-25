@@ -101,11 +101,11 @@ const Footer = () => {
                 <span>(250) 883-0499</span>
               </a>
               <a 
-                href="mailto:info@truecanpower.com" 
+                href="mailto:support@truecanpower.com" 
                 className="flex items-center gap-2 text-secondary-foreground/80 hover:text-primary transition-smooth"
               >
                 <Mail size={18} />
-                <span>info@truecanpower.com</span>
+                <span>support@truecanpower.com</span>
               </a>
             </div>
           </div>
