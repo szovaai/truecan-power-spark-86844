@@ -91,7 +91,7 @@ const Footer = () => {
             <div className="flex flex-col gap-3 text-sm">
               <div className="flex items-start gap-2 text-secondary-foreground/80">
                 <MapPin size={18} className="mt-1 flex-shrink-0" />
-                <span>Serving all of Canada</span>
+                <span>Serving the Calgary Area</span>
               </div>
               <a 
                 href="tel:+12508830499" 

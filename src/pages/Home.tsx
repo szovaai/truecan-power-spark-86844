@@ -46,7 +46,7 @@ const Home = () => {
     { question: "What is your warranty on electrical work?", answer: "We provide a 2-year workmanship warranty on all installations and repairs. Materials are covered by manufacturer warranties." },
     { question: "How do you price your services?", answer: "We offer transparent, up-front pricing with no hidden fees. You'll receive a detailed quote before any work begins." },
     { question: "What's your emergency response time?", answer: "For emergencies, we aim to respond within 2 hours. We're available 24/7 for urgent electrical issues." },
-    { question: "What areas do you service?", answer: "We serve Calgary and surrounding areas including Airdrie, Chestermere, Cochrane, and Okotoks." },
+    { question: "What areas do you service?", answer: "We serve the Calgary area." },
     { question: "Do you work on both residential and commercial properties?", answer: "Yes, we handle everything from home repairs to large commercial installations and maintenance contracts." }
   ];
 
@@ -99,7 +99,7 @@ const Home = () => {
               <span>•</span>
               <span className="font-medium">Licensed & Insured</span>
               <span>•</span>
-              <span className="font-medium">Serving Calgary & Area</span>
+              <span className="font-medium">Serving the Calgary Area</span>
             </div>
             
             <p className="text-xs text-muted-foreground mb-8 text-center md:text-left">
@@ -186,7 +186,7 @@ const Home = () => {
               Trusted by Homeowners & Businesses
             </h2>
             <p className="text-xl text-muted-foreground mb-12">
-              Join our growing list of satisfied customers across Calgary and surrounding areas
+              Join our growing list of satisfied customers in the Calgary area
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               <Card className="shadow-elegant">

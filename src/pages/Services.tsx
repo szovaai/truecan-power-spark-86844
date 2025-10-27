@@ -48,7 +48,7 @@ const Services = () => {
             Full-Service Electricians
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-muted-foreground">
-            Comprehensive electrical solutions for homes, offices, and facilities across Calgary
+            Comprehensive electrical solutions for homes, offices, and facilities in the Calgary area
           </p>
         </div>
       </section>
