@@ -26,9 +26,7 @@ import GuaranteeCard from "@/components/GuaranteeCard";
 
 const Home = () => {
   const problemSolutions = [
-    { icon: Zap, problem: "Breaker Tripping?", solution: "Same-day panel diagnostics.", link: "/contact" },
-    { icon: Flame, problem: "Lights Flickering?", solution: "Lighting & wiring repairs.", link: "/residential" },
-    { icon: HomeIcon, problem: "New Build or Fit-Out?", solution: "Full commercial electrical.", link: "/commercial" }
+    { icon: Wrench, problem: "Residential, Commercial & Industrial Service Experts", solution: "Complete electrical solutions for homes, businesses, and industrial facilities", link: "/services" }
   ];
 
   const services = [
@@ -123,7 +121,7 @@ const Home = () => {
       {/* Problem → Solution Grid */}
       <section className="py-20 bg-surface">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 max-w-2xl mx-auto">
             {problemSolutions.map((item, index) => (
               <Card key={index} className="border-2 border-border hover:border-primary/50 transition-smooth shadow-elegant hover:shadow-glow group">
                 <CardContent className="p-8 text-center">
