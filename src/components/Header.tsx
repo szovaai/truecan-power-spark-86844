@@ -29,7 +29,7 @@ const Header = () => {
   return (
     <>
       {/* Sticky CTA Bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-[#E8E6E3] text-gray-900 py-2 hidden md:block border-b border-gray-200">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white text-gray-900 py-2 hidden md:block border-b border-gray-300">
         <div className="container mx-auto px-4 flex items-center justify-center gap-4 text-sm font-medium">
           <Phone className="h-4 w-4" />
           <span>24/7 Electrical Help</span>
@@ -47,17 +47,17 @@ const Header = () => {
       <header 
         className={`fixed left-0 right-0 z-40 transition-smooth ${
           isScrolled 
-            ? "bg-[#E8E6E3]/95 backdrop-blur-md shadow-md border-b border-gray-200" 
-            : "bg-[#E8E6E3]/80 backdrop-blur-sm border-b border-gray-200/50"
+            ? "bg-white/95 backdrop-blur-md shadow-md border-b border-gray-300" 
+            : "bg-white/80 backdrop-blur-sm border-b border-gray-300/50"
         } md:top-8`}
       >
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-24">
             <Link to="/" className="flex items-center">
               <img 
                 src={logoImage} 
                 alt="TrueCan Power Systems" 
-                className="h-14 w-auto"
+                className="h-20 w-auto"
               />
             </Link>
 
@@ -100,7 +100,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-[#E8E6E3] border-t border-gray-200">
+          <div className="lg:hidden bg-white border-t border-gray-300">
             <nav className="container mx-auto px-4 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
@@ -125,7 +125,7 @@ const Header = () => {
       </header>
 
       {/* Mobile Conversion Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#E8E6E3] text-gray-900 py-3 lg:hidden shadow-lg border-t border-gray-200">
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white text-gray-900 py-3 lg:hidden shadow-lg border-t border-gray-300">
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Phone className="h-4 w-4" />
