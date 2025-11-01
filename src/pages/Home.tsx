@@ -65,7 +65,7 @@ const Home = () => {
         <div className="relative z-10 container mx-auto px-4 py-24 md:py-32">
           <div className="max-w-[720px] text-center md:text-left fade-up-enter">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-montserrat font-extrabold mb-4 leading-[1.1] tracking-tight">
-              Power You Can Trust
+              Power You Can Trust - Test Update
             </h1>
             <p className="text-2xl md:text-3xl mb-2 font-semibold text-foreground">
               Residential & Commercial, Alberta-Wide
