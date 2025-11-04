@@ -163,7 +163,7 @@ const Home = () => {
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-primary mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-smooth">
                     <service.icon size={28} />
                   </div>
-                  <h3 className="font-bold text-lg mb-2">{service.label}</h3>
+                  <h3 className="font-bold text-base md:text-lg mb-2 break-words leading-tight">{service.label}</h3>
                   <p className="text-sm text-muted-foreground">{service.description}</p>
                 </CardContent>
               </Card>
