@@ -18,21 +18,21 @@ import Footer from "@/components/Footer";
 
 const Services = () => {
   const residentialServices = [
-    { icon: Zap, title: "Panel Upgrades", description: "Modernize your electrical system with safe, code-compliant panel upgrades." },
-    { icon: Plug, title: "Outlets & Switches", description: "Professional installation and repair of all electrical outlets and switches." },
-    { icon: Home, title: "Smart Home Integration", description: "Connect and automate your home with smart electrical solutions." },
-    { icon: Lightbulb, title: "Lighting Design", description: "Beautiful, energy-efficient lighting solutions for every room." },
-    { icon: Wrench, title: "Hot Tub Wiring", description: "Safe, compliant electrical hookups for hot tubs and spas." },
-    { icon: Shield, title: "Generators", description: "Backup power solutions to keep your home running during outages." },
+    { icon: Zap, title: "Panel Upgrades", description: "Modernize your electrical system with safe, code-compliant panel upgrades.", link: "/services/panel-upgrade" },
+    { icon: Plug, title: "Outlets & Switches", description: "Professional installation and repair of all electrical outlets and switches.", link: "/residential" },
+    { icon: Home, title: "Smart Home Integration", description: "Connect and automate your home with smart electrical solutions.", link: "/residential" },
+    { icon: Lightbulb, title: "Lighting Design", description: "Beautiful, energy-efficient lighting solutions for every room.", link: "/services/pot-light-installation" },
+    { icon: Wrench, title: "Hot Tub Wiring", description: "Safe, compliant electrical hookups for hot tubs and spas.", link: "/services/hot-tub-sauna-wiring" },
+    { icon: Shield, title: "Generators", description: "Backup power solutions to keep your home running during outages.", link: "/residential" },
   ];
 
   const commercialServices = [
-    { icon: Building2, title: "Tenant Fit-Outs", description: "Complete electrical installations for new commercial spaces." },
-    { icon: Factory, title: "Power Distribution", description: "Industrial-grade power systems for facilities and warehouses." },
-    { icon: Lightbulb, title: "Lighting Retrofits", description: "Energy-efficient LED upgrades that reduce operating costs." },
-    { icon: Wrench, title: "Maintenance Contracts", description: "Scheduled preventative maintenance to avoid costly downtime." },
-    { icon: Car, title: "EV Infrastructure", description: "Commercial EV charging stations for businesses and properties." },
-    { icon: Shield, title: "Backup Systems", description: "Emergency power and UPS solutions for critical operations." },
+    { icon: Building2, title: "Tenant Fit-Outs", description: "Complete electrical installations for new commercial spaces.", link: "/services/renovation-wiring" },
+    { icon: Factory, title: "Power Distribution", description: "Industrial-grade power systems for facilities and warehouses.", link: "/commercial" },
+    { icon: Lightbulb, title: "Lighting Retrofits", description: "Energy-efficient LED upgrades that reduce operating costs.", link: "/services/pot-light-installation" },
+    { icon: Wrench, title: "Maintenance Contracts", description: "Scheduled preventative maintenance to avoid costly downtime.", link: "/commercial" },
+    { icon: Car, title: "EV Infrastructure", description: "Commercial EV charging stations for businesses and properties.", link: "/services/ev-charger-installation" },
+    { icon: Shield, title: "Backup Systems", description: "Emergency power and UPS solutions for critical operations.", link: "/services/emergency-electrician" },
   ];
 
   return (
@@ -74,7 +74,7 @@ const Services = () => {
                   </div>
                   <h3 className="font-bold text-xl mb-3">{service.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-                  <Link to="/residential" className="text-primary font-semibold mt-4 inline-block hover:underline">
+                  <Link to={service.link} className="text-primary font-semibold mt-4 inline-block hover:underline">
                     Learn more →
                   </Link>
                 </CardContent>
@@ -111,7 +111,7 @@ const Services = () => {
                   </div>
                   <h3 className="font-bold text-xl mb-3">{service.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-                  <Link to="/commercial" className="text-primary font-semibold mt-4 inline-block hover:underline">
+                  <Link to={service.link} className="text-primary font-semibold mt-4 inline-block hover:underline">
                     Learn more →
                   </Link>
                 </CardContent>

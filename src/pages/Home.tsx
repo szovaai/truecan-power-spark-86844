@@ -30,12 +30,12 @@ const Home = () => {
   ];
 
   const services = [
-    { icon: Zap, label: "Panel Upgrades", description: "Modernize your system" },
-    { icon: Car, label: "EV Chargers", description: "Home & commercial" },
-    { icon: Lightbulb, label: "Lighting Design", description: "Efficient solutions" },
-    { icon: Shield, label: "Generators", description: "Backup power systems" },
-    { icon: Plug, label: "Tenant Improvements", description: "Commercial fit-outs" },
-    { icon: Wrench, label: "Maintenance Contracts", description: "Preventative care" }
+    { icon: Zap, label: "Panel Upgrades", description: "Modernize your system", link: "/services/panel-upgrade" },
+    { icon: Car, label: "EV Chargers", description: "Home & commercial", link: "/services/ev-charger-installation" },
+    { icon: Lightbulb, label: "Lighting Design", description: "Efficient solutions", link: "/services/pot-light-installation" },
+    { icon: Shield, label: "Generators", description: "Backup power systems", link: "/services" },
+    { icon: Plug, label: "Tenant Improvements", description: "Commercial fit-outs", link: "/services/renovation-wiring" },
+    { icon: Wrench, label: "Maintenance Contracts", description: "Preventative care", link: "/services" }
   ];
 
 
@@ -158,15 +158,17 @@ const Home = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <Card key={index} className="hover:shadow-premium transition-smooth cursor-pointer border-2 border-border hover:border-primary/50 group">
-                <CardContent className="p-6 text-center">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-primary mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-smooth">
-                    <service.icon size={28} />
-                  </div>
-                  <h3 className="font-bold text-base md:text-lg mb-2 break-words leading-tight">{service.label}</h3>
-                  <p className="text-sm text-muted-foreground">{service.description}</p>
-                </CardContent>
-              </Card>
+              <Link key={index} to={service.link}>
+                <Card className="hover:shadow-premium transition-smooth cursor-pointer border-2 border-border hover:border-primary/50 group h-full">
+                  <CardContent className="p-6 text-center">
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-primary mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-smooth">
+                      <service.icon size={28} />
+                    </div>
+                    <h3 className="font-bold text-base md:text-lg mb-2 break-words leading-tight">{service.label}</h3>
+                    <p className="text-sm text-muted-foreground">{service.description}</p>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
 

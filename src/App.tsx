@@ -20,6 +20,8 @@ import EmergencyFAB from "./components/EmergencyFAB";
 import ConversionToast from "./components/ConversionToast";
 import ExitIntentPopup from "./components/ExitIntentPopup";
 import LiveChat from "./components/LiveChat";
+import SiteSchema from "./components/SiteSchema";
+import ServiceAreas from "./pages/ServiceAreas";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +31,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <ConversionToast />
+      <SiteSchema />
       <BrowserRouter>
         <ExitIntentPopup />
         <LiveChat />
@@ -44,6 +47,7 @@ const App = () => (
           <Route path="/services/emergency-electrician" element={<EmergencyElectrician />} />
           <Route path="/residential" element={<Residential />} />
           <Route path="/commercial" element={<Commercial />} />
+          <Route path="/service-areas" element={<ServiceAreas />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
