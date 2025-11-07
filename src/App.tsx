@@ -8,9 +8,14 @@ import Services from "./pages/Services";
 import Residential from "./pages/Residential";
 import Commercial from "./pages/Commercial";
 import About from "./pages/About";
-
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import EVChargerInstallation from "./pages/services/EVChargerInstallation";
+import PanelUpgrade from "./pages/services/PanelUpgrade";
+import PotLightInstallation from "./pages/services/PotLightInstallation";
+import HotTubSaunaWiring from "./pages/services/HotTubSaunaWiring";
+import RenovationWiring from "./pages/services/RenovationWiring";
+import EmergencyElectrician from "./pages/services/EmergencyElectrician";
 import EmergencyFAB from "./components/EmergencyFAB";
 import ConversionToast from "./components/ConversionToast";
 import ExitIntentPopup from "./components/ExitIntentPopup";
@@ -31,6 +36,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/ev-charger-installation" element={<EVChargerInstallation />} />
+          <Route path="/services/panel-upgrade" element={<PanelUpgrade />} />
+          <Route path="/services/pot-light-installation" element={<PotLightInstallation />} />
+          <Route path="/services/hot-tub-sauna-wiring" element={<HotTubSaunaWiring />} />
+          <Route path="/services/renovation-wiring" element={<RenovationWiring />} />
+          <Route path="/services/emergency-electrician" element={<EmergencyElectrician />} />
           <Route path="/residential" element={<Residential />} />
           <Route path="/commercial" element={<Commercial />} />
           <Route path="/about" element={<About />} />
