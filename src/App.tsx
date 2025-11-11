@@ -10,6 +10,8 @@ import Commercial from "./pages/Commercial";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import EVChargerInstallation from "./pages/services/EVChargerInstallation";
 import PanelUpgrade from "./pages/services/PanelUpgrade";
 import PotLightInstallation from "./pages/services/PotLightInstallation";
@@ -50,6 +52,8 @@ const App = () => (
           <Route path="/service-areas" element={<ServiceAreas />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

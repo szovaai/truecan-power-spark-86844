@@ -63,6 +63,9 @@ const Footer = () => {
               <Link to="/commercial" className="text-sm text-secondary-foreground/80 hover:text-primary transition-smooth">
                 Commercial Services
               </Link>
+              <Link to="/service-areas" className="text-sm text-secondary-foreground/80 hover:text-primary transition-smooth">
+                Service Areas
+              </Link>
               <Link to="/about" className="text-sm text-secondary-foreground/80 hover:text-primary transition-smooth">
                 About Us
               </Link>
@@ -75,14 +78,26 @@ const Footer = () => {
           {/* Services */}
           <div>
             <h3 className="font-montserrat font-bold text-lg mb-4">Services</h3>
-            <ul className="flex flex-col gap-2 text-sm text-secondary-foreground/80">
-              <li>Panel Upgrades</li>
-              <li>EV Charger Installation</li>
-              <li>Lighting Design</li>
-              <li>Smart Home Integration</li>
-              <li>Emergency Repairs</li>
-              <li>Maintenance Contracts</li>
-            </ul>
+            <nav className="flex flex-col gap-2">
+              <Link to="/services/panel-upgrade" className="text-sm text-secondary-foreground/80 hover:text-primary transition-smooth">
+                Panel Upgrades
+              </Link>
+              <Link to="/services/ev-charger-installation" className="text-sm text-secondary-foreground/80 hover:text-primary transition-smooth">
+                EV Charger Installation
+              </Link>
+              <Link to="/services/pot-light-installation" className="text-sm text-secondary-foreground/80 hover:text-primary transition-smooth">
+                Lighting Design
+              </Link>
+              <Link to="/residential" className="text-sm text-secondary-foreground/80 hover:text-primary transition-smooth">
+                Smart Home Integration
+              </Link>
+              <Link to="/services/emergency-electrician" className="text-sm text-secondary-foreground/80 hover:text-primary transition-smooth">
+                Emergency Repairs
+              </Link>
+              <Link to="/services" className="text-sm text-secondary-foreground/80 hover:text-primary transition-smooth">
+                Maintenance Contracts
+              </Link>
+            </nav>
           </div>
 
           {/* Contact Info */}
