@@ -95,7 +95,7 @@ const SiteSchema = () => {
         }
       ]
     },
-    "slogan": "Power You Can Trust",
+    "slogan": "Power You Can Trust For Life",
     "description": "Licensed, insured, ESA-certified electricians serving Calgary and surrounding areas. Residential, commercial, and industrial electrical services with same-day availability and 24/7 emergency response.",
     "knowsAbout": [
       "Electrical Panel Upgrades",
