@@ -20,7 +20,6 @@ import RenovationWiring from "./pages/services/RenovationWiring";
 import EmergencyElectrician from "./pages/services/EmergencyElectrician";
 import EmergencyFAB from "./components/EmergencyFAB";
 import ConversionToast from "./components/ConversionToast";
-import ExitIntentPopup from "./components/ExitIntentPopup";
 import LiveChat from "./components/LiveChat";
 import SiteSchema from "./components/SiteSchema";
 import ServiceAreas from "./pages/ServiceAreas";
@@ -35,7 +34,6 @@ const App = () => (
       <ConversionToast />
       <SiteSchema />
       <BrowserRouter>
-        <ExitIntentPopup />
         <LiveChat />
         <EmergencyFAB />
         <Routes>
