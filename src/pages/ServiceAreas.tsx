@@ -54,7 +54,7 @@ const ServiceAreas = () => {
       "@type": "ServiceChannel",
       "servicePhone": {
         "@type": "ContactPoint",
-        "telephone": "+1-250-883-0499",
+        "telephone": "+1-587-317-0615",
         "contactType": "customer service",
         "availableLanguage": ["English"],
         "areaServed": "CA"
@@ -193,7 +193,7 @@ const ServiceAreas = () => {
                   <Link to="/contact">Request Service</Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild>
-                  <a href="tel:+12508830499">Call (250) 883-0499</a>
+                  <a href="tel:+15873170615">Call (587) 317-0615</a>
                 </Button>
               </div>
             </CardContent>

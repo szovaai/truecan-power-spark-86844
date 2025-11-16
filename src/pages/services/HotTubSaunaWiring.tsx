@@ -54,7 +54,7 @@ const HotTubSaunaWiring = () => {
         <title>Hot Tub & Sauna Wiring Calgary | 240V Electrical Installation - TrueCan Power</title>
         <meta 
           name="description" 
-          content="Professional hot tub and sauna electrical wiring in Calgary. GFCI-protected 240V circuits with permits and inspection. Licensed electricians. Call (250) 883-0499." 
+          content="Professional hot tub and sauna electrical wiring in Calgary. GFCI-protected 240V circuits with permits and inspection. Licensed electricians. Call (587) 317-0615." 
         />
         <meta name="keywords" content="hot tub wiring Calgary, sauna electrical installation, 240V circuit, hot tub electrician Calgary, outdoor electrical Calgary" />
         <link rel="canonical" href="https://truecanpower.com/services/hot-tub-sauna-wiring" />
@@ -102,9 +102,9 @@ const HotTubSaunaWiring = () => {
                     <Link to="/contact">Get Free Site Assessment</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline">
-                    <a href="tel:+12508830499">
+                    <a href="tel:+15873170615">
                       <Phone className="mr-2" size={20} />
-                      (250) 883-0499
+                      (587) 317-0615
                     </a>
                   </Button>
                 </div>

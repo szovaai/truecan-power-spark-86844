@@ -114,7 +114,7 @@ const Privacy = () => {
                 <li>Lodge a complaint with the Office of the Privacy Commissioner of Canada</li>
               </ul>
               <p className="text-muted-foreground leading-relaxed mt-4">
-                To exercise these rights, contact us at <a href="mailto:support@truecanpower.com" className="text-primary hover:underline">support@truecanpower.com</a>
+                To exercise these rights, contact us at <a href="mailto:service@truecanpower.com" className="text-primary hover:underline">service@truecanpower.com</a>
               </p>
             </section>
 
@@ -151,8 +151,8 @@ const Privacy = () => {
               </p>
               <div className="bg-surface p-6 rounded-lg border border-border">
                 <p className="font-semibold mb-2">TrueCan Power Systems Inc.</p>
-                <p className="text-muted-foreground">Email: <a href="mailto:support@truecanpower.com" className="text-primary hover:underline">support@truecanpower.com</a></p>
-                <p className="text-muted-foreground">Phone: <a href="tel:+12508830499" className="text-primary hover:underline">(250) 883-0499</a></p>
+                <p className="text-muted-foreground">Email: <a href="mailto:service@truecanpower.com" className="text-primary hover:underline">service@truecanpower.com</a></p>
+                <p className="text-muted-foreground">Phone: <a href="tel:+15873170615" className="text-primary hover:underline">(587) 317-0615</a></p>
                 <p className="text-muted-foreground">Service Area: Calgary, Alberta</p>
               </div>
             </section>
