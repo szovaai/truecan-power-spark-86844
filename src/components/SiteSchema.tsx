@@ -13,7 +13,7 @@ const SiteSchema = () => {
       "https://truecanpower.com/assets/team-photo.jpg",
       "https://truecanpower.com/assets/hero-electrical-v2.jpg"
     ],
-    "telephone": "+1-250-883-0499",
+    "telephone": "+1-587-317-0615",
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",

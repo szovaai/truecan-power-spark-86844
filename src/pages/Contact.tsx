@@ -161,10 +161,10 @@ const Contact = () => {
                     <div>
                       <h3 className="font-bold mb-1">Phone</h3>
                       <a 
-                        href="tel:+12508830499"
+                        href="tel:+15873170615"
                         className="text-muted-foreground hover:text-primary transition-smooth"
                       >
-                        (250) 883-0499
+                        (587) 317-0615
                       </a>
                       <p className="text-sm text-muted-foreground mt-1">24/7 Emergency Line</p>
                     </div>
@@ -177,10 +177,10 @@ const Contact = () => {
                     <div>
                       <h3 className="font-bold mb-1">Email</h3>
                       <a 
-                        href="mailto:support@truecanpower.com"
+                        href="mailto:service@truecanpower.com"
                         className="text-muted-foreground hover:text-primary transition-smooth break-all"
                       >
-                        support@truecanpower.com
+                        service@truecanpower.com
                       </a>
                       <p className="text-sm text-muted-foreground mt-1">We respond within 24 hours</p>
                     </div>

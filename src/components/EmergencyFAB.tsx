@@ -104,10 +104,10 @@ const EmergencyFAB = () => {
               Or call us directly:
             </p>
             <a
-              href="tel:+12508830499"
+              href="tel:+15873170615"
               className="block text-center text-2xl font-bold text-primary hover:text-primary-hover transition-smooth"
             >
-              (250) 883-0499
+              (587) 317-0615
             </a>
           </div>
         </form>

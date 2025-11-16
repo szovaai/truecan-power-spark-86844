@@ -61,7 +61,7 @@ const EmergencyElectrician = () => {
         <title>24/7 Emergency Electrician Calgary | 2-Hour Response - TrueCan Power</title>
         <meta 
           name="description" 
-          content="24/7 emergency electrical service in Calgary. Licensed electricians respond within 2 hours for power outages, electrical fires, and urgent repairs. Call (250) 883-0499 now." 
+          content="24/7 emergency electrical service in Calgary. Licensed electricians respond within 2 hours for power outages, electrical fires, and urgent repairs. Call (587) 317-0615 now." 
         />
         <meta name="keywords" content="emergency electrician Calgary, 24/7 electrician, electrical emergency, power outage Calgary, electrical fire, urgent electrical repair" />
         <link rel="canonical" href="https://truecanpower.com/services/emergency-electrician" />
@@ -109,9 +109,9 @@ const EmergencyElectrician = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg" variant="destructive" className="text-lg py-6">
-                    <a href="tel:+12508830499">
+                    <a href="tel:+15873170615">
                       <Phone className="mr-2" size={24} />
-                      Call Now: (250) 883-0499
+                      Call Now: (587) 317-0615
                     </a>
                   </Button>
                   <Button asChild size="lg" variant="outline">
@@ -274,9 +274,9 @@ const EmergencyElectrician = () => {
                   Don't wait. Call now for immediate dispatch and 2-hour guaranteed response anywhere in Calgary.
                 </p>
                 <Button asChild size="lg" variant="destructive" className="text-lg py-6">
-                  <a href="tel:+12508830499">
+                  <a href="tel:+15873170615">
                     <Phone className="mr-2" size={24} />
-                    Emergency: (250) 883-0499
+                    Emergency: (587) 317-0615
                   </a>
                 </Button>
               </div>
