@@ -8,7 +8,7 @@ const SiteSchema = () => {
     "name": "TrueCan Power Systems",
     "alternateName": "TrueCan Power",
     "url": "https://truecanpower.com/",
-    "logo": "https://truecanpower.com/assets/truecan-logo-final.png",
+    "logo": "https://truecanpower.com/assets/truecan-logo-main.png",
     "image": [
       "https://truecanpower.com/assets/team-photo.jpg",
       "https://truecanpower.com/assets/hero-electrical-v2.jpg"

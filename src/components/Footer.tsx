@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
-import logoImage from "@/assets/truecanlogo-Photoroom-3.png";
+import logoImage from "@/assets/truecan-logo-main.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
