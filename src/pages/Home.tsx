@@ -58,12 +58,12 @@ const Home = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-start overflow-hidden pt-20 md:pt-32">
+      <section className="relative min-h-screen flex items-start justify-start overflow-hidden pt-24 md:pt-28">
         <div className="absolute inset-0 bg-black" />
         <div className="absolute inset-0 circuit-texture opacity-30" />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/95 to-primary/10" />
         
-        <div className="relative z-10 container mx-auto px-4 py-24 md:py-32">
+        <div className="relative z-10 container mx-auto px-4 pt-8 md:pt-12 pb-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left: Hero Content */}
             <div className="text-center lg:text-left fade-up-enter">
