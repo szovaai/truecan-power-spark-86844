@@ -23,6 +23,7 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GuaranteeCard from "@/components/GuaranteeCard";
+import HeroLeadForm from "@/components/HeroLeadForm";
 
 const Home = () => {
   const problemSolutions = [
@@ -63,7 +64,9 @@ const Home = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/95 to-primary/10" />
         
         <div className="relative z-10 container mx-auto px-4 py-24 md:py-32">
-          <div className="max-w-[720px] text-center md:text-left fade-up-enter">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Hero Content */}
+            <div className="text-center lg:text-left fade-up-enter">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-montserrat font-extrabold mb-4 leading-[1.1] tracking-tight">
               Power You Can Trust For Life
             </h1>
@@ -115,6 +118,12 @@ const Home = () => {
               ))}
             </div>
           </div>
+
+          {/* Right: Lead Form */}
+          <div className="lg:sticky lg:top-32 fade-up-enter" style={{ animationDelay: '0.2s' }}>
+            <HeroLeadForm />
+          </div>
+        </div>
         </div>
       </section>
 
