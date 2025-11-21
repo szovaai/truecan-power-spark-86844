@@ -122,7 +122,7 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "TrueCan Power Systems <onboarding@resend.dev>",
-        to: ["support@truecanpower.com"],
+        to: ["paul@truecanpower.com"],
         reply_to: email,
         subject: emailSubject,
         html: emailHtml,
