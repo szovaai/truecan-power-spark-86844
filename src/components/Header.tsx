@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import logoImage from "@/assets/truecan-logo-main.png";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,12 +25,27 @@ const Header = () => {
 
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "/services", label: "Services" },
     { to: "/residential", label: "Residential" },
     { to: "/commercial", label: "Commercial" },
     { to: "/about", label: "About" },
     { to: "/contact", label: "Contact" },
   ];
+
+  const serviceLinks = [
+    { to: "/services/panel-upgrade", label: "Panel Upgrades" },
+    { to: "/services/ev-charger-installation", label: "EV Charger Installation" },
+    { to: "/services/hot-tub-sauna-wiring", label: "Hot Tub & Sauna Wiring" },
+    { to: "/services/pot-light-installation", label: "Pot Light Installation" },
+    { to: "/services/emergency-electrician", label: "Emergency Electrician" },
+    { to: "/services/renovation-wiring", label: "Renovation Wiring" },
+  ];
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <>
@@ -59,7 +80,48 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-6">
-              {navLinks.map((link) => (
+              {/* Home Link */}
+              <Link
+                to="/"
+                className={`font-semibold transition-smooth hover:text-primary relative ${
+                  location.pathname === "/" ? "text-primary" : "text-gray-900"
+                }`}
+              >
+                Home
+                {location.pathname === "/" && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                )}
+              </Link>
+
+              {/* Services Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger className={`font-semibold transition-smooth hover:text-primary relative flex items-center gap-1 ${
+                  location.pathname.startsWith("/services") ? "text-primary" : "text-gray-900"
+                }`}>
+                  Services
+                  <ChevronDown className="h-4 w-4" />
+                  {location.pathname.startsWith("/services") && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                  )}
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg z-50">
+                  <DropdownMenuItem asChild>
+                    <Link to="/services" className="w-full font-semibold">
+                      All Services
+                    </Link>
+                  </DropdownMenuItem>
+                  {serviceLinks.map((link) => (
+                    <DropdownMenuItem key={link.to} asChild>
+                      <Link to={link.to} className="w-full">
+                        {link.label}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* Remaining Nav Links */}
+              {navLinks.slice(1).map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
@@ -68,7 +130,7 @@ const Header = () => {
                       ? "text-primary" 
                       : "text-gray-900"
                   }`}
-                 >
+                >
                   {link.label}
                   {location.pathname === link.to && (
                     <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
@@ -98,17 +160,50 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden bg-white border-t border-gray-300">
             <nav className="container mx-auto px-4 py-6 flex flex-col gap-4">
-              {navLinks.map((link) => (
+              <Link
+                to="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`font-semibold py-2 transition-smooth ${
+                  location.pathname === "/" ? "text-primary" : "text-gray-900"
+                }`}
+              >
+                Home
+              </Link>
+              
+              {/* Services Section */}
+              <div className="border-l-2 border-primary pl-4">
+                <Link
+                  to="/services"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`font-semibold py-2 block transition-smooth ${
+                    location.pathname === "/services" ? "text-primary" : "text-gray-900"
+                  }`}
+                >
+                  All Services
+                </Link>
+                {serviceLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`py-2 block text-sm transition-smooth ${
+                      location.pathname === link.to ? "text-primary" : "text-gray-600"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+
+              {navLinks.slice(1).map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`font-semibold py-2 transition-smooth relative inline-flex items-center gap-2 ${
-                    location.pathname === link.to 
-                      ? "text-primary" 
-                      : "text-gray-900"
+                  className={`font-semibold py-2 transition-smooth ${
+                    location.pathname === link.to ? "text-primary" : "text-gray-900"
                   }`}
-                 >
+                >
                   {link.label}
                 </Link>
               ))}

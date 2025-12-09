@@ -128,7 +128,7 @@ const Home = () => {
       </section>
 
       {/* Problem → Solution Grid */}
-      <section className="py-20 bg-surface">
+      <section id="solutions" className="py-20 bg-surface">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 max-w-2xl mx-auto">
             {problemSolutions.map((item, index) => (
@@ -154,7 +154,7 @@ const Home = () => {
       </section>
 
       {/* Featured Services */}
-      <section className="py-20 bg-background">
+      <section id="services" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-4">
@@ -190,7 +190,7 @@ const Home = () => {
       </section>
 
 
-      <section className="py-20 bg-background">
+      <section id="trust" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-8">
@@ -227,7 +227,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-primary-hover text-primary-foreground">
+      <section id="contact" className="py-20 bg-gradient-to-br from-primary to-primary-hover text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-6">
             Ready to Power Up Your Project?

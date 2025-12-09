@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   Zap
 } from "lucide-react";
-import teamPhoto from "@/assets/team-photo.jpg";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -61,30 +60,19 @@ const About = () => {
       {/* Our Story */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
-              <div>
-                <img 
-                  src={teamPhoto} 
-                  alt="TrueCan Power Systems Team" 
-                  className="rounded-lg shadow-glow w-full"
-                />
-              </div>
-              <div>
-                <h2 className="text-4xl font-montserrat font-extrabold mb-6">
-                  Our Story
-                </h2>
-                <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-                  TrueCan Power Systems Inc. was founded with a simple mission: to provide honest, reliable electrical services that homeowners and businesses can trust.
-                </p>
-                <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-                  As a proudly Canadian company, we understand the unique electrical needs of our climate and communities. From harsh winters requiring reliable heating systems to modern homes demanding smart technology integration, we've seen it all.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Today, we serve residential and commercial clients across Canada, bringing the same commitment to quality and safety to every project, big or small.
-                </p>
-              </div>
-            </div>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-montserrat font-extrabold mb-6">
+              Our Story
+            </h2>
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              TrueCan Power Systems Inc. was founded with a simple mission: to provide honest, reliable electrical services that homeowners and businesses can trust.
+            </p>
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              As a proudly Canadian company, we understand the unique electrical needs of our climate and communities. From harsh winters requiring reliable heating systems to modern homes demanding smart technology integration, we've seen it all.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Today, we serve residential and commercial clients across Canada, bringing the same commitment to quality and safety to every project, big or small.
+            </p>
           </div>
         </div>
       </section>
