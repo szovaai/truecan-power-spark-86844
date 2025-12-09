@@ -104,15 +104,16 @@ const Header = () => {
                     <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
                   )}
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg z-50">
-                  <DropdownMenuItem asChild>
-                    <Link to="/services" className="w-full font-semibold">
+                <DropdownMenuContent className="bg-white border border-gray-200 shadow-xl z-50 min-w-[240px] p-2">
+                  <DropdownMenuItem asChild className="px-4 py-3 rounded-md cursor-pointer hover:bg-gray-100 focus:bg-gray-100">
+                    <Link to="/services" className="w-full font-bold text-gray-900 text-base">
                       All Services
                     </Link>
                   </DropdownMenuItem>
+                  <div className="h-px bg-gray-200 my-2" />
                   {serviceLinks.map((link) => (
-                    <DropdownMenuItem key={link.to} asChild>
-                      <Link to={link.to} className="w-full">
+                    <DropdownMenuItem key={link.to} asChild className="px-4 py-2.5 rounded-md cursor-pointer hover:bg-gray-100 focus:bg-gray-100">
+                      <Link to={link.to} className="w-full text-gray-700 hover:text-primary text-sm">
                         {link.label}
                       </Link>
                     </DropdownMenuItem>
