@@ -23,6 +23,12 @@ import ConversionToast from "./components/ConversionToast";
 import LiveChat from "./components/LiveChat";
 import SiteSchema from "./components/SiteSchema";
 import ServiceAreas from "./pages/ServiceAreas";
+import QuotesLayout from "./pages/quotes/QuotesLayout";
+import QuotesList from "./pages/quotes/QuotesList";
+import QuoteBuilder from "./pages/quotes/QuoteBuilder";
+import MaterialsManager from "./pages/quotes/MaterialsManager";
+import TemplatesManager from "./pages/quotes/TemplatesManager";
+import QuotePreview from "./pages/quotes/QuotePreview";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +58,14 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          {/* Hidden quoting app */}
+          <Route path="/quotes" element={<QuotesLayout />}>
+            <Route index element={<QuotesList />} />
+            <Route path="new" element={<QuoteBuilder />} />
+            <Route path="materials" element={<MaterialsManager />} />
+            <Route path="templates" element={<TemplatesManager />} />
+            <Route path=":id" element={<QuotePreview />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
