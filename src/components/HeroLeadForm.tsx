@@ -79,7 +79,7 @@ const HeroLeadForm = () => {
         console.error("Error sending request:", error);
         toast({
           title: "Error",
-          description: "Failed to send request. Please call us at (587) 317-0615",
+          description: "Failed to send request. Please call us at (250) 883-0499",
           variant: "destructive"
         });
       }

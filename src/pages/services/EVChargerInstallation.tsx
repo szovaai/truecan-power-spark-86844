@@ -54,7 +54,7 @@ const EVChargerInstallation = () => {
         <title>EV Charger Installation Calgary | Level 2 Home Charging - TrueCan Power</title>
         <meta 
           name="description" 
-          content="Professional Level 2 EV charger installation in Calgary. Licensed electricians handle permits, inspections, and fast home charging setup. Free site assessment. Call (587) 317-0615." 
+          content="Professional Level 2 EV charger installation in Calgary. Licensed electricians handle permits, inspections, and fast home charging setup. Free site assessment. Call (250) 883-0499."
         />
         <meta name="keywords" content="EV charger installation Calgary, Level 2 charging, Tesla charger installation, electric vehicle charging Calgary, home EV charger" />
         <link rel="canonical" href="https://truecanpower.com/services/ev-charger-installation" />
@@ -105,9 +105,9 @@ const EVChargerInstallation = () => {
                     <Link to="/contact">Get Free Site Assessment</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline">
-                    <a href="tel:+15873170615">
+                    <a href="tel:+12508830499">
                       <Phone className="mr-2" size={20} />
-                      (587) 317-0615
+                      (250) 883-0499
                     </a>
                   </Button>
                 </div>

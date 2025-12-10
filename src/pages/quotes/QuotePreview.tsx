@@ -87,7 +87,7 @@ const QuotePreview = () => {
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
     doc.text("Calgary's Trusted Electricians", 20, y + 7);
-    doc.text("(403) 123-4567 | service@truecanpower.com", 20, y + 12);
+    doc.text("(250) 883-0499 | service@truecanpower.com", 20, y + 12);
 
     // Quote Number
     doc.setFontSize(12);
@@ -235,7 +235,7 @@ const QuotePreview = () => {
           <div>
             <h1 className="text-3xl font-bold text-gray-900">TrueCan Power</h1>
             <p className="text-gray-600">Calgary's Trusted Electricians</p>
-            <p className="text-sm text-gray-500 mt-1">(403) 123-4567 | service@truecanpower.com</p>
+            <p className="text-sm text-gray-500 mt-1">(250) 883-0499 | service@truecanpower.com</p>
           </div>
           <div className="text-right">
             <div className="flex items-center gap-2 justify-end mb-2">

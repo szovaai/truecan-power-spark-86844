@@ -109,11 +109,11 @@ const Footer = () => {
                 <span>Serving the Calgary Area</span>
               </div>
               <a 
-                href="tel:+15873170615" 
+                href="tel:+12508830499" 
                 className="flex items-center gap-2 text-gray-600 hover:text-primary transition-smooth"
               >
                 <Phone size={18} />
-                <span>(587) 317-0615</span>
+                <span>(250) 883-0499</span>
               </a>
               <a 
                 href="mailto:service@truecanpower.com" 
