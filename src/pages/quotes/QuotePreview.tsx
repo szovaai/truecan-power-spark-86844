@@ -10,10 +10,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowLeft, Download, Printer, Mail, CheckCircle, XCircle, Send, Loader2 } from "lucide-react";
+import { ArrowLeft, Download, Printer, Mail, CheckCircle, XCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { format } from "date-fns";
 import { jsPDF } from "jspdf";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface LineItem {
   id: string;
@@ -51,6 +52,7 @@ const statusColors = {
 
 const QuotePreview = () => {
   const { id } = useParams<{ id: string }>();
+  const isMobile = useIsMobile();
   const [quote, setQuote] = useState<Quote | null>(null);
   const [loading, setLoading] = useState(true);
   const [sendingEmail, setSendingEmail] = useState(false);
@@ -126,7 +128,6 @@ const QuotePreview = () => {
         throw new Error(response.error.message);
       }
 
-      // Update status to sent
       await supabase
         .from("quotes")
         .update({ status: "sent" })
@@ -149,7 +150,6 @@ const QuotePreview = () => {
     const pageWidth = doc.internal.pageSize.getWidth();
     let y = 20;
 
-    // Header
     doc.setFontSize(24);
     doc.setFont("helvetica", "bold");
     doc.text("TrueCan Power", 20, y);
@@ -159,14 +159,12 @@ const QuotePreview = () => {
     doc.text("Calgary's Trusted Electricians", 20, y + 7);
     doc.text("(250) 883-0499 | service@truecanpower.com", 20, y + 12);
 
-    // Quote Number
     doc.setFontSize(12);
     doc.text(`Quote #: ${quote.quote_number}`, pageWidth - 20, y, { align: "right" });
     doc.text(`Date: ${format(new Date(quote.created_at), "MMMM d, yyyy")}`, pageWidth - 20, y + 7, { align: "right" });
 
     y += 35;
 
-    // Customer Info
     doc.setFont("helvetica", "bold");
     doc.text("Bill To:", 20, y);
     doc.setFont("helvetica", "normal");
@@ -182,7 +180,6 @@ const QuotePreview = () => {
 
     y += 40;
 
-    // Line Items Table Header
     doc.setFillColor(240, 240, 240);
     doc.rect(20, y, pageWidth - 40, 10, "F");
     doc.setFont("helvetica", "bold");
@@ -195,7 +192,6 @@ const QuotePreview = () => {
 
     y += 15;
 
-    // Line Items
     doc.setFont("helvetica", "normal");
     quote.line_items.forEach((item) => {
       doc.text(item.name.substring(0, 40), 25, y);
@@ -208,7 +204,6 @@ const QuotePreview = () => {
 
     y += 10;
 
-    // Totals
     const materialsSubtotal = quote.line_items.reduce((sum, item) => sum + item.subtotal, 0);
     const laborTotal = quote.labor_hours * quote.labor_rate;
     const markupAmount = (materialsSubtotal * quote.markup_percentage) / 100;
@@ -235,7 +230,6 @@ const QuotePreview = () => {
 
     y += 20;
 
-    // Notes
     if (quote.notes) {
       doc.setFont("helvetica", "bold");
       doc.setFontSize(10);
@@ -248,13 +242,11 @@ const QuotePreview = () => {
 
     y += 15;
 
-    // Terms
     doc.setFontSize(9);
     doc.setFont("helvetica", "italic");
     doc.text("This quote is valid for 30 days from the date issued.", 20, y);
     doc.text("Payment due upon completion unless otherwise arranged.", 20, y + 5);
 
-    // Save
     doc.save(`TrueCan-Quote-${quote.quote_number}.pdf`);
     toast.success("PDF downloaded");
   };
@@ -279,92 +271,73 @@ const QuotePreview = () => {
   const markupAmount = (materialsSubtotal * quote.markup_percentage) / 100;
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto pb-24 sm:pb-0">
       {/* Actions Bar */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-        <Link to="/quotes" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
-          <ArrowLeft className="w-4 h-4" />
-          Back to Quotes
-        </Link>
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-col gap-3 mb-4 sm:mb-6">
+        <div className="flex items-center justify-between">
+          <Link to="/quotes" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
+            <ArrowLeft className="w-4 h-4" />
+            <span className="hidden sm:inline">Back to Quotes</span>
+          </Link>
+          
           {/* Status Selector */}
-          <Select 
-            value={quote.status} 
-            onValueChange={updateStatus}
-            disabled={updatingStatus}
-          >
-            <SelectTrigger className="w-32">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="draft">Draft</SelectItem>
-              <SelectItem value="sent">Sent</SelectItem>
-              <SelectItem value="accepted">Accepted</SelectItem>
-              <SelectItem value="rejected">Rejected</SelectItem>
-            </SelectContent>
-          </Select>
-
-          {/* Quick Status Buttons */}
-          {quote.status === "sent" && (
-            <>
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-green-600 border-green-300 hover:bg-green-50"
-                onClick={() => updateStatus("accepted")}
-                disabled={updatingStatus}
-              >
-                <CheckCircle className="w-4 h-4 mr-1" />
-                Accept
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-red-600 border-red-300 hover:bg-red-50"
-                onClick={() => updateStatus("rejected")}
-                disabled={updatingStatus}
-              >
-                <XCircle className="w-4 h-4 mr-1" />
-                Reject
-              </Button>
-            </>
-          )}
-
-          <Button
-            variant="outline"
-            onClick={sendQuoteEmail}
-            disabled={sendingEmail || !quote.customer_email}
-            title={!quote.customer_email ? "Add customer email to send" : "Send quote via email"}
-          >
-            {sendingEmail ? (
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-            ) : (
-              <Mail className="w-4 h-4 mr-2" />
-            )}
-            {sendingEmail ? "Sending..." : "Email Quote"}
-          </Button>
-          <Button variant="outline" onClick={() => window.print()}>
-            <Printer className="w-4 h-4 mr-2" />
-            Print
-          </Button>
-          <Button onClick={generatePDF}>
-            <Download className="w-4 h-4 mr-2" />
-            Download PDF
-          </Button>
+          <div className="flex items-center gap-2">
+            <Select 
+              value={quote.status} 
+              onValueChange={updateStatus}
+              disabled={updatingStatus}
+            >
+              <SelectTrigger className="w-28 sm:w-32">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="draft">Draft</SelectItem>
+                <SelectItem value="sent">Sent</SelectItem>
+                <SelectItem value="accepted">Accepted</SelectItem>
+                <SelectItem value="rejected">Rejected</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
+
+        {/* Quick Status Buttons - Desktop only */}
+        {quote.status === "sent" && !isMobile && (
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-green-600 border-green-300 hover:bg-green-50"
+              onClick={() => updateStatus("accepted")}
+              disabled={updatingStatus}
+            >
+              <CheckCircle className="w-4 h-4 mr-1" />
+              Accept
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-red-600 border-red-300 hover:bg-red-50"
+              onClick={() => updateStatus("rejected")}
+              disabled={updatingStatus}
+            >
+              <XCircle className="w-4 h-4 mr-1" />
+              Reject
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Quote Document */}
-      <div className="bg-white rounded-lg shadow-lg p-8 print:shadow-none">
+      <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8 print:shadow-none">
         {/* Header */}
-        <div className="flex justify-between items-start mb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-6 sm:mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">TrueCan Power</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">TrueCan Power</h1>
             <p className="text-gray-600">Calgary's Trusted Electricians</p>
             <p className="text-sm text-gray-500 mt-1">(250) 883-0499 | service@truecanpower.com</p>
           </div>
-          <div className="text-right">
-            <div className="flex items-center gap-2 justify-end mb-2">
+          <div className="text-left sm:text-right">
+            <div className="flex items-center gap-2 sm:justify-end mb-2">
               <span className="text-gray-600">Quote #:</span>
               <span className="font-mono font-bold">{quote.quote_number}</span>
               <Badge className={statusColors[quote.status]}>{quote.status}</Badge>
@@ -376,7 +349,7 @@ const QuotePreview = () => {
         </div>
 
         {/* Customer Info */}
-        <div className="grid md:grid-cols-2 gap-8 mb-8 pb-8 border-b">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b">
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Bill To</h3>
             <p className="text-gray-800 font-medium">{quote.customer_name}</p>
@@ -391,35 +364,52 @@ const QuotePreview = () => {
           )}
         </div>
 
-        {/* Line Items */}
-        <div className="mb-8">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="text-left py-3 px-4 font-semibold">Description</th>
-                <th className="text-center py-3 px-2 font-semibold w-20">Qty</th>
-                <th className="text-center py-3 px-2 font-semibold w-20">Unit</th>
-                <th className="text-right py-3 px-2 font-semibold w-24">Price</th>
-                <th className="text-right py-3 px-4 font-semibold w-28">Amount</th>
-              </tr>
-            </thead>
-            <tbody>
+        {/* Line Items - Card view on mobile, table on desktop */}
+        <div className="mb-6 sm:mb-8">
+          {isMobile ? (
+            <div className="space-y-3">
               {quote.line_items.map((item) => (
-                <tr key={item.id} className="border-b">
-                  <td className="py-3 px-4">{item.name}</td>
-                  <td className="py-3 px-2 text-center">{item.quantity}</td>
-                  <td className="py-3 px-2 text-center text-gray-600">{item.unit_type}</td>
-                  <td className="py-3 px-2 text-right">${Number(item.unit_price).toFixed(2)}</td>
-                  <td className="py-3 px-4 text-right font-medium">${Number(item.subtotal).toFixed(2)}</td>
-                </tr>
+                <div key={item.id} className="bg-gray-50 rounded-lg p-3">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="font-medium text-gray-900">{item.name}</span>
+                    <span className="font-semibold">${Number(item.subtotal).toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between text-sm text-gray-600">
+                    <span>{item.quantity} {item.unit_type}</span>
+                    <span>${Number(item.unit_price).toFixed(2)} each</span>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          ) : (
+            <table className="w-full">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="text-left py-3 px-4 font-semibold">Description</th>
+                  <th className="text-center py-3 px-2 font-semibold w-20">Qty</th>
+                  <th className="text-center py-3 px-2 font-semibold w-20">Unit</th>
+                  <th className="text-right py-3 px-2 font-semibold w-24">Price</th>
+                  <th className="text-right py-3 px-4 font-semibold w-28">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                {quote.line_items.map((item) => (
+                  <tr key={item.id} className="border-b">
+                    <td className="py-3 px-4">{item.name}</td>
+                    <td className="py-3 px-2 text-center">{item.quantity}</td>
+                    <td className="py-3 px-2 text-center text-gray-600">{item.unit_type}</td>
+                    <td className="py-3 px-2 text-right">${Number(item.unit_price).toFixed(2)}</td>
+                    <td className="py-3 px-4 text-right font-medium">${Number(item.subtotal).toFixed(2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
 
         {/* Totals */}
-        <div className="flex justify-end mb-8">
-          <div className="w-72 space-y-2">
+        <div className="flex justify-end mb-6 sm:mb-8">
+          <div className="w-full sm:w-72 space-y-2">
             <div className="flex justify-between">
               <span className="text-gray-600">Materials Subtotal:</span>
               <span>${materialsSubtotal.toFixed(2)}</span>
@@ -443,7 +433,7 @@ const QuotePreview = () => {
 
         {/* Notes */}
         {quote.notes && (
-          <div className="mb-8 p-4 bg-gray-50 rounded-lg">
+          <div className="mb-6 sm:mb-8 p-4 bg-gray-50 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-2">Notes</h3>
             <p className="text-gray-600 whitespace-pre-wrap">{quote.notes}</p>
           </div>
@@ -454,6 +444,54 @@ const QuotePreview = () => {
           <p>This quote is valid for 30 days from the date issued.</p>
           <p>Payment due upon completion unless otherwise arranged.</p>
         </div>
+      </div>
+
+      {/* Mobile Fixed Bottom Actions */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 flex gap-2 sm:hidden z-50">
+        <Button
+          variant="outline"
+          onClick={sendQuoteEmail}
+          disabled={sendingEmail || !quote.customer_email}
+          className="flex-1"
+        >
+          {sendingEmail ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : (
+            <Mail className="w-4 h-4" />
+          )}
+        </Button>
+        <Button variant="outline" onClick={() => window.print()} className="flex-1">
+          <Printer className="w-4 h-4" />
+        </Button>
+        <Button onClick={generatePDF} className="flex-1">
+          <Download className="w-4 h-4 mr-1" />
+          PDF
+        </Button>
+      </div>
+
+      {/* Desktop Actions */}
+      <div className="hidden sm:flex justify-end gap-2 mt-6">
+        <Button
+          variant="outline"
+          onClick={sendQuoteEmail}
+          disabled={sendingEmail || !quote.customer_email}
+          title={!quote.customer_email ? "Add customer email to send" : "Send quote via email"}
+        >
+          {sendingEmail ? (
+            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+          ) : (
+            <Mail className="w-4 h-4 mr-2" />
+          )}
+          {sendingEmail ? "Sending..." : "Email Quote"}
+        </Button>
+        <Button variant="outline" onClick={() => window.print()}>
+          <Printer className="w-4 h-4 mr-2" />
+          Print
+        </Button>
+        <Button onClick={generatePDF}>
+          <Download className="w-4 h-4 mr-2" />
+          Download PDF
+        </Button>
       </div>
     </div>
   );

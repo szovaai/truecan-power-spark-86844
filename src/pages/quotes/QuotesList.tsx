@@ -21,6 +21,8 @@ import {
 import { Plus, Eye, Trash2, Pencil, Copy, Filter } from "lucide-react";
 import { toast } from "sonner";
 import { format } from "date-fns";
+import { useIsMobile } from "@/hooks/use-mobile";
+import QuoteCard from "@/components/quotes/QuoteCard";
 
 interface Quote {
   id: string;
@@ -50,6 +52,7 @@ const statusOptions = [
 
 const QuotesList = () => {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState("all");
@@ -92,7 +95,6 @@ const QuotesList = () => {
   };
 
   const handleDuplicate = async (quote: Quote) => {
-    // Fetch full quote data
     const { data: fullQuote, error: fetchError } = await supabase
       .from("quotes")
       .select("*")
@@ -104,7 +106,6 @@ const QuotesList = () => {
       return;
     }
 
-    // Create a new quote with the same data
     const { data: newQuote, error: insertError } = await supabase
       .from("quotes")
       .insert([{
@@ -120,7 +121,7 @@ const QuotesList = () => {
         subtotal: fullQuote.subtotal,
         total: fullQuote.total,
         status: "draft",
-        quote_number: "", // Will be auto-generated
+        quote_number: "",
       }])
       .select()
       .single();
@@ -149,39 +150,40 @@ const QuotesList = () => {
 
   return (
     <div>
-      {/* Stats Bar */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <p className="text-sm text-gray-500">Total Quotes</p>
-          <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+      {/* Stats Bar - Scrollable on mobile */}
+      <div className="flex gap-3 overflow-x-auto pb-2 mb-4 sm:grid sm:grid-cols-5 sm:gap-4 sm:mb-6 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="bg-white p-3 sm:p-4 rounded-lg border border-gray-200 min-w-[120px] flex-shrink-0 sm:min-w-0">
+          <p className="text-xs sm:text-sm text-gray-500">Total</p>
+          <p className="text-xl sm:text-2xl font-bold text-gray-900">{stats.total}</p>
         </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <p className="text-sm text-gray-500">Drafts</p>
-          <p className="text-2xl font-bold text-gray-600">{stats.draft}</p>
+        <div className="bg-white p-3 sm:p-4 rounded-lg border border-gray-200 min-w-[120px] flex-shrink-0 sm:min-w-0">
+          <p className="text-xs sm:text-sm text-gray-500">Drafts</p>
+          <p className="text-xl sm:text-2xl font-bold text-gray-600">{stats.draft}</p>
         </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <p className="text-sm text-gray-500">Sent</p>
-          <p className="text-2xl font-bold text-blue-600">{stats.sent}</p>
+        <div className="bg-white p-3 sm:p-4 rounded-lg border border-gray-200 min-w-[120px] flex-shrink-0 sm:min-w-0">
+          <p className="text-xs sm:text-sm text-gray-500">Sent</p>
+          <p className="text-xl sm:text-2xl font-bold text-blue-600">{stats.sent}</p>
         </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <p className="text-sm text-gray-500">Accepted</p>
-          <p className="text-2xl font-bold text-green-600">{stats.accepted}</p>
+        <div className="bg-white p-3 sm:p-4 rounded-lg border border-gray-200 min-w-[120px] flex-shrink-0 sm:min-w-0">
+          <p className="text-xs sm:text-sm text-gray-500">Accepted</p>
+          <p className="text-xl sm:text-2xl font-bold text-green-600">{stats.accepted}</p>
         </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <p className="text-sm text-gray-500">Won Value</p>
-          <p className="text-2xl font-bold text-green-600">
+        <div className="bg-white p-3 sm:p-4 rounded-lg border border-gray-200 min-w-[120px] flex-shrink-0 sm:min-w-0">
+          <p className="text-xs sm:text-sm text-gray-500">Won Value</p>
+          <p className="text-xl sm:text-2xl font-bold text-green-600">
             ${stats.totalValue.toLocaleString('en-CA', { minimumFractionDigits: 0 })}
           </p>
         </div>
       </div>
 
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold text-gray-900">Quotes</h2>
-          <div className="flex items-center gap-2">
+      {/* Header with filter and new button */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Quotes</h2>
+          <div className="flex items-center gap-2 ml-auto sm:ml-0">
             <Filter className="w-4 h-4 text-gray-400" />
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-40">
+              <SelectTrigger className="w-32 sm:w-40">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -194,8 +196,8 @@ const QuotesList = () => {
             </Select>
           </div>
         </div>
-        <Link to="/quotes/new">
-          <Button>
+        <Link to="/quotes/new" className="w-full sm:w-auto">
+          <Button className="w-full sm:w-auto">
             <Plus className="w-4 h-4 mr-2" />
             New Quote
           </Button>
@@ -211,7 +213,20 @@ const QuotesList = () => {
             <Button>Create your first quote</Button>
           </Link>
         </div>
+      ) : isMobile ? (
+        /* Mobile: Card Layout */
+        <div className="space-y-3">
+          {quotes.map((quote) => (
+            <QuoteCard
+              key={quote.id}
+              quote={quote}
+              onDuplicate={handleDuplicate}
+              onDelete={handleDelete}
+            />
+          ))}
+        </div>
       ) : (
+        /* Desktop: Table Layout */
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <Table>
             <TableHeader>

@@ -27,6 +27,8 @@ import {
 } from "@/components/ui/dialog";
 import { Plus, Pencil, Trash2, Search } from "lucide-react";
 import { toast } from "sonner";
+import { useIsMobile } from "@/hooks/use-mobile";
+import MaterialCard from "@/components/quotes/MaterialCard";
 
 type MaterialCategory = "wiring" | "panels" | "lighting" | "ev_chargers" | "fixtures" | "misc";
 
@@ -49,6 +51,7 @@ const categoryLabels: Record<MaterialCategory, string> = {
 };
 
 const MaterialsManager = () => {
+  const isMobile = useIsMobile();
   const [materials, setMaterials] = useState<Material[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -171,19 +174,19 @@ const MaterialsManager = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Materials Database</h2>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Materials Database</h2>
         <Dialog open={dialogOpen} onOpenChange={(open) => {
           setDialogOpen(open);
           if (!open) resetForm();
         }}>
           <DialogTrigger asChild>
-            <Button>
+            <Button className="w-full sm:w-auto">
               <Plus className="w-4 h-4 mr-2" />
               Add Material
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="max-w-md">
             <DialogHeader>
               <DialogTitle>
                 {editingMaterial ? "Edit Material" : "Add New Material"}
@@ -198,6 +201,7 @@ const MaterialsManager = () => {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g., 200A Main Breaker Panel"
                   required
+                  className="mt-1"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -209,7 +213,7 @@ const MaterialsManager = () => {
                       setFormData({ ...formData, category: value })
                     }
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className="mt-1">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -228,6 +232,7 @@ const MaterialsManager = () => {
                     value={formData.supplier}
                     onChange={(e) => setFormData({ ...formData, supplier: e.target.value })}
                     placeholder="e.g., Eaton"
+                    className="mt-1"
                   />
                 </div>
               </div>
@@ -242,6 +247,7 @@ const MaterialsManager = () => {
                     onChange={(e) => setFormData({ ...formData, unit_price: e.target.value })}
                     placeholder="0.00"
                     required
+                    className="mt-1"
                   />
                 </div>
                 <div>
@@ -250,7 +256,7 @@ const MaterialsManager = () => {
                     value={formData.unit_type}
                     onValueChange={(value) => setFormData({ ...formData, unit_type: value })}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className="mt-1">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -278,8 +284,8 @@ const MaterialsManager = () => {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-4 mb-6">
-        <div className="relative flex-1 max-w-md">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <Input
             placeholder="Search materials..."
@@ -289,7 +295,7 @@ const MaterialsManager = () => {
           />
         </div>
         <Select value={filterCategory} onValueChange={setFilterCategory}>
-          <SelectTrigger className="w-48">
+          <SelectTrigger className="w-full sm:w-48">
             <SelectValue placeholder="All Categories" />
           </SelectTrigger>
           <SelectContent>
@@ -303,63 +309,82 @@ const MaterialsManager = () => {
         </Select>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead>Category</TableHead>
-              <TableHead>Unit Price</TableHead>
-              <TableHead>Unit</TableHead>
-              <TableHead>Supplier</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filteredMaterials.map((material) => (
-              <TableRow key={material.id}>
-                <TableCell className="font-medium">{material.name}</TableCell>
-                <TableCell>
-                  <span className="px-2 py-1 bg-gray-100 rounded text-xs">
-                    {categoryLabels[material.category]}
-                  </span>
-                </TableCell>
-                <TableCell>
-                  ${Number(material.unit_price).toFixed(2)}
-                </TableCell>
-                <TableCell className="text-gray-600">{material.unit_type}</TableCell>
-                <TableCell className="text-gray-600">
-                  {material.supplier || "—"}
-                </TableCell>
-                <TableCell className="text-right">
-                  <div className="flex items-center justify-end gap-2">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleEdit(material)}
-                    >
-                      <Pencil className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleDelete(material.id)}
-                    >
-                      <Trash2 className="w-4 h-4 text-red-500" />
-                    </Button>
-                  </div>
-                </TableCell>
+      {/* Content - Card view on mobile, table on desktop */}
+      {isMobile ? (
+        <div className="space-y-3">
+          {filteredMaterials.length === 0 ? (
+            <div className="text-center py-8 text-gray-500 bg-white rounded-lg border">
+              No materials found
+            </div>
+          ) : (
+            filteredMaterials.map((material) => (
+              <MaterialCard
+                key={material.id}
+                material={material}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+              />
+            ))
+          )}
+        </div>
+      ) : (
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>Category</TableHead>
+                <TableHead>Unit Price</TableHead>
+                <TableHead>Unit</TableHead>
+                <TableHead>Supplier</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        {filteredMaterials.length === 0 && (
-          <div className="text-center py-8 text-gray-500">
-            No materials found
-          </div>
-        )}
-      </div>
+            </TableHeader>
+            <TableBody>
+              {filteredMaterials.map((material) => (
+                <TableRow key={material.id}>
+                  <TableCell className="font-medium">{material.name}</TableCell>
+                  <TableCell>
+                    <span className="px-2 py-1 bg-gray-100 rounded text-xs">
+                      {categoryLabels[material.category]}
+                    </span>
+                  </TableCell>
+                  <TableCell>
+                    ${Number(material.unit_price).toFixed(2)}
+                  </TableCell>
+                  <TableCell className="text-gray-600">{material.unit_type}</TableCell>
+                  <TableCell className="text-gray-600">
+                    {material.supplier || "—"}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <div className="flex items-center justify-end gap-2">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleEdit(material)}
+                      >
+                        <Pencil className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleDelete(material.id)}
+                      >
+                        <Trash2 className="w-4 h-4 text-red-500" />
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          {filteredMaterials.length === 0 && (
+            <div className="text-center py-8 text-gray-500">
+              No materials found
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
