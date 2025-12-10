@@ -16,6 +16,8 @@ import {
 import { Plus, Trash2, Save, FileText, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
+import PhotoQuoteAssist from "@/components/quotes/PhotoQuoteAssist";
+import CustomerLookup from "@/components/quotes/CustomerLookup";
 
 type MaterialCategory = "wiring" | "panels" | "lighting" | "ev_chargers" | "fixtures" | "misc";
 
@@ -44,6 +46,14 @@ interface LineItem {
   is_custom: boolean;
 }
 
+interface Customer {
+  id: string;
+  name: string;
+  email: string | null;
+  phone: string | null;
+  address: string | null;
+}
+
 const QuoteBuilder = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -54,6 +64,7 @@ const QuoteBuilder = () => {
   const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(isEditMode);
   const [quoteNumber, setQuoteNumber] = useState("");
+  const [customerId, setCustomerId] = useState<string | null>(null);
 
   const [customer, setCustomer] = useState({
     name: "",
@@ -94,6 +105,7 @@ const QuoteBuilder = () => {
 
         // Populate form with existing data
         setQuoteNumber(quote.quote_number);
+        setCustomerId(quote.customer_id || null);
         setCustomer({
           name: quote.customer_name,
           email: quote.customer_email || "",
@@ -110,6 +122,17 @@ const QuoteBuilder = () => {
     };
     fetchData();
   }, [id, isEditMode, navigate]);
+
+  const handleSelectCustomer = (selectedCustomer: Customer) => {
+    setCustomerId(selectedCustomer.id);
+    setCustomer({
+      name: selectedCustomer.name,
+      email: selectedCustomer.email || "",
+      phone: selectedCustomer.phone || "",
+      address: selectedCustomer.address || "",
+    });
+    toast.success(`Loaded customer: ${selectedCustomer.name}`);
+  };
 
   const addLineItem = (materialId?: string) => {
     if (materialId) {
@@ -177,6 +200,59 @@ const QuoteBuilder = () => {
   const markupAmount = (materialsSubtotal * markupPercent) / 100;
   const grandTotal = materialsSubtotal + markupAmount + laborTotal;
 
+  const saveOrCreateCustomer = async (): Promise<string | null> => {
+    if (!customer.name.trim()) return null;
+
+    // If we already have a customer ID and the name matches, use it
+    if (customerId) {
+      // Update existing customer
+      await supabase
+        .from("customers")
+        .update({
+          name: customer.name,
+          email: customer.email || null,
+          phone: customer.phone || null,
+          address: customer.address || null,
+        })
+        .eq("id", customerId);
+      return customerId;
+    }
+
+    // Check if customer exists by name and email
+    const { data: existing } = await supabase
+      .from("customers")
+      .select("id")
+      .eq("name", customer.name)
+      .maybeSingle();
+
+    if (existing) {
+      // Update existing
+      await supabase
+        .from("customers")
+        .update({
+          email: customer.email || null,
+          phone: customer.phone || null,
+          address: customer.address || null,
+        })
+        .eq("id", existing.id);
+      return existing.id;
+    }
+
+    // Create new customer
+    const { data: newCustomer } = await supabase
+      .from("customers")
+      .insert([{
+        name: customer.name,
+        email: customer.email || null,
+        phone: customer.phone || null,
+        address: customer.address || null,
+      }])
+      .select()
+      .single();
+
+    return newCustomer?.id || null;
+  };
+
   const handleSave = async (asDraft = true) => {
     if (!customer.name.trim()) {
       toast.error("Please enter customer name");
@@ -185,11 +261,15 @@ const QuoteBuilder = () => {
 
     setSaving(true);
 
+    // Save or create customer first
+    const savedCustomerId = await saveOrCreateCustomer();
+
     const quoteData = {
       customer_name: customer.name,
       customer_email: customer.email || null,
       customer_phone: customer.phone || null,
       job_address: customer.address || null,
+      customer_id: savedCustomerId,
       line_items: JSON.parse(JSON.stringify(lineItems)),
       labor_hours: laborHours,
       labor_rate: laborRate,
@@ -258,6 +338,23 @@ const QuoteBuilder = () => {
           </div>
         </div>
         <div className="flex gap-2">
+          <PhotoQuoteAssist 
+            onApplySuggestions={(materials, hours) => {
+              materials.forEach(mat => {
+                setLineItems(prev => [...prev, {
+                  id: crypto.randomUUID(),
+                  material_id: null,
+                  name: mat.name,
+                  quantity: mat.quantity,
+                  unit_price: 0,
+                  unit_type: mat.unit,
+                  subtotal: 0,
+                  is_custom: true,
+                }]);
+              });
+              setLaborHours(hours);
+            }}
+          />
           <Button variant="outline" onClick={() => handleSave(true)} disabled={saving}>
             <Save className="w-4 h-4 mr-2" />
             {saving ? "Saving..." : "Save Draft"}
@@ -273,7 +370,13 @@ const QuoteBuilder = () => {
         {/* Customer Info */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Customer Information</CardTitle>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-lg">Customer Information</CardTitle>
+              <CustomerLookup 
+                onSelectCustomer={handleSelectCustomer}
+                currentName={customer.name}
+              />
+            </div>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 gap-4">
@@ -282,7 +385,10 @@ const QuoteBuilder = () => {
                 <Input
                   id="customer_name"
                   value={customer.name}
-                  onChange={(e) => setCustomer({ ...customer, name: e.target.value })}
+                  onChange={(e) => {
+                    setCustomer({ ...customer, name: e.target.value });
+                    setCustomerId(null); // Clear customer ID when manually editing
+                  }}
                   placeholder="John Smith"
                 />
               </div>
@@ -505,26 +611,19 @@ const QuoteBuilder = () => {
         </Card>
 
         {/* Summary */}
-        <Card className="bg-gray-900 text-white">
+        <Card className="bg-gray-50">
           <CardContent className="pt-6">
-            <div className="space-y-2 text-right">
-              <div className="flex justify-between">
-                <span>Materials Subtotal:</span>
-                <span>${materialsSubtotal.toFixed(2)}</span>
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="text-gray-600">Materials: ${materialsSubtotal.toFixed(2)}</p>
+                <p className="text-gray-600">Markup ({markupPercent}%): ${markupAmount.toFixed(2)}</p>
+                <p className="text-gray-600">Labor: ${laborTotal.toFixed(2)}</p>
               </div>
-              <div className="flex justify-between">
-                <span>Markup ({markupPercent}%):</span>
-                <span>${markupAmount.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Labor ({laborHours} hrs × ${laborRate}):</span>
-                <span>${laborTotal.toFixed(2)}</span>
-              </div>
-              <div className="border-t border-gray-700 pt-2 mt-2">
-                <div className="flex justify-between text-xl font-bold">
-                  <span>Grand Total:</span>
-                  <span>${grandTotal.toFixed(2)}</span>
-                </div>
+              <div className="text-right">
+                <p className="text-sm text-gray-500">Grand Total</p>
+                <p className="text-3xl font-bold text-gray-900">
+                  ${grandTotal.toFixed(2)}
+                </p>
               </div>
             </div>
           </CardContent>

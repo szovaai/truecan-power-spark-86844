@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -11,7 +11,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Plus, Eye, Trash2, Pencil } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Plus, Eye, Trash2, Pencil, Copy, Filter } from "lucide-react";
 import { toast } from "sonner";
 import { format } from "date-fns";
 
@@ -33,15 +40,31 @@ const statusColors = {
   rejected: "bg-red-100 text-red-800",
 };
 
+const statusOptions = [
+  { value: "all", label: "All Statuses" },
+  { value: "draft", label: "Draft" },
+  { value: "sent", label: "Sent" },
+  { value: "accepted", label: "Accepted" },
+  { value: "rejected", label: "Rejected" },
+];
+
 const QuotesList = () => {
+  const navigate = useNavigate();
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [loading, setLoading] = useState(true);
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const fetchQuotes = async () => {
-    const { data, error } = await supabase
+    let query = supabase
       .from("quotes")
       .select("*")
       .order("created_at", { ascending: false });
+
+    if (statusFilter !== "all") {
+      query = query.eq("status", statusFilter as "draft" | "sent" | "accepted" | "rejected");
+    }
+
+    const { data, error } = await query;
 
     if (error) {
       toast.error("Failed to load quotes");
@@ -54,7 +77,7 @@ const QuotesList = () => {
 
   useEffect(() => {
     fetchQuotes();
-  }, []);
+  }, [statusFilter]);
 
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this quote?")) return;
@@ -68,14 +91,109 @@ const QuotesList = () => {
     }
   };
 
+  const handleDuplicate = async (quote: Quote) => {
+    // Fetch full quote data
+    const { data: fullQuote, error: fetchError } = await supabase
+      .from("quotes")
+      .select("*")
+      .eq("id", quote.id)
+      .single();
+
+    if (fetchError || !fullQuote) {
+      toast.error("Failed to duplicate quote");
+      return;
+    }
+
+    // Create a new quote with the same data
+    const { data: newQuote, error: insertError } = await supabase
+      .from("quotes")
+      .insert([{
+        customer_name: fullQuote.customer_name,
+        customer_email: fullQuote.customer_email,
+        customer_phone: fullQuote.customer_phone,
+        job_address: fullQuote.job_address,
+        line_items: fullQuote.line_items,
+        labor_hours: fullQuote.labor_hours,
+        labor_rate: fullQuote.labor_rate,
+        markup_percentage: fullQuote.markup_percentage,
+        notes: fullQuote.notes,
+        subtotal: fullQuote.subtotal,
+        total: fullQuote.total,
+        status: "draft",
+        quote_number: "", // Will be auto-generated
+      }])
+      .select()
+      .single();
+
+    if (insertError || !newQuote) {
+      toast.error("Failed to duplicate quote");
+      console.error(insertError);
+    } else {
+      toast.success("Quote duplicated");
+      navigate(`/quotes/edit/${newQuote.id}`);
+    }
+  };
+
+  // Calculate summary stats
+  const stats = {
+    total: quotes.length,
+    draft: quotes.filter(q => q.status === "draft").length,
+    sent: quotes.filter(q => q.status === "sent").length,
+    accepted: quotes.filter(q => q.status === "accepted").length,
+    totalValue: quotes.filter(q => q.status === "accepted").reduce((sum, q) => sum + Number(q.total), 0),
+  };
+
   if (loading) {
     return <div className="text-center py-12">Loading quotes...</div>;
   }
 
   return (
     <div>
+      {/* Stats Bar */}
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+        <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <p className="text-sm text-gray-500">Total Quotes</p>
+          <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+        </div>
+        <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <p className="text-sm text-gray-500">Drafts</p>
+          <p className="text-2xl font-bold text-gray-600">{stats.draft}</p>
+        </div>
+        <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <p className="text-sm text-gray-500">Sent</p>
+          <p className="text-2xl font-bold text-blue-600">{stats.sent}</p>
+        </div>
+        <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <p className="text-sm text-gray-500">Accepted</p>
+          <p className="text-2xl font-bold text-green-600">{stats.accepted}</p>
+        </div>
+        <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <p className="text-sm text-gray-500">Won Value</p>
+          <p className="text-2xl font-bold text-green-600">
+            ${stats.totalValue.toLocaleString('en-CA', { minimumFractionDigits: 0 })}
+          </p>
+        </div>
+      </div>
+
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Quotes</h2>
+        <div className="flex items-center gap-4">
+          <h2 className="text-2xl font-bold text-gray-900">Quotes</h2>
+          <div className="flex items-center gap-2">
+            <Filter className="w-4 h-4 text-gray-400" />
+            <Select value={statusFilter} onValueChange={setStatusFilter}>
+              <SelectTrigger className="w-40">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {statusOptions.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
         <Link to="/quotes/new">
           <Button>
             <Plus className="w-4 h-4 mr-2" />
@@ -86,7 +204,9 @@ const QuotesList = () => {
 
       {quotes.length === 0 ? (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <p className="text-gray-500 mb-4">No quotes yet</p>
+          <p className="text-gray-500 mb-4">
+            {statusFilter === "all" ? "No quotes yet" : `No ${statusFilter} quotes`}
+          </p>
           <Link to="/quotes/new">
             <Button>Create your first quote</Button>
           </Link>
@@ -129,7 +249,15 @@ const QuotesList = () => {
                     {format(new Date(quote.created_at), "MMM d, yyyy")}
                   </TableCell>
                   <TableCell className="text-right">
-                    <div className="flex items-center justify-end gap-2">
+                    <div className="flex items-center justify-end gap-1">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        title="Duplicate"
+                        onClick={() => handleDuplicate(quote)}
+                      >
+                        <Copy className="w-4 h-4" />
+                      </Button>
                       <Link to={`/quotes/edit/${quote.id}`}>
                         <Button variant="ghost" size="sm" title="Edit">
                           <Pencil className="w-4 h-4" />

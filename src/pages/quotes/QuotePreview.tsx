@@ -3,7 +3,14 @@ import { useParams, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Download, Printer } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { ArrowLeft, Download, Printer, Mail, CheckCircle, XCircle, Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { format } from "date-fns";
 import { jsPDF } from "jspdf";
@@ -46,31 +53,94 @@ const QuotePreview = () => {
   const { id } = useParams<{ id: string }>();
   const [quote, setQuote] = useState<Quote | null>(null);
   const [loading, setLoading] = useState(true);
+  const [sendingEmail, setSendingEmail] = useState(false);
+  const [updatingStatus, setUpdatingStatus] = useState(false);
+
+  const fetchQuote = async () => {
+    if (!id) return;
+
+    const { data, error } = await supabase
+      .from("quotes")
+      .select("*")
+      .eq("id", id)
+      .maybeSingle();
+
+    if (error) {
+      toast.error("Failed to load quote");
+      console.error(error);
+    } else if (data) {
+      setQuote({
+        ...data,
+        line_items: (data.line_items as unknown as LineItem[]) || [],
+      });
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
-    const fetchQuote = async () => {
-      if (!id) return;
-
-      const { data, error } = await supabase
-        .from("quotes")
-        .select("*")
-        .eq("id", id)
-        .maybeSingle();
-
-      if (error) {
-        toast.error("Failed to load quote");
-        console.error(error);
-      } else if (data) {
-        setQuote({
-          ...data,
-          line_items: (data.line_items as unknown as LineItem[]) || [],
-        });
-      }
-      setLoading(false);
-    };
-
     fetchQuote();
   }, [id]);
+
+  const updateStatus = async (newStatus: "draft" | "sent" | "accepted" | "rejected") => {
+    if (!quote) return;
+    setUpdatingStatus(true);
+
+    const { error } = await supabase
+      .from("quotes")
+      .update({ status: newStatus })
+      .eq("id", quote.id);
+
+    if (error) {
+      toast.error("Failed to update status");
+    } else {
+      toast.success(`Quote marked as ${newStatus}`);
+      setQuote({ ...quote, status: newStatus as Quote["status"] });
+    }
+    setUpdatingStatus(false);
+  };
+
+  const sendQuoteEmail = async () => {
+    if (!quote) return;
+    
+    if (!quote.customer_email) {
+      toast.error("Customer email is required to send quote");
+      return;
+    }
+
+    setSendingEmail(true);
+
+    try {
+      const quoteUrl = `${window.location.origin}/quotes/${quote.id}`;
+      
+      const response = await supabase.functions.invoke("send-quote-email", {
+        body: {
+          customerEmail: quote.customer_email,
+          customerName: quote.customer_name,
+          quoteNumber: quote.quote_number,
+          total: Number(quote.total),
+          quoteUrl,
+        },
+      });
+
+      if (response.error) {
+        throw new Error(response.error.message);
+      }
+
+      // Update status to sent
+      await supabase
+        .from("quotes")
+        .update({ status: "sent" })
+        .eq("id", quote.id);
+
+      setQuote({ ...quote, status: "sent" });
+      toast.success(`Quote sent to ${quote.customer_email}`);
+    } catch (error: any) {
+      console.error("Error sending quote:", error);
+      toast.error("Failed to send quote email");
+    } finally {
+      setSendingEmail(false);
+    }
+  };
 
   const generatePDF = () => {
     if (!quote) return;
@@ -211,12 +281,68 @@ const QuotePreview = () => {
   return (
     <div className="max-w-4xl mx-auto">
       {/* Actions Bar */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
         <Link to="/quotes" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
           <ArrowLeft className="w-4 h-4" />
           Back to Quotes
         </Link>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          {/* Status Selector */}
+          <Select 
+            value={quote.status} 
+            onValueChange={updateStatus}
+            disabled={updatingStatus}
+          >
+            <SelectTrigger className="w-32">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="draft">Draft</SelectItem>
+              <SelectItem value="sent">Sent</SelectItem>
+              <SelectItem value="accepted">Accepted</SelectItem>
+              <SelectItem value="rejected">Rejected</SelectItem>
+            </SelectContent>
+          </Select>
+
+          {/* Quick Status Buttons */}
+          {quote.status === "sent" && (
+            <>
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-green-600 border-green-300 hover:bg-green-50"
+                onClick={() => updateStatus("accepted")}
+                disabled={updatingStatus}
+              >
+                <CheckCircle className="w-4 h-4 mr-1" />
+                Accept
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-red-600 border-red-300 hover:bg-red-50"
+                onClick={() => updateStatus("rejected")}
+                disabled={updatingStatus}
+              >
+                <XCircle className="w-4 h-4 mr-1" />
+                Reject
+              </Button>
+            </>
+          )}
+
+          <Button
+            variant="outline"
+            onClick={sendQuoteEmail}
+            disabled={sendingEmail || !quote.customer_email}
+            title={!quote.customer_email ? "Add customer email to send" : "Send quote via email"}
+          >
+            {sendingEmail ? (
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            ) : (
+              <Mail className="w-4 h-4 mr-2" />
+            )}
+            {sendingEmail ? "Sending..." : "Email Quote"}
+          </Button>
           <Button variant="outline" onClick={() => window.print()}>
             <Printer className="w-4 h-4 mr-2" />
             Print
