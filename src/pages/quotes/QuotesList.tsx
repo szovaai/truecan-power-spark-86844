@@ -23,6 +23,9 @@ import { toast } from "sonner";
 import { format } from "date-fns";
 import { useIsMobile } from "@/hooks/use-mobile";
 import QuoteCard from "@/components/quotes/QuoteCard";
+import QuickQuotes, { QuickQuotePackage } from "@/components/quotes/QuickQuotes";
+import QuoteStats from "@/components/quotes/QuoteStats";
+import NeedsAttention from "@/components/quotes/NeedsAttention";
 
 interface Quote {
   id: string;
@@ -33,6 +36,7 @@ interface Quote {
   total: number;
   status: "draft" | "sent" | "accepted" | "rejected";
   created_at: string;
+  updated_at: string;
 }
 
 const statusColors = {
@@ -135,13 +139,11 @@ const QuotesList = () => {
     }
   };
 
-  // Calculate summary stats
-  const stats = {
-    total: quotes.length,
-    draft: quotes.filter(q => q.status === "draft").length,
-    sent: quotes.filter(q => q.status === "sent").length,
-    accepted: quotes.filter(q => q.status === "accepted").length,
-    totalValue: quotes.filter(q => q.status === "accepted").reduce((sum, q) => sum + Number(q.total), 0),
+  const handleQuickQuote = (pkg: QuickQuotePackage) => {
+    // Store the package in sessionStorage and navigate to builder
+    sessionStorage.setItem("quickQuotePackage", JSON.stringify(pkg));
+    navigate("/quotes/new");
+    toast.success(`Starting ${pkg.name} quote`);
   };
 
   if (loading) {
@@ -149,41 +151,24 @@ const QuotesList = () => {
   }
 
   return (
-    <div>
-      {/* Stats Bar - Scrollable on mobile */}
-      <div className="flex gap-3 overflow-x-auto pb-2 mb-4 sm:grid sm:grid-cols-5 sm:gap-4 sm:mb-6 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0">
-        <div className="bg-white p-3 sm:p-4 rounded-lg border border-gray-200 min-w-[120px] flex-shrink-0 sm:min-w-0">
-          <p className="text-xs sm:text-sm text-gray-500">Total</p>
-          <p className="text-xl sm:text-2xl font-bold text-gray-900">{stats.total}</p>
-        </div>
-        <div className="bg-white p-3 sm:p-4 rounded-lg border border-gray-200 min-w-[120px] flex-shrink-0 sm:min-w-0">
-          <p className="text-xs sm:text-sm text-gray-500">Drafts</p>
-          <p className="text-xl sm:text-2xl font-bold text-gray-600">{stats.draft}</p>
-        </div>
-        <div className="bg-white p-3 sm:p-4 rounded-lg border border-gray-200 min-w-[120px] flex-shrink-0 sm:min-w-0">
-          <p className="text-xs sm:text-sm text-gray-500">Sent</p>
-          <p className="text-xl sm:text-2xl font-bold text-blue-600">{stats.sent}</p>
-        </div>
-        <div className="bg-white p-3 sm:p-4 rounded-lg border border-gray-200 min-w-[120px] flex-shrink-0 sm:min-w-0">
-          <p className="text-xs sm:text-sm text-gray-500">Accepted</p>
-          <p className="text-xl sm:text-2xl font-bold text-green-600">{stats.accepted}</p>
-        </div>
-        <div className="bg-white p-3 sm:p-4 rounded-lg border border-gray-200 min-w-[120px] flex-shrink-0 sm:min-w-0">
-          <p className="text-xs sm:text-sm text-gray-500">Won Value</p>
-          <p className="text-xl sm:text-2xl font-bold text-green-600">
-            ${stats.totalValue.toLocaleString('en-CA', { minimumFractionDigits: 0 })}
-          </p>
-        </div>
-      </div>
+    <div className="space-y-4">
+      {/* Quick Quotes */}
+      <QuickQuotes onSelectPackage={handleQuickQuote} />
+
+      {/* Stats */}
+      <QuoteStats quotes={quotes} />
+
+      {/* Needs Attention */}
+      <NeedsAttention quotes={quotes} />
 
       {/* Header with filter and new button */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
         <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Quotes</h2>
+          <h2 className="text-lg sm:text-xl font-bold text-foreground">All Quotes</h2>
           <div className="flex items-center gap-2 ml-auto sm:ml-0">
-            <Filter className="w-4 h-4 text-gray-400" />
+            <Filter className="w-4 h-4 text-muted-foreground" />
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-32 sm:w-40">
+              <SelectTrigger className="w-28 sm:w-36 h-9">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -197,16 +182,16 @@ const QuotesList = () => {
           </div>
         </div>
         <Link to="/quotes/new" className="w-full sm:w-auto">
-          <Button className="w-full sm:w-auto">
-            <Plus className="w-4 h-4 mr-2" />
+          <Button className="w-full sm:w-auto h-11 text-base">
+            <Plus className="w-5 h-5 mr-2" />
             New Quote
           </Button>
         </Link>
       </div>
 
       {quotes.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <p className="text-gray-500 mb-4">
+        <div className="text-center py-8 bg-card rounded-xl border border-border">
+          <p className="text-muted-foreground mb-4">
             {statusFilter === "all" ? "No quotes yet" : `No ${statusFilter} quotes`}
           </p>
           <Link to="/quotes/new">
@@ -227,7 +212,7 @@ const QuotesList = () => {
         </div>
       ) : (
         /* Desktop: Table Layout */
-        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <div className="bg-card rounded-xl border border-border overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow>
@@ -249,7 +234,7 @@ const QuotesList = () => {
                   <TableCell className="font-medium">
                     {quote.customer_name}
                   </TableCell>
-                  <TableCell className="text-sm text-gray-600">
+                  <TableCell className="text-sm text-muted-foreground">
                     {quote.customer_email || quote.customer_phone || "—"}
                   </TableCell>
                   <TableCell className="font-medium">
@@ -260,7 +245,7 @@ const QuotesList = () => {
                       {quote.status}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-sm text-gray-600">
+                  <TableCell className="text-sm text-muted-foreground">
                     {format(new Date(quote.created_at), "MMM d, yyyy")}
                   </TableCell>
                   <TableCell className="text-right">
@@ -270,16 +255,17 @@ const QuotesList = () => {
                         size="sm"
                         title="Duplicate"
                         onClick={() => handleDuplicate(quote)}
+                        className="h-9 w-9"
                       >
                         <Copy className="w-4 h-4" />
                       </Button>
                       <Link to={`/quotes/edit/${quote.id}`}>
-                        <Button variant="ghost" size="sm" title="Edit">
+                        <Button variant="ghost" size="sm" title="Edit" className="h-9 w-9">
                           <Pencil className="w-4 h-4" />
                         </Button>
                       </Link>
                       <Link to={`/quotes/${quote.id}`}>
-                        <Button variant="ghost" size="sm" title="View">
+                        <Button variant="ghost" size="sm" title="View" className="h-9 w-9">
                           <Eye className="w-4 h-4" />
                         </Button>
                       </Link>
@@ -288,6 +274,7 @@ const QuotesList = () => {
                         size="sm"
                         title="Delete"
                         onClick={() => handleDelete(quote.id)}
+                        className="h-9 w-9"
                       >
                         <Trash2 className="w-4 h-4 text-red-500" />
                       </Button>
