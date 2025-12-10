@@ -55,8 +55,8 @@ const Header = () => {
           <Phone className="h-4 w-4" />
           <span>24/7 Electrical Help</span>
           <span>•</span>
-          <a href="tel:+15873170615" className="font-bold hover:text-primary transition-colors">
-            (587) 317-0615
+          <a href="tel:+12508830499" className="font-bold hover:text-primary transition-colors">
+            (250) 883-0499
           </a>
           <span>•</span>
           <Link to="/contact" className="font-bold hover:text-primary transition-colors">
@@ -224,10 +224,10 @@ const Header = () => {
             <span className="font-bold text-sm">24/7 Electrical Help</span>
           </div>
           <a 
-            href="tel:+15873170615"
+            href="tel:+12508830499"
             className="bg-primary text-white px-4 py-2 rounded-md font-bold text-sm hover:bg-primary/90 transition-smooth"
           >
-            (587) 317-0615
+            (250) 883-0499
           </a>
         </div>
       </div>

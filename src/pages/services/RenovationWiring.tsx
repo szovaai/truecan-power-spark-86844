@@ -54,7 +54,7 @@ const RenovationWiring = () => {
         <title>Basement & Kitchen Renovation Wiring Calgary | Electrical Contractor - TrueCan Power</title>
         <meta 
           name="description" 
-          content="Expert electrical wiring for basement and kitchen renovations in Calgary. Code-compliant circuits, permits, and coordination with contractors. Call (587) 317-0615." 
+          content="Expert electrical wiring for basement and kitchen renovations in Calgary. Code-compliant circuits, permits, and coordination with contractors. Call (250) 883-0499." 
         />
         <meta name="keywords" content="basement wiring Calgary, kitchen electrical renovation, renovation electrician Calgary, basement electrical, kitchen rewiring" />
         <link rel="canonical" href="https://truecanpower.com/services/renovation-wiring" />
@@ -102,9 +102,9 @@ const RenovationWiring = () => {
                     <Link to="/contact">Get Free Renovation Consultation</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline">
-                    <a href="tel:+15873170615">
+                    <a href="tel:+12508830499">
                       <Phone className="mr-2" size={20} />
-                      (587) 317-0615
+                      (250) 883-0499
                     </a>
                   </Button>
                 </div>

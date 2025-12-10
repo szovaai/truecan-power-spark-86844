@@ -153,7 +153,7 @@ const LiveChat = () => {
 
       case 'Talk to a technician':
         addBotMessage(
-          "Our team is available Mon-Fri 7am-7pm, Sat 8am-4pm.\n\n📞 Call: (403) 555-0123\n\nOr leave your number and we'll call you back within 30 minutes:",
+          "Our team is available Mon-Fri 7am-7pm, Sat 8am-4pm.\n\n📞 Call: (250) 883-0499\n\nOr leave your number and we'll call you back within 30 minutes:",
           ['Leave my number']
         );
         break;

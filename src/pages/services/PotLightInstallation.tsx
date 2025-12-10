@@ -54,7 +54,7 @@ const PotLightInstallation = () => {
         <title>Pot Light Installation Calgary | LED Recessed Lighting - TrueCan Power</title>
         <meta 
           name="description" 
-          content="Professional pot light installation in Calgary. Energy-efficient LED recessed lighting for kitchens, basements, living rooms. Licensed electricians. Call (587) 317-0615." 
+          content="Professional pot light installation in Calgary. Energy-efficient LED recessed lighting for kitchens, basements, living rooms. Licensed electricians. Call (250) 883-0499." 
         />
         <meta name="keywords" content="pot light installation Calgary, LED recessed lighting, pot lights Calgary, kitchen lighting, basement lighting Calgary" />
         <link rel="canonical" href="https://truecanpower.com/services/pot-light-installation" />
@@ -102,9 +102,9 @@ const PotLightInstallation = () => {
                     <Link to="/contact">Get Free Lighting Design</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline">
-                    <a href="tel:+15873170615">
+                    <a href="tel:+12508830499">
                       <Phone className="mr-2" size={20} />
-                      (587) 317-0615
+                      (250) 883-0499
                     </a>
                   </Button>
                 </div>

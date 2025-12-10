@@ -61,7 +61,7 @@ const PanelUpgrade = () => {
         <title>Electrical Panel Upgrade Calgary | 200 Amp Service Upgrade - TrueCan Power</title>
         <meta 
           name="description" 
-          content="Professional electrical panel upgrades in Calgary. Upgrade to 200 amp service for EVs, heat pumps, and modern loads. Licensed electricians, full permits. Call (587) 317-0615." 
+          content="Professional electrical panel upgrades in Calgary. Upgrade to 200 amp service for EVs, heat pumps, and modern loads. Licensed electricians, full permits. Call (250) 883-0499." 
         />
         <meta name="keywords" content="electrical panel upgrade Calgary, 200 amp service, panel replacement Calgary, breaker box upgrade, electrical service upgrade" />
         <link rel="canonical" href="https://truecanpower.com/services/panel-upgrade" />
@@ -109,9 +109,9 @@ const PanelUpgrade = () => {
                     <Link to="/contact">Get Free Load Assessment</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline">
-                    <a href="tel:+15873170615">
+                    <a href="tel:+12508830499">
                       <Phone className="mr-2" size={20} />
-                      (587) 317-0615
+                      (250) 883-0499
                     </a>
                   </Button>
                 </div>
