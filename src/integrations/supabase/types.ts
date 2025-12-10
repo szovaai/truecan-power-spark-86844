@@ -14,7 +14,123 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      job_templates: {
+        Row: {
+          created_at: string
+          default_labor_hours: number | null
+          default_materials: Json | null
+          description: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          default_labor_hours?: number | null
+          default_materials?: Json | null
+          description?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          default_labor_hours?: number | null
+          default_materials?: Json | null
+          description?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      materials: {
+        Row: {
+          category: Database["public"]["Enums"]["material_category"]
+          created_at: string
+          id: string
+          name: string
+          supplier: string | null
+          unit_price: number
+          unit_type: string
+          updated_at: string
+        }
+        Insert: {
+          category?: Database["public"]["Enums"]["material_category"]
+          created_at?: string
+          id?: string
+          name: string
+          supplier?: string | null
+          unit_price?: number
+          unit_type?: string
+          updated_at?: string
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["material_category"]
+          created_at?: string
+          id?: string
+          name?: string
+          supplier?: string | null
+          unit_price?: number
+          unit_type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      quotes: {
+        Row: {
+          created_at: string
+          customer_email: string | null
+          customer_name: string
+          customer_phone: string | null
+          id: string
+          job_address: string | null
+          labor_hours: number | null
+          labor_rate: number | null
+          line_items: Json | null
+          markup_percentage: number | null
+          notes: string | null
+          quote_number: string
+          status: Database["public"]["Enums"]["quote_status"] | null
+          subtotal: number | null
+          total: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          customer_email?: string | null
+          customer_name: string
+          customer_phone?: string | null
+          id?: string
+          job_address?: string | null
+          labor_hours?: number | null
+          labor_rate?: number | null
+          line_items?: Json | null
+          markup_percentage?: number | null
+          notes?: string | null
+          quote_number: string
+          status?: Database["public"]["Enums"]["quote_status"] | null
+          subtotal?: number | null
+          total?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string | null
+          customer_name?: string
+          customer_phone?: string | null
+          id?: string
+          job_address?: string | null
+          labor_hours?: number | null
+          labor_rate?: number | null
+          line_items?: Json | null
+          markup_percentage?: number | null
+          notes?: string | null
+          quote_number?: string
+          status?: Database["public"]["Enums"]["quote_status"] | null
+          subtotal?: number | null
+          total?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +139,14 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      material_category:
+        | "wiring"
+        | "panels"
+        | "lighting"
+        | "ev_chargers"
+        | "fixtures"
+        | "misc"
+      quote_status: "draft" | "sent" | "accepted" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +273,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      material_category: [
+        "wiring",
+        "panels",
+        "lighting",
+        "ev_chargers",
+        "fixtures",
+        "misc",
+      ],
+      quote_status: ["draft", "sent", "accepted", "rejected"],
+    },
   },
 } as const
