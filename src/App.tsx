@@ -62,6 +62,7 @@ const App = () => (
           <Route path="/quotes" element={<QuotesLayout />}>
             <Route index element={<QuotesList />} />
             <Route path="new" element={<QuoteBuilder />} />
+            <Route path="edit/:id" element={<QuoteBuilder />} />
             <Route path="materials" element={<MaterialsManager />} />
             <Route path="templates" element={<TemplatesManager />} />
             <Route path=":id" element={<QuotePreview />} />

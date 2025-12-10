@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Plus, Eye, Trash2 } from "lucide-react";
+import { Plus, Eye, Trash2, Pencil } from "lucide-react";
 import { toast } from "sonner";
 import { format } from "date-fns";
 
@@ -130,14 +130,20 @@ const QuotesList = () => {
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex items-center justify-end gap-2">
+                      <Link to={`/quotes/edit/${quote.id}`}>
+                        <Button variant="ghost" size="sm" title="Edit">
+                          <Pencil className="w-4 h-4" />
+                        </Button>
+                      </Link>
                       <Link to={`/quotes/${quote.id}`}>
-                        <Button variant="ghost" size="sm">
+                        <Button variant="ghost" size="sm" title="View">
                           <Eye className="w-4 h-4" />
                         </Button>
                       </Link>
                       <Button
                         variant="ghost"
                         size="sm"
+                        title="Delete"
                         onClick={() => handleDelete(quote.id)}
                       >
                         <Trash2 className="w-4 h-4 text-red-500" />
