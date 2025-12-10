@@ -1,6 +1,7 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { FileText, Package, FolderOpen, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
+import PasswordGate from "./PasswordGate";
 
 const QuotesLayout = () => {
   const location = useLocation();
@@ -18,8 +19,9 @@ const QuotesLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
+    <PasswordGate>
+      <div className="min-h-screen bg-gray-50">
+        {/* Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -61,7 +63,8 @@ const QuotesLayout = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Outlet />
       </main>
-    </div>
+      </div>
+    </PasswordGate>
   );
 };
 
