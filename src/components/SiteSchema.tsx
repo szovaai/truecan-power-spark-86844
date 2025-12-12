@@ -22,11 +22,7 @@ const SiteSchema = () => {
       "addressCountry": "CA"
     },
     "areaServed": [
-      { "@type": "City", "name": "Calgary", "sameAs": "https://en.wikipedia.org/wiki/Calgary" },
-      { "@type": "City", "name": "Airdrie" },
-      { "@type": "City", "name": "Cochrane" },
-      { "@type": "City", "name": "Okotoks" },
-      { "@type": "City", "name": "Chestermere" }
+      { "@type": "City", "name": "Calgary", "sameAs": "https://en.wikipedia.org/wiki/Calgary" }
     ],
     "openingHoursSpecification": [
       {

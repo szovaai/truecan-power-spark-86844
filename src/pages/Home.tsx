@@ -34,7 +34,7 @@ const Home = () => {
     { icon: Zap, label: "Panel Upgrades", description: "Modernize your system", link: "/services/panel-upgrade" },
     { icon: Car, label: "EV Chargers", description: "Home & commercial", link: "/services/ev-charger-installation" },
     { icon: Lightbulb, label: "Lighting Design", description: "Efficient solutions", link: "/services/pot-light-installation" },
-    { icon: Shield, label: "Generators", description: "Backup power systems", link: "/services" },
+    { icon: Flame, label: "Hot Tub & Sauna", description: "240V wiring & hookups", link: "/services/hot-tub-sauna-wiring" },
     { icon: Plug, label: "Tenant Improvements", description: "Commercial fit-outs", link: "/services/renovation-wiring" },
     { icon: Wrench, label: "Maintenance Contracts", description: "Preventative care", link: "/services" }
   ];
