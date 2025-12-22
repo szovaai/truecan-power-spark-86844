@@ -18,6 +18,7 @@ import PotLightInstallation from "./pages/services/PotLightInstallation";
 import HotTubSaunaWiring from "./pages/services/HotTubSaunaWiring";
 import RenovationWiring from "./pages/services/RenovationWiring";
 import EmergencyElectrician from "./pages/services/EmergencyElectrician";
+import SurgeProtection from "./pages/services/SurgeProtection";
 import EmergencyFAB from "./components/EmergencyFAB";
 import ConversionToast from "./components/ConversionToast";
 import LiveChat from "./components/LiveChat";
@@ -51,6 +52,7 @@ const App = () => (
           <Route path="/services/hot-tub-sauna-wiring" element={<HotTubSaunaWiring />} />
           <Route path="/services/renovation-wiring" element={<RenovationWiring />} />
           <Route path="/services/emergency-electrician" element={<EmergencyElectrician />} />
+          <Route path="/services/surge-protection" element={<SurgeProtection />} />
           <Route path="/residential" element={<Residential />} />
           <Route path="/commercial" element={<Commercial />} />
           <Route path="/service-areas" element={<ServiceAreas />} />

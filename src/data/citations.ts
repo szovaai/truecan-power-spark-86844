@@ -97,5 +97,19 @@ export const evidenceBlocks: Record<string, EvidenceData> = {
       }
     ],
     localNote: "Our 24/7 emergency service covers all of Calgary with guaranteed 2-hour response for critical electrical hazards."
+  },
+  'surge-protection': {
+    claim: "Power surges cause over $1 billion in damage to electronics annually in North America, with whole-home surge protection preventing up to 99% of transient voltage damage.",
+    sources: [
+      {
+        title: "Electrical Safety Foundation International - Surge Protection",
+        url: "https://www.esfi.org/electrical-safety-in-the-home/surge-protective-devices/"
+      },
+      {
+        title: "IEEE - Surge Protective Devices Standards",
+        url: "https://standards.ieee.org/ieee/C62.72/5645/"
+      }
+    ],
+    localNote: "We install panel-mounted surge protection devices that meet CSA C22.1 requirements, providing whole-home protection for Calgary residences and businesses."
   }
 };

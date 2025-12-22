@@ -23,7 +23,7 @@ const Services = () => {
     { icon: Home, title: "Smart Home Integration", description: "Connect and automate your home with smart electrical solutions.", link: "/residential" },
     { icon: Lightbulb, title: "Lighting Design", description: "Beautiful, energy-efficient lighting solutions for every room.", link: "/services/pot-light-installation" },
     { icon: Wrench, title: "Hot Tub Wiring", description: "Safe, compliant electrical hookups for hot tubs and spas.", link: "/services/hot-tub-sauna-wiring" },
-    { icon: Shield, title: "Generators", description: "Backup power solutions to keep your home running during outages.", link: "/residential" },
+    { icon: Shield, title: "Surge Protection", description: "Protect electronics from power spikes with whole-home surge protection.", link: "/services/surge-protection" },
   ];
 
   const commercialServices = [

@@ -36,6 +36,7 @@ const Header = () => {
     { to: "/services/ev-charger-installation", label: "EV Charger Installation" },
     { to: "/services/hot-tub-sauna-wiring", label: "Hot Tub & Sauna Wiring" },
     { to: "/services/pot-light-installation", label: "Pot Light Installation" },
+    { to: "/services/surge-protection", label: "Surge Protection" },
     { to: "/services/emergency-electrician", label: "Emergency Electrician" },
     { to: "/services/renovation-wiring", label: "Renovation Wiring" },
   ];
