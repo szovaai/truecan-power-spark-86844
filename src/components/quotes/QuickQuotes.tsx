@@ -1,4 +1,4 @@
-import { Zap, Lightbulb, Power, Bath, Wrench, Home } from "lucide-react";
+import { Zap, Lightbulb, Power, Bath, Wrench, Home, Shield } from "lucide-react";
 
 export interface QuickQuotePackage {
   id: string;
@@ -102,6 +102,19 @@ export const QUICK_QUOTE_PACKAGES: QuickQuotePackage[] = [
     laborHours: 6,
     suggestedTotal: 1400,
     color: "bg-purple-500",
+  },
+  {
+    id: "surge-protection",
+    name: "Surge Protect",
+    icon: <Shield className="w-8 h-8" />,
+    description: "Whole-home surge protection",
+    materials: [
+      { name: "Whole-Home Surge Protector", quantity: 1, unit_price: 250, unit_type: "each" },
+      { name: "2-Pole Breaker", quantity: 1, unit_price: 35, unit_type: "each" },
+    ],
+    laborHours: 2,
+    suggestedTotal: 450,
+    color: "bg-orange-500",
   },
 ];
 
