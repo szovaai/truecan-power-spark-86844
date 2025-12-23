@@ -95,7 +95,7 @@ const EmergencyElectrician = () => {
         
         <main className="flex-1">
           {/* Hero Section */}
-          <section className="bg-gradient-to-br from-red-500/10 via-background to-amber-500/10 py-20">
+          <section className="bg-gradient-to-br from-red-500/10 via-background to-amber-500/10 pt-32 md:pt-40 pb-20">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-red-500/10 text-red-600 mb-6">
