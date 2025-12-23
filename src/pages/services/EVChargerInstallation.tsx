@@ -91,7 +91,7 @@ const EVChargerInstallation = () => {
         
         <main className="flex-1">
           {/* Hero Section */}
-          <section className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-20">
+          <section className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 pt-32 md:pt-40 pb-20">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
