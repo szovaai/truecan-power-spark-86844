@@ -36,7 +36,7 @@ const Home = () => {
     { icon: Lightbulb, label: "Lighting Design", description: "Efficient solutions", link: "/services/pot-light-installation" },
     { icon: Flame, label: "Hot Tub & Sauna", description: "240V wiring & hookups", link: "/services/hot-tub-sauna-wiring" },
     { icon: Plug, label: "Tenant Improvements", description: "Commercial fit-outs", link: "/services/renovation-wiring" },
-    { icon: Wrench, label: "Maintenance Contracts", description: "Preventative care", link: "/services" }
+    { icon: Shield, label: "Surge Protection", description: "Protect your electronics", link: "/services/surge-protection" }
   ];
 
 
