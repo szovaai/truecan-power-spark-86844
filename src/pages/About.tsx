@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -41,6 +42,14 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>About TrueCan Power | Calgary's Trusted Electricians</title>
+        <meta 
+          name="description" 
+          content="TrueCan Power Systems - Licensed, insured, ESA-certified electricians serving Calgary. Learn about our values, certifications, and commitment to quality."
+        />
+        <link rel="canonical" href="https://truecanpower.com/about" />
+      </Helmet>
       <Header />
       
       {/* Hero Section */}

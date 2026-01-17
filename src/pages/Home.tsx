@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -55,6 +56,14 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Calgary Electrician | 24/7 Emergency Service - TrueCan Power</title>
+        <meta 
+          name="description" 
+          content="Licensed Calgary electricians for panel upgrades, EV chargers, pot lights & emergency repairs. ESA-certified, same-day service. Call (250) 883-0499."
+        />
+        <link rel="canonical" href="https://truecanpower.com/" />
+      </Helmet>
       <Header />
       
       {/* Hero Section */}

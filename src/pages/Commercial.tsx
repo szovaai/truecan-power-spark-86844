@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -60,6 +61,14 @@ const Commercial = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Commercial Electrician Calgary | Industrial - TrueCan Power</title>
+        <meta 
+          name="description" 
+          content="Commercial & industrial electrical services in Calgary. Tenant fit-outs, lighting retrofits, EV charging, backup generators. Licensed, insured contractors."
+        />
+        <link rel="canonical" href="https://truecanpower.com/commercial" />
+      </Helmet>
       <Header />
       
       {/* Hero Section */}

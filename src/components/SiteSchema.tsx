@@ -88,6 +88,14 @@ const SiteSchema = () => {
             "name": "Emergency Electrician",
             "url": "https://truecanpower.com/services/emergency-electrician"
           }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Surge Protection",
+            "url": "https://truecanpower.com/services/surge-protection"
+          }
         }
       ]
     },
@@ -101,8 +109,14 @@ const SiteSchema = () => {
       "Residential Electrical",
       "Hot Tub Wiring",
       "Pot Light Installation",
-      "Renovation Electrical Work"
-    ]
+      "Renovation Electrical Work",
+      "Surge Protection"
+    ],
+    "isAccessibleForFree": false,
+    "paymentAccepted": ["Cash", "Credit Card", "Debit Card", "E-Transfer"],
+    "currenciesAccepted": "CAD",
+    "availableLanguage": ["English"],
+    "emergencyService": true
   };
 
   return (

@@ -30,6 +30,12 @@ import QuoteBuilder from "./pages/quotes/QuoteBuilder";
 import MaterialsManager from "./pages/quotes/MaterialsManager";
 import TemplatesManager from "./pages/quotes/TemplatesManager";
 import QuotePreview from "./pages/quotes/QuotePreview";
+// Calgary location pages
+import CalgaryElectrician from "./pages/location/CalgaryElectrician";
+import CalgaryEVCharger from "./pages/location/CalgaryEVCharger";
+import CalgaryPanelUpgrade from "./pages/location/CalgaryPanelUpgrade";
+import CalgaryPotLights from "./pages/location/CalgaryPotLights";
+import CalgaryTroubleshooting from "./pages/location/CalgaryTroubleshooting";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +66,12 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          {/* Calgary location pages */}
+          <Route path="/calgary-electrician" element={<CalgaryElectrician />} />
+          <Route path="/calgary-ev-charger-installation" element={<CalgaryEVCharger />} />
+          <Route path="/calgary-panel-upgrade" element={<CalgaryPanelUpgrade />} />
+          <Route path="/calgary-pot-lights" element={<CalgaryPotLights />} />
+          <Route path="/calgary-electrical-troubleshooting" element={<CalgaryTroubleshooting />} />
           {/* Hidden quoting app */}
           <Route path="/quotes" element={<QuotesLayout />}>
             <Route index element={<QuotesList />} />
