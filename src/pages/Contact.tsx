@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -121,6 +122,14 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Contact Calgary Electrician | Free Quote - TrueCan Power</title>
+        <meta 
+          name="description" 
+          content="Contact TrueCan Power for fast, reliable electrical service in Calgary. Get a free quote for panel upgrades, EV chargers, and more. Call (250) 883-0499."
+        />
+        <link rel="canonical" href="https://truecanpower.com/contact" />
+      </Helmet>
       <Header />
       
       {/* Hero Section */}
@@ -193,9 +202,9 @@ const Contact = () => {
                     <div>
                       <h3 className="font-bold mb-1">Service Area</h3>
                       <p className="text-muted-foreground">
-                        Serving all of Canada
+                        Serving the Calgary Area
                       </p>
-                      <p className="text-sm text-muted-foreground mt-1">Licensed in all provinces</p>
+                      <p className="text-sm text-muted-foreground mt-1">Licensed & insured in Alberta</p>
                     </div>
                   </div>
 
