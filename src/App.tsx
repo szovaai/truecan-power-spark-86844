@@ -86,6 +86,11 @@ const App = () => (
           <Route path="/blog/electrician-calgary-near-me" element={<ElectricianCalgaryNearMe />} />
           <Route path="/blog/electrician-calgary-nw" element={<ElectricianCalgaryNW />} />
           <Route path="/blog/industrial-electrician-calgary" element={<IndustrialElectricianCalgary />} />
+          <Route path="/blog/best-electrician-calgary" element={<BestElectricianCalgary />} />
+          <Route path="/blog/commercial-electrician-calgary" element={<CommercialElectricianCalgary />} />
+          <Route path="/blog/residential-electrician-calgary" element={<ResidentialElectricianCalgary />} />
+          <Route path="/blog/electrician-calgary-ab" element={<ElectricianCalgaryAB />} />
+          <Route path="/blog/electrician-calgary-alberta" element={<ElectricianCalgaryAlberta />} />
           {/* Hidden quoting app */}
           <Route path="/quotes" element={<QuotesLayout />}>
             <Route index element={<QuotesList />} />
