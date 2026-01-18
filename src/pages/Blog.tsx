@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, Factory, Search, Phone } from "lucide-react";
+import { MapPin, Factory, Search, Phone, Star, Building2, Home } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SchemaMarkup from "@/components/SchemaMarkup";
@@ -43,6 +43,41 @@ const Blog = () => {
       slug: "/blog/industrial-electrician-calgary",
       icon: Factory,
       neighborhoods: ["Industrial Districts", "Commercial Zones"]
+    },
+    {
+      title: "Best Electrician Calgary",
+      excerpt: "Top-rated electrician with 5-star reviews. Licensed, insured, and trusted by Calgary homeowners.",
+      slug: "/blog/best-electrician-calgary",
+      icon: Star,
+      neighborhoods: ["All Calgary", "Top Rated"]
+    },
+    {
+      title: "Commercial Electrician Calgary",
+      excerpt: "Commercial electrical services for offices, retail, restaurants & businesses. Licensed for commercial work.",
+      slug: "/blog/commercial-electrician-calgary",
+      icon: Building2,
+      neighborhoods: ["Offices", "Retail", "Restaurants"]
+    },
+    {
+      title: "Residential Electrician Calgary",
+      excerpt: "Home electrical services for Calgary homeowners. Panel upgrades, lighting, outlets, renovations & more.",
+      slug: "/blog/residential-electrician-calgary",
+      icon: Home,
+      neighborhoods: ["All Calgary Homes"]
+    },
+    {
+      title: "Electrician Calgary AB",
+      excerpt: "Alberta-licensed electrician serving Calgary, AB. Professional residential & commercial electrical services.",
+      slug: "/blog/electrician-calgary-ab",
+      icon: MapPin,
+      neighborhoods: ["Calgary", "Alberta"]
+    },
+    {
+      title: "Electrician Calgary Alberta",
+      excerpt: "Comprehensive electrical services in Calgary, Alberta. 24/7 emergency service, free estimates.",
+      slug: "/blog/electrician-calgary-alberta",
+      icon: MapPin,
+      neighborhoods: ["Calgary", "Alberta"]
     }
   ];
 
