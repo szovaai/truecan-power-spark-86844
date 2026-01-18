@@ -43,6 +43,11 @@ import ElectricianCalgarySE from "./pages/blog/ElectricianCalgarySE";
 import ElectricianCalgaryNearMe from "./pages/blog/ElectricianCalgaryNearMe";
 import ElectricianCalgaryNW from "./pages/blog/ElectricianCalgaryNW";
 import IndustrialElectricianCalgary from "./pages/blog/IndustrialElectricianCalgary";
+import BestElectricianCalgary from "./pages/blog/BestElectricianCalgary";
+import CommercialElectricianCalgary from "./pages/blog/CommercialElectricianCalgary";
+import ResidentialElectricianCalgary from "./pages/blog/ResidentialElectricianCalgary";
+import ElectricianCalgaryAB from "./pages/blog/ElectricianCalgaryAB";
+import ElectricianCalgaryAlberta from "./pages/blog/ElectricianCalgaryAlberta";
 
 const queryClient = new QueryClient();
 
