@@ -36,6 +36,13 @@ import CalgaryEVCharger from "./pages/location/CalgaryEVCharger";
 import CalgaryPanelUpgrade from "./pages/location/CalgaryPanelUpgrade";
 import CalgaryPotLights from "./pages/location/CalgaryPotLights";
 import CalgaryTroubleshooting from "./pages/location/CalgaryTroubleshooting";
+// Blog pages
+import Blog from "./pages/Blog";
+import ElectricianCalgarySW from "./pages/blog/ElectricianCalgarySW";
+import ElectricianCalgarySE from "./pages/blog/ElectricianCalgarySE";
+import ElectricianCalgaryNearMe from "./pages/blog/ElectricianCalgaryNearMe";
+import ElectricianCalgaryNW from "./pages/blog/ElectricianCalgaryNW";
+import IndustrialElectricianCalgary from "./pages/blog/IndustrialElectricianCalgary";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +79,13 @@ const App = () => (
           <Route path="/calgary-panel-upgrade" element={<CalgaryPanelUpgrade />} />
           <Route path="/calgary-pot-lights" element={<CalgaryPotLights />} />
           <Route path="/calgary-electrical-troubleshooting" element={<CalgaryTroubleshooting />} />
+          {/* Blog pages */}
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/electrician-calgary-sw" element={<ElectricianCalgarySW />} />
+          <Route path="/blog/electrician-calgary-se" element={<ElectricianCalgarySE />} />
+          <Route path="/blog/electrician-calgary-near-me" element={<ElectricianCalgaryNearMe />} />
+          <Route path="/blog/electrician-calgary-nw" element={<ElectricianCalgaryNW />} />
+          <Route path="/blog/industrial-electrician-calgary" element={<IndustrialElectricianCalgary />} />
           {/* Hidden quoting app */}
           <Route path="/quotes" element={<QuotesLayout />}>
             <Route index element={<QuotesList />} />
