@@ -58,10 +58,10 @@ const About = () => {
         
         <div className="relative z-10 container mx-auto px-4 py-20 text-center text-white">
           <h1 className="text-5xl md:text-6xl font-montserrat font-extrabold mb-6 leading-tight">
-            A Proudly Canadian Electrical Company
+            Power Systems You Can Rely On
           </h1>
           <p className="text-xl md:text-2xl max-w-3xl mx-auto">
-            Built on reliability, integrity, and precision
+            A proudly Canadian company built on reliability, integrity, and precision
           </p>
         </div>
       </section>
@@ -184,10 +184,10 @@ const About = () => {
             Experience the TrueCan Difference
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join hundreds of satisfied customers who trust us for reliable, professional electrical service.
+            Join hundreds of satisfied customers who trust us for reliable power systems and professional service.
           </p>
           <Button variant="secondary" size="lg" asChild className="shadow-glow">
-            <Link to="/contact">Get Started Today</Link>
+            <Link to="/contact">Schedule a Consultation</Link>
           </Button>
         </div>
       </section>

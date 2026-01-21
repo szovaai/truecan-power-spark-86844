@@ -80,13 +80,13 @@ const Residential = () => {
         
         <div className="relative z-10 container mx-auto px-4 py-20 text-white">
           <h1 className="text-5xl md:text-6xl font-montserrat font-extrabold mb-6 leading-tight">
-            Residential Electrical Services
+            Safe, Reliable Power for Your Home
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl">
-            From New Installs to Emergency Repairs — We Power Your Home
+            Electrical systems that keep your family safe and your home running smoothly
           </p>
           <Button variant="secondary" size="lg" asChild className="shadow-glow">
-            <Link to="/contact">Book a Free Home Safety Check</Link>
+            <Link to="/contact">Request a Home Review</Link>
           </Button>
         </div>
       </section>
@@ -192,13 +192,13 @@ const Residential = () => {
       <section className="py-16 hero-gradient text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-montserrat font-extrabold mb-4">
-            Book a Free Home Safety Check
+            Discuss Your Home's Electrical System
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Our certified electricians will inspect your home's electrical system and provide a detailed safety report — absolutely free.
+            Our certified electricians will review your home's power infrastructure and provide honest recommendations — no pressure.
           </p>
           <Button variant="secondary" size="lg" asChild className="shadow-glow">
-            <Link to="/contact">Schedule Your Free Inspection</Link>
+            <Link to="/contact">Schedule a Consultation</Link>
           </Button>
         </div>
       </section>

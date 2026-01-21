@@ -143,7 +143,7 @@ const Header = () => {
 
             <div className="hidden lg:flex items-center gap-4">
               <Button variant="hero" size="lg" asChild>
-                <Link to="/contact">Book Free Assessment</Link>
+                <Link to="/contact">Request a Site Review</Link>
               </Button>
             </div>
 
@@ -210,7 +210,7 @@ const Header = () => {
                 </Link>
               ))}
               <Button variant="hero" asChild className="w-full">
-                <Link to="/contact">Book Free Assessment</Link>
+                <Link to="/contact">Request a Site Review</Link>
               </Button>
             </nav>
           </div>

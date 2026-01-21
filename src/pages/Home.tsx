@@ -80,10 +80,10 @@ const Home = () => {
               Power You Can Trust For Life
             </h1>
             <p className="text-2xl md:text-3xl mb-2 font-semibold text-foreground">
-              Residential & Commercial, Alberta-Wide
+              When power satisfies, operations stop — we prevent that.
             </p>
             <p className="text-lg md:text-xl mb-10 text-muted-foreground leading-relaxed">
-              Licensed, insured, ESA-certified electricians. Same-day service available, 24/7 emergency response, satisfaction guaranteed.
+              Licensed, ESA-certified electricians delivering reliable power systems for homes and businesses. 24/7 emergency response, uptime guaranteed.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
@@ -93,7 +93,7 @@ const Home = () => {
                 asChild 
                 className="button-glow-hover font-semibold text-base"
               >
-                <Link to="/contact">Book Free Power Assessment</Link>
+                <Link to="/contact">Request a Site Review</Link>
               </Button>
               <Button 
                 variant="outline" 
@@ -272,13 +272,13 @@ const Home = () => {
       <section id="contact" className="py-20 bg-gradient-to-br from-primary to-primary-hover text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-6">
-            Ready to Power Up Your Project?
+            Ready to Discuss Your Power System?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-            Get a free assessment from certified electrical experts. No obligations, just honest advice.
+            Schedule a consultation with certified electrical experts. No obligations, just honest advice.
           </p>
           <Button variant="secondary" size="lg" asChild className="shadow-premium bg-white text-primary hover:bg-white/90">
-            <Link to="/contact">Book Your Free Assessment</Link>
+            <Link to="/contact">Schedule a Consultation</Link>
           </Button>
         </div>
       </section>
