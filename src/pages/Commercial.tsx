@@ -81,13 +81,13 @@ const Commercial = () => {
         
         <div className="relative z-10 container mx-auto px-4 py-20 text-white">
           <h1 className="text-5xl md:text-6xl font-montserrat font-extrabold mb-6 leading-tight">
-            Commercial & Industrial Electrical
+            Critical Power Infrastructure
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl">
-            Trusted by Builders, Businesses, and Property Managers
+            When power fails, operations stop. We keep you running.
           </p>
           <Button variant="secondary" size="lg" asChild className="shadow-glow">
-            <Link to="/contact">Schedule a Site Consultation</Link>
+            <Link to="/contact">Request a Site Review</Link>
           </Button>
         </div>
       </section>
@@ -97,10 +97,10 @@ const Commercial = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-4">
-              Full-Scale Commercial Solutions
+              Reliable Power Distribution Systems
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Powering businesses across Canada with reliable electrical infrastructure
+              Electrical infrastructure designed for uptime, compliance, and continuous operations
             </p>
           </div>
 
@@ -195,13 +195,13 @@ const Commercial = () => {
       <section className="py-16 hero-gradient text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-montserrat font-extrabold mb-4">
-            Ready to Start Your Commercial Project?
+            Discuss Your Power Infrastructure
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Get a detailed site assessment and competitive quote from our commercial electrical experts.
+            Schedule a site review with our power systems specialists. We'll assess your needs and deliver a comprehensive solution.
           </p>
           <Button variant="secondary" size="lg" asChild className="shadow-glow">
-            <Link to="/contact">Request a Commercial Quote</Link>
+            <Link to="/contact">Schedule a Consultation</Link>
           </Button>
         </div>
       </section>

@@ -96,7 +96,7 @@ const HeroLeadForm = () => {
     <Card className="shadow-glow border-2 border-primary/30 bg-white animate-fade-in">
       <CardHeader className="pb-4">
         <CardTitle className="text-2xl font-montserrat font-bold text-center">
-          Get Your Free Quote
+          Discuss Your Power System
         </CardTitle>
         <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
           <CheckCircle2 className="text-success" size={16} />
@@ -170,7 +170,7 @@ const HeroLeadForm = () => {
             disabled={isSubmitting}
           >
             <Send className="mr-2" size={18} />
-            {isSubmitting ? "Sending..." : "Get Free Quote"}
+            {isSubmitting ? "Sending..." : "Request Consultation"}
           </Button>
 
           <p className="text-xs text-muted-foreground text-center leading-relaxed">
