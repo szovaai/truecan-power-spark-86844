@@ -30,8 +30,8 @@ const Commercial = () => {
     },
     {
       icon: Wrench,
-      title: "Maintenance Contracts",
-      description: "Scheduled preventative maintenance to keep your operations running smoothly year-round."
+      title: "Preventative Maintenance",
+      description: "Scheduled inspections and fault isolation to prevent downtime before it happens."
     },
     {
       icon: Zap,
@@ -40,8 +40,8 @@ const Commercial = () => {
     },
     {
       icon: Battery,
-      title: "Backup Generators",
-      description: "Automatic backup power solutions to protect against costly downtime."
+      title: "Backup & Redundancy",
+      description: "Automatic transfer switches and UPS systems for continuous uptime during outages."
     },
     {
       icon: Car,
@@ -155,10 +155,10 @@ const Commercial = () => {
                     <Shield size={32} />
                   </div>
                   <h3 className="text-3xl font-montserrat font-bold mb-4">
-                    Certified & Trusted
+                    Certified & Compliant
                   </h3>
                   <p className="text-lg text-muted-foreground">
-                    Our commitment to excellence and safety
+                    Full regulatory compliance and industry certifications
                   </p>
                 </div>
 
@@ -179,10 +179,10 @@ const Commercial = () => {
 
                 <div className="text-center">
                   <p className="text-lg font-semibold mb-4">
-                    Professional Electrical Contractors
+                    Critical Infrastructure Specialists
                   </p>
                   <p className="text-muted-foreground">
-                    Committed to the highest standards of electrical installation, service, and safety
+                    Built for uptime, compliance, and operational continuity
                   </p>
                 </div>
               </CardContent>

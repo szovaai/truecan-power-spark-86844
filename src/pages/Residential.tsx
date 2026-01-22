@@ -51,11 +51,11 @@ const Residential = () => {
 
   const benefits = [
     "Licensed ESA-certified electricians",
-    "100% code-compliant work",
-    "Clean, respectful service",
+    "100% code-compliant installations",
+    "Preventative maintenance focus",
     "Upfront pricing, no hidden fees",
-    "Warranty on all installations",
-    "Emergency service available"
+    "2-year workmanship warranty",
+    "24/7 emergency response"
   ];
 
   return (
@@ -99,7 +99,7 @@ const Residential = () => {
               Complete Home Electrical Solutions
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Professional service for every electrical need in your home
+              Code-compliant installations built for reliability and long-term performance
             </p>
           </div>
 

@@ -17,7 +17,7 @@ const Footer = () => {
               className="h-12 w-auto mb-4"
             />
             <p className="text-sm text-gray-600 mb-4">
-              Licensed, insured, and ready 24/7 to keep your home and business powered safely.
+              Licensed, insured, and focused on reliability. Preventative maintenance and 24/7 emergency response.
             </p>
             <div className="flex gap-4">
               <a 
