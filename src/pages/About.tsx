@@ -46,7 +46,7 @@ const About = () => {
         <title>About TrueCan Power | Calgary's Trusted Electricians</title>
         <meta 
           name="description" 
-          content="TrueCan Power Systems - Licensed, insured, ESA-certified electricians serving Calgary. Learn about our values, certifications, and commitment to quality."
+          content="TrueCan Power Systems - Licensed, ESA-certified electricians serving Calgary. Built on reliability, compliance, and precision. Learn about our approach."
         />
         <link rel="canonical" href="https://truecanpower.com/about" />
       </Helmet>
@@ -74,13 +74,13 @@ const About = () => {
               Our Story
             </h2>
             <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-              TrueCan Power Systems Inc. was founded with a simple mission: to provide honest, reliable electrical services that homeowners and businesses can trust.
+              TrueCan Power Systems Inc. was founded with a clear focus: build electrical infrastructure that delivers consistent uptime and prevents costly failures.
             </p>
             <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-              As a proudly Canadian company, we understand the unique electrical needs of our climate and communities. From harsh winters requiring reliable heating systems to modern homes demanding smart technology integration, we've seen it all.
+              As a proudly Canadian company, we understand the unique demands of our climate. From redundant heating systems to load-balanced commercial facilities, we design for reliability under real-world conditions.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Today, we serve residential and commercial clients across Canada, bringing the same commitment to quality and safety to every project, big or small.
+              Today, we serve residential and commercial clients in the Calgary area, applying the same rigorous standards of compliance and preventative maintenance to every project.
             </p>
           </div>
         </div>
@@ -124,10 +124,10 @@ const About = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-4">
-                Credentials & Certifications
+                Credentials & Compliance
               </h2>
               <p className="text-xl text-muted-foreground">
-                Your safety and satisfaction are backed by professional excellence
+                Full regulatory compliance and industry certifications
               </p>
             </div>
 
@@ -184,7 +184,7 @@ const About = () => {
             Experience the TrueCan Difference
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join hundreds of satisfied customers who trust us for reliable power systems and professional service.
+            Join facility managers and homeowners who trust us for reliable power infrastructure and preventative maintenance.
           </p>
           <Button variant="secondary" size="lg" asChild className="shadow-glow">
             <Link to="/contact">Schedule a Consultation</Link>

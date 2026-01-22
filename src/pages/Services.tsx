@@ -61,7 +61,7 @@ const Services = () => {
               Residential Services
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Safe, clean, on-time electrical work for your home
+              Code-compliant electrical systems built for long-term reliability
             </p>
           </div>
 
@@ -98,7 +98,7 @@ const Services = () => {
               Commercial & Industrial
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Trusted electrical partner for builders, businesses, and property managers
+              Power infrastructure designed for uptime, compliance, and operational continuity
             </p>
           </div>
 

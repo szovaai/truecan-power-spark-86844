@@ -80,10 +80,10 @@ const Home = () => {
               Power You Can Trust For Life
             </h1>
             <p className="text-2xl md:text-3xl mb-2 font-semibold text-foreground">
-              When power satisfies, operations stop — we prevent that.
+              When power fails, operations stop — we prevent that.
             </p>
             <p className="text-lg md:text-xl mb-10 text-muted-foreground leading-relaxed">
-              Licensed, ESA-certified electricians delivering reliable power systems for homes and businesses. 24/7 emergency response, uptime guaranteed.
+              Licensed, ESA-certified electricians focused on reliability and uptime. Preventative maintenance, fault isolation, and 24/7 emergency response for homes and businesses.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
@@ -170,7 +170,7 @@ const Home = () => {
               Featured Services
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive electrical solutions for every need
+              Code-compliant electrical infrastructure for homes and businesses
             </p>
           </div>
 
@@ -203,31 +203,31 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-8">
-              Trusted by Homeowners & Businesses
+              Built for Reliability
             </h2>
             <p className="text-xl text-muted-foreground mb-12">
-              Join our growing list of satisfied customers in the Calgary area
+              Trusted by homeowners and facility managers across the Calgary area
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               <Card className="shadow-elegant">
                 <CardContent className="p-8 text-center">
                   <Shield className="text-primary w-12 h-12 mx-auto mb-4" />
-                  <h3 className="font-bold text-lg mb-2">Licensed & Insured</h3>
-                  <p className="text-muted-foreground text-sm">Fully certified ESA electricians</p>
+                  <h3 className="font-bold text-lg mb-2">Licensed & Compliant</h3>
+                  <p className="text-muted-foreground text-sm">ESA-certified, code-compliant work</p>
                 </CardContent>
               </Card>
               <Card className="shadow-elegant">
                 <CardContent className="p-8 text-center">
                   <CheckCircle2 className="text-primary w-12 h-12 mx-auto mb-4" />
-                  <h3 className="font-bold text-lg mb-2">Satisfaction Guaranteed</h3>
+                  <h3 className="font-bold text-lg mb-2">Uptime Guaranteed</h3>
                   <p className="text-muted-foreground text-sm">On-time or we credit $50</p>
                 </CardContent>
               </Card>
               <Card className="shadow-elegant">
                 <CardContent className="p-8 text-center">
                   <Star className="text-primary w-12 h-12 mx-auto mb-4" />
-                  <h3 className="font-bold text-lg mb-2">Professional Service</h3>
-                  <p className="text-muted-foreground text-sm">Clean, respectful workmanship</p>
+                  <h3 className="font-bold text-lg mb-2">Preventative Focus</h3>
+                  <p className="text-muted-foreground text-sm">Proactive maintenance, not reactive repairs</p>
                 </CardContent>
               </Card>
             </div>
