@@ -11,6 +11,7 @@ import {
   Wrench,
   Star,
   CheckCircle2,
+  FileText,
   Flame,
   Home as HomeIcon
 } from "lucide-react";
@@ -32,10 +33,10 @@ const Home = () => {
   ];
 
   const services = [
+    { icon: FileText, label: "Engineering & Design", description: "Design. Specify. Execute.", link: "/services/electrical-engineering" },
     { icon: Zap, label: "Panel Upgrades", description: "Modernize your system", link: "/services/panel-upgrade" },
     { icon: Car, label: "EV Chargers", description: "Home & commercial", link: "/services/ev-charger-installation" },
     { icon: Lightbulb, label: "Lighting Design", description: "Efficient solutions", link: "/services/pot-light-installation" },
-    { icon: Flame, label: "Hot Tub & Sauna", description: "240V wiring & hookups", link: "/services/hot-tub-sauna-wiring" },
     { icon: Plug, label: "Tenant Improvements", description: "Commercial fit-outs", link: "/services/renovation-wiring" },
     { icon: Shield, label: "Surge Protection", description: "Protect your electronics", link: "/services/surge-protection" }
   ];

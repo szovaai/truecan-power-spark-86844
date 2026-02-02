@@ -10,7 +10,8 @@ import {
   Car,
   Battery,
   CheckCircle2,
-  Shield
+  Shield,
+  FileText
 } from "lucide-react";
 import commercialHero from "@/assets/commercial-hero.jpg";
 import Header from "@/components/Header";
@@ -18,6 +19,12 @@ import Footer from "@/components/Footer";
 
 const Commercial = () => {
   const services = [
+    {
+      icon: FileText,
+      title: "Engineering & Design",
+      description: "Professional electrical engineering — load analysis, single-line diagrams, and permit-ready drawings.",
+      link: "/services/electrical-engineering"
+    },
     {
       icon: Building2,
       title: "Tenant Fit-Outs",
@@ -114,9 +121,14 @@ const Commercial = () => {
                   <h3 className="text-2xl font-montserrat font-bold mb-4">
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed mb-4">
                     {service.description}
                   </p>
+                  {service.link && (
+                    <Link to={service.link} className="text-primary font-semibold hover:underline">
+                      Learn more →
+                    </Link>
+                  )}
                 </CardContent>
               </Card>
             ))}

@@ -10,8 +10,10 @@ import {
   Shield,
   Building2,
   Factory,
-  Store,
-  Home
+  Home,
+  FileText,
+  AlertTriangle,
+  ClipboardCheck
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -122,6 +124,65 @@ const Services = () => {
           <div className="text-center">
             <Button variant="hero" size="lg" asChild>
               <Link to="/commercial">View All Commercial Services</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Engineering & Design Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold mb-4">
+              Engineering & Design
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Professional electrical engineering — design and installation under one roof
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
+            <Card className="hover:shadow-glow transition-smooth border-2 border-border hover:border-primary/50">
+              <CardContent className="p-6">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-primary mb-4">
+                  <FileText size={28} />
+                </div>
+                <h3 className="font-bold text-xl mb-3">Power Distribution Design</h3>
+                <p className="text-muted-foreground leading-relaxed">Load calculations, single-line diagrams, and permit-ready drawings.</p>
+                <Link to="/services/electrical-engineering" className="text-primary font-semibold mt-4 inline-block hover:underline">
+                  Learn more →
+                </Link>
+              </CardContent>
+            </Card>
+            <Card className="hover:shadow-glow transition-smooth border-2 border-border hover:border-primary/50">
+              <CardContent className="p-6">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-primary mb-4">
+                  <AlertTriangle size={28} />
+                </div>
+                <h3 className="font-bold text-xl mb-3">Arc Flash Studies</h3>
+                <p className="text-muted-foreground leading-relaxed">Hazard analysis, incident energy calculations, and PPE labeling.</p>
+                <Link to="/services/electrical-engineering" className="text-primary font-semibold mt-4 inline-block hover:underline">
+                  Learn more →
+                </Link>
+              </CardContent>
+            </Card>
+            <Card className="hover:shadow-glow transition-smooth border-2 border-border hover:border-primary/50">
+              <CardContent className="p-6">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-primary mb-4">
+                  <ClipboardCheck size={28} />
+                </div>
+                <h3 className="font-bold text-xl mb-3">Code Compliance Reviews</h3>
+                <p className="text-muted-foreground leading-relaxed">CEC verification, permit coordination, and regulatory assessments.</p>
+                <Link to="/services/electrical-engineering" className="text-primary font-semibold mt-4 inline-block hover:underline">
+                  Learn more →
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <Button variant="hero" size="lg" asChild>
+              <Link to="/services/electrical-engineering">Explore Engineering Services</Link>
             </Button>
           </div>
         </div>

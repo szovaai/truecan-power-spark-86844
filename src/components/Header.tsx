@@ -32,6 +32,7 @@ const Header = () => {
   ];
 
   const serviceLinks = [
+    { to: "/services/electrical-engineering", label: "Engineering & Design" },
     { to: "/services/panel-upgrade", label: "Panel Upgrades" },
     { to: "/services/ev-charger-installation", label: "EV Charger Installation" },
     { to: "/services/hot-tub-sauna-wiring", label: "Hot Tub & Sauna Wiring" },

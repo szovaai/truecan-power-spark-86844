@@ -79,6 +79,9 @@ const About = () => {
             <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
               As a proudly Canadian company, we understand the unique demands of our climate. From redundant heating systems to load-balanced commercial facilities, we design for reliability under real-world conditions.
             </p>
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              With in-house electrical engineering capability, we offer what most contractors can't: integrated design and execution under one roof. From single-line diagrams to switchgear installation, one team owns the outcome.
+            </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Today, we serve residential and commercial clients in the Calgary area, applying the same rigorous standards of compliance and preventative maintenance to every project.
             </p>
