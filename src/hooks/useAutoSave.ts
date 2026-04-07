@@ -9,7 +9,7 @@ interface AutoSaveOptions {
 export function useAutoSave({ delay = 5000, onSave, enabled = true }: AutoSaveOptions) {
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastSaveRef = useRef<number>(0);
 
   const triggerSave = useCallback(async () => {
